@@ -23,6 +23,7 @@ control_statement
     : if_statement
     | for_statement
     | switch_statement
+    | function_declaration_statement
     ;
 
 // If Statement
@@ -37,15 +38,24 @@ for_statement
 
 // Switch Statement
 switch_statement
-    : SWITCH inline_statement* expression L_C_BRACK (
-        CASE (value_atom | literal_atom | type_atom) scoped_block
-    )* (DEFAULT scoped_block)? R_C_BRACK
+    : SWITCH inline_statement* expression L_C_BRACK (CASE (Identifier | literal_atom) scoped_block)* (
+        DEFAULT scoped_block
+    )? R_C_BRACK
     ;
+
+// Allow for type and value matching
 
 // Inlinable Statements
 inline_statement
     : assign_statement
     | expression_statement
+    ;
+
+// Function Declaration Statement
+function_declaration_statement
+    : type = (FUNC | Identifier) name = Identifier L_PAREN assign_declarations? R_PAREN (
+        return_type = (VAR | Identifier)
+    )? scoped_block
     ;
 
 // Assign Statement
@@ -70,8 +80,8 @@ declared_assign_declarations
     ;
 
 declared_assign_declaration
-    : type_atom undeclared_assign_declaration # TypedDeclaredAssignDeclaration
-    | VAR undeclared_assign_declaration       # UntypedDeclaredAssignDeclaration
+    : type = Identifier undeclared_assign_declaration # TypedDeclaredAssignDeclaration
+    | VAR undeclared_assign_declaration               # UntypedDeclaredAssignDeclaration
     ;
 
 undeclared_assign_declarations
@@ -79,14 +89,14 @@ undeclared_assign_declarations
     ;
 
 undeclared_assign_declaration
-    : value_atom                                         # UndeclaredAtomAssignDeclaration
+    : var = Identifier                                   # UndeclaredAtomAssignDeclaration
     | L_C_BRACK undeclared_assign_declarations R_C_BRACK # UndeclaredStructDestrutureAssignDeclaration
-    | L_S_BRACK undeclared_assign_declarations R_S_BRACK # UndeclaredTupleDestrutureAssignDeclaration
+    | L_PAREN undeclared_assign_declarations R_PAREN     # UndeclaredTupleDestrutureAssignDeclaration
     ;
 
 // Operator Assign Statement
 operator_assign_statement
-    : value_atoms op = (
+    : var = Identifier op = (
         OP_ADD
         | OP_SUB
         | OP_MUL
@@ -113,7 +123,8 @@ expressions
     ;
 
 expression
-    : L_PAREN expression R_PAREN                                                       # BracketedExpression
+    : L_PAREN expression R_PAREN expression                                            # CastExpression
+    | L_PAREN expression R_PAREN                                                       # BracketedExpression
     | expression op = (OP_POW | OP_ROOT) expression                                    # ExponentExpression
     | op = (OP_NOT | OP_ADD | OP_SUB) expression                                       # UnaryExpression
     | expression op = (OP_MUL | OP_DIV | OP_MOD) expression                            # MultiplicativeExpression
@@ -124,28 +135,40 @@ expression
     | expression OP_XOR expression                                                     # XOrExpression
     | expression OP_OR expression                                                      # OrExpression
     | expression L_PAREN expressions? R_PAREN                                          # CallExpression
-    | expression PERIOD value_atom                                                     # AccessExpression
+    | expression PERIOD Identifier                                                     # AccessExpression
     | expression L_S_BRACK expression R_S_BRACK                                        # IndexExpression
     | expression L_S_BRACK expression? COLON expression? R_S_BRACK                     # SliceExpression
     | expression_atom                                                                  # AtomExpression
+    | function_expression                                                              # FunctionExpression
+    | struct_expression                                                                # StructExpression
+    | tuple_expression                                                                 # TupleExpression
+    ;
+
+// Type Expressions
+function_expression
+    : (type = (FUNC | Identifier)) L_PAREN assign_declarations? R_PAREN (
+        return_type = (VAR | Identifier)
+    )? scoped_block
+    ;
+
+struct_expression
+    : type = (STRUCT | Identifier) L_C_BRACK (Identifier) COLON expression (
+        COMMA (Identifier) COLON expression
+    )* COMMA? R_C_BRACK
+    ;
+
+tuple_expression
+    : L_PAREN expression (COMMA | (COMMA expression)+) R_PAREN
     ;
 
 expression_atom
-    : value_atom
+    : Identifier
     | literal_atom
     ;
 
 // Atoms
-value_atoms
-    : value_atom (COMMA value_atom)*
-    ;
-
-value_atom
-    : Identifier
-    ;
-
-type_atom
-    : Identifier
+identifiers
+    : Identifier (COMMA Identifier)*
     ;
 
 literal_atom
@@ -158,5 +181,5 @@ untyped_literal_atom
     ;
 
 typed_literal_atom
-    : type_atom Literal
+    : Identifier Literal
     ;

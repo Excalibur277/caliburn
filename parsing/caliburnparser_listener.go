@@ -28,6 +28,9 @@ type CaliburnParserListener interface {
 	// EnterInline_statement is called when entering the inline_statement production.
 	EnterInline_statement(c *Inline_statementContext)
 
+	// EnterFunction_declaration_statement is called when entering the function_declaration_statement production.
+	EnterFunction_declaration_statement(c *Function_declaration_statementContext)
+
 	// EnterAssign_statement is called when entering the assign_statement production.
 	EnterAssign_statement(c *Assign_statementContext)
 
@@ -88,6 +91,9 @@ type CaliburnParserListener interface {
 	// EnterSliceExpression is called when entering the SliceExpression production.
 	EnterSliceExpression(c *SliceExpressionContext)
 
+	// EnterTupleExpression is called when entering the TupleExpression production.
+	EnterTupleExpression(c *TupleExpressionContext)
+
 	// EnterIndexExpression is called when entering the IndexExpression production.
 	EnterIndexExpression(c *IndexExpressionContext)
 
@@ -112,8 +118,17 @@ type CaliburnParserListener interface {
 	// EnterXOrExpression is called when entering the XOrExpression production.
 	EnterXOrExpression(c *XOrExpressionContext)
 
+	// EnterFunctionExpression is called when entering the FunctionExpression production.
+	EnterFunctionExpression(c *FunctionExpressionContext)
+
+	// EnterStructExpression is called when entering the StructExpression production.
+	EnterStructExpression(c *StructExpressionContext)
+
 	// EnterAndExpression is called when entering the AndExpression production.
 	EnterAndExpression(c *AndExpressionContext)
+
+	// EnterCastExpression is called when entering the CastExpression production.
+	EnterCastExpression(c *CastExpressionContext)
 
 	// EnterMultiplicativeExpression is called when entering the MultiplicativeExpression production.
 	EnterMultiplicativeExpression(c *MultiplicativeExpressionContext)
@@ -121,17 +136,20 @@ type CaliburnParserListener interface {
 	// EnterCallExpression is called when entering the CallExpression production.
 	EnterCallExpression(c *CallExpressionContext)
 
+	// EnterFunction_expression is called when entering the function_expression production.
+	EnterFunction_expression(c *Function_expressionContext)
+
+	// EnterStruct_expression is called when entering the struct_expression production.
+	EnterStruct_expression(c *Struct_expressionContext)
+
+	// EnterTuple_expression is called when entering the tuple_expression production.
+	EnterTuple_expression(c *Tuple_expressionContext)
+
 	// EnterExpression_atom is called when entering the expression_atom production.
 	EnterExpression_atom(c *Expression_atomContext)
 
-	// EnterValue_atoms is called when entering the value_atoms production.
-	EnterValue_atoms(c *Value_atomsContext)
-
-	// EnterValue_atom is called when entering the value_atom production.
-	EnterValue_atom(c *Value_atomContext)
-
-	// EnterType_atom is called when entering the type_atom production.
-	EnterType_atom(c *Type_atomContext)
+	// EnterIdentifiers is called when entering the identifiers production.
+	EnterIdentifiers(c *IdentifiersContext)
 
 	// EnterLiteral_atom is called when entering the literal_atom production.
 	EnterLiteral_atom(c *Literal_atomContext)
@@ -162,6 +180,9 @@ type CaliburnParserListener interface {
 
 	// ExitInline_statement is called when exiting the inline_statement production.
 	ExitInline_statement(c *Inline_statementContext)
+
+	// ExitFunction_declaration_statement is called when exiting the function_declaration_statement production.
+	ExitFunction_declaration_statement(c *Function_declaration_statementContext)
 
 	// ExitAssign_statement is called when exiting the assign_statement production.
 	ExitAssign_statement(c *Assign_statementContext)
@@ -223,6 +244,9 @@ type CaliburnParserListener interface {
 	// ExitSliceExpression is called when exiting the SliceExpression production.
 	ExitSliceExpression(c *SliceExpressionContext)
 
+	// ExitTupleExpression is called when exiting the TupleExpression production.
+	ExitTupleExpression(c *TupleExpressionContext)
+
 	// ExitIndexExpression is called when exiting the IndexExpression production.
 	ExitIndexExpression(c *IndexExpressionContext)
 
@@ -247,8 +271,17 @@ type CaliburnParserListener interface {
 	// ExitXOrExpression is called when exiting the XOrExpression production.
 	ExitXOrExpression(c *XOrExpressionContext)
 
+	// ExitFunctionExpression is called when exiting the FunctionExpression production.
+	ExitFunctionExpression(c *FunctionExpressionContext)
+
+	// ExitStructExpression is called when exiting the StructExpression production.
+	ExitStructExpression(c *StructExpressionContext)
+
 	// ExitAndExpression is called when exiting the AndExpression production.
 	ExitAndExpression(c *AndExpressionContext)
+
+	// ExitCastExpression is called when exiting the CastExpression production.
+	ExitCastExpression(c *CastExpressionContext)
 
 	// ExitMultiplicativeExpression is called when exiting the MultiplicativeExpression production.
 	ExitMultiplicativeExpression(c *MultiplicativeExpressionContext)
@@ -256,17 +289,20 @@ type CaliburnParserListener interface {
 	// ExitCallExpression is called when exiting the CallExpression production.
 	ExitCallExpression(c *CallExpressionContext)
 
+	// ExitFunction_expression is called when exiting the function_expression production.
+	ExitFunction_expression(c *Function_expressionContext)
+
+	// ExitStruct_expression is called when exiting the struct_expression production.
+	ExitStruct_expression(c *Struct_expressionContext)
+
+	// ExitTuple_expression is called when exiting the tuple_expression production.
+	ExitTuple_expression(c *Tuple_expressionContext)
+
 	// ExitExpression_atom is called when exiting the expression_atom production.
 	ExitExpression_atom(c *Expression_atomContext)
 
-	// ExitValue_atoms is called when exiting the value_atoms production.
-	ExitValue_atoms(c *Value_atomsContext)
-
-	// ExitValue_atom is called when exiting the value_atom production.
-	ExitValue_atom(c *Value_atomContext)
-
-	// ExitType_atom is called when exiting the type_atom production.
-	ExitType_atom(c *Type_atomContext)
+	// ExitIdentifiers is called when exiting the identifiers production.
+	ExitIdentifiers(c *IdentifiersContext)
 
 	// ExitLiteral_atom is called when exiting the literal_atom production.
 	ExitLiteral_atom(c *Literal_atomContext)

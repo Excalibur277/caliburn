@@ -53,143 +53,174 @@ func caliburnparserParserInit() {
 	}
 	staticData.RuleNames = []string{
 		"scoped_block", "statement", "control_statement", "if_statement", "for_statement",
-		"switch_statement", "inline_statement", "assign_statement", "assign_declarations",
-		"assign_declaration", "declared_assign_declarations", "declared_assign_declaration",
-		"undeclared_assign_declarations", "undeclared_assign_declaration", "operator_assign_statement",
-		"expression_statement", "expressions", "expression", "expression_atom",
-		"value_atoms", "value_atom", "type_atom", "literal_atom", "untyped_literal_atom",
+		"switch_statement", "inline_statement", "function_declaration_statement",
+		"assign_statement", "assign_declarations", "assign_declaration", "declared_assign_declarations",
+		"declared_assign_declaration", "undeclared_assign_declarations", "undeclared_assign_declaration",
+		"operator_assign_statement", "expression_statement", "expressions",
+		"expression", "function_expression", "struct_expression", "tuple_expression",
+		"expression_atom", "identifiers", "literal_atom", "untyped_literal_atom",
 		"typed_literal_atom",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 58, 288, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 58, 349, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
-		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 1, 0, 1, 0, 5, 0,
-		53, 8, 0, 10, 0, 12, 0, 56, 9, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 3, 1, 63,
-		8, 1, 1, 2, 1, 2, 1, 2, 3, 2, 68, 8, 2, 1, 3, 1, 3, 5, 3, 72, 8, 3, 10,
-		3, 12, 3, 75, 9, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 3, 3, 82, 8, 3, 3, 3,
-		84, 8, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 1, 5, 5, 5, 92, 8, 5, 10, 5, 12,
-		5, 95, 9, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 103, 8, 5, 1, 5,
-		1, 5, 5, 5, 107, 8, 5, 10, 5, 12, 5, 110, 9, 5, 1, 5, 1, 5, 3, 5, 114,
-		8, 5, 1, 5, 1, 5, 1, 6, 1, 6, 3, 6, 120, 8, 6, 1, 7, 1, 7, 1, 7, 1, 7,
-		1, 7, 1, 7, 3, 7, 128, 8, 7, 1, 8, 1, 8, 1, 8, 5, 8, 133, 8, 8, 10, 8,
-		12, 8, 136, 9, 8, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9,
-		1, 9, 3, 9, 148, 8, 9, 1, 10, 1, 10, 1, 10, 5, 10, 153, 8, 10, 10, 10,
-		12, 10, 156, 9, 10, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 3, 11, 163, 8, 11,
-		1, 12, 1, 12, 1, 12, 5, 12, 168, 8, 12, 10, 12, 12, 12, 171, 9, 12, 1,
-		13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 1, 13, 3, 13, 182,
-		8, 13, 1, 14, 1, 14, 1, 14, 1, 14, 1, 14, 1, 15, 1, 15, 1, 15, 1, 16, 1,
-		16, 1, 16, 5, 16, 195, 8, 16, 10, 16, 12, 16, 198, 9, 16, 1, 17, 1, 17,
-		1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 3, 17, 208, 8, 17, 1, 17, 1,
-		17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17,
-		1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1,
-		17, 1, 17, 1, 17, 1, 17, 1, 17, 3, 17, 237, 8, 17, 1, 17, 1, 17, 1, 17,
-		1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 1, 17, 3, 17, 251,
-		8, 17, 1, 17, 1, 17, 3, 17, 255, 8, 17, 1, 17, 5, 17, 258, 8, 17, 10, 17,
-		12, 17, 261, 9, 17, 1, 18, 1, 18, 3, 18, 265, 8, 18, 1, 19, 1, 19, 1, 19,
-		5, 19, 270, 8, 19, 10, 19, 12, 19, 273, 9, 19, 1, 20, 1, 20, 1, 21, 1,
-		21, 1, 22, 1, 22, 3, 22, 281, 8, 22, 1, 23, 1, 23, 1, 24, 1, 24, 1, 24,
-		1, 24, 0, 1, 34, 25, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26,
-		28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 0, 7, 2, 0, 35, 36, 38, 47,
-		1, 0, 35, 37, 1, 0, 41, 42, 1, 0, 38, 40, 1, 0, 35, 36, 1, 0, 46, 47, 1,
-		0, 48, 53, 307, 0, 50, 1, 0, 0, 0, 2, 62, 1, 0, 0, 0, 4, 67, 1, 0, 0, 0,
-		6, 69, 1, 0, 0, 0, 8, 85, 1, 0, 0, 0, 10, 89, 1, 0, 0, 0, 12, 119, 1, 0,
-		0, 0, 14, 127, 1, 0, 0, 0, 16, 129, 1, 0, 0, 0, 18, 147, 1, 0, 0, 0, 20,
-		149, 1, 0, 0, 0, 22, 162, 1, 0, 0, 0, 24, 164, 1, 0, 0, 0, 26, 181, 1,
-		0, 0, 0, 28, 183, 1, 0, 0, 0, 30, 188, 1, 0, 0, 0, 32, 191, 1, 0, 0, 0,
-		34, 207, 1, 0, 0, 0, 36, 264, 1, 0, 0, 0, 38, 266, 1, 0, 0, 0, 40, 274,
-		1, 0, 0, 0, 42, 276, 1, 0, 0, 0, 44, 280, 1, 0, 0, 0, 46, 282, 1, 0, 0,
-		0, 48, 284, 1, 0, 0, 0, 50, 54, 5, 33, 0, 0, 51, 53, 3, 2, 1, 0, 52, 51,
-		1, 0, 0, 0, 53, 56, 1, 0, 0, 0, 54, 52, 1, 0, 0, 0, 54, 55, 1, 0, 0, 0,
-		55, 57, 1, 0, 0, 0, 56, 54, 1, 0, 0, 0, 57, 58, 5, 34, 0, 0, 58, 1, 1,
-		0, 0, 0, 59, 63, 3, 14, 7, 0, 60, 63, 3, 30, 15, 0, 61, 63, 3, 4, 2, 0,
-		62, 59, 1, 0, 0, 0, 62, 60, 1, 0, 0, 0, 62, 61, 1, 0, 0, 0, 63, 3, 1, 0,
-		0, 0, 64, 68, 3, 6, 3, 0, 65, 68, 3, 8, 4, 0, 66, 68, 3, 10, 5, 0, 67,
-		64, 1, 0, 0, 0, 67, 65, 1, 0, 0, 0, 67, 66, 1, 0, 0, 0, 68, 5, 1, 0, 0,
-		0, 69, 73, 5, 7, 0, 0, 70, 72, 3, 12, 6, 0, 71, 70, 1, 0, 0, 0, 72, 75,
-		1, 0, 0, 0, 73, 71, 1, 0, 0, 0, 73, 74, 1, 0, 0, 0, 74, 76, 1, 0, 0, 0,
-		75, 73, 1, 0, 0, 0, 76, 77, 3, 34, 17, 0, 77, 83, 3, 0, 0, 0, 78, 81, 5,
-		8, 0, 0, 79, 82, 3, 0, 0, 0, 80, 82, 3, 6, 3, 0, 81, 79, 1, 0, 0, 0, 81,
-		80, 1, 0, 0, 0, 82, 84, 1, 0, 0, 0, 83, 78, 1, 0, 0, 0, 83, 84, 1, 0, 0,
-		0, 84, 7, 1, 0, 0, 0, 85, 86, 5, 9, 0, 0, 86, 87, 3, 34, 17, 0, 87, 88,
-		3, 0, 0, 0, 88, 9, 1, 0, 0, 0, 89, 93, 5, 10, 0, 0, 90, 92, 3, 12, 6, 0,
-		91, 90, 1, 0, 0, 0, 92, 95, 1, 0, 0, 0, 93, 91, 1, 0, 0, 0, 93, 94, 1,
-		0, 0, 0, 94, 96, 1, 0, 0, 0, 95, 93, 1, 0, 0, 0, 96, 97, 3, 34, 17, 0,
-		97, 108, 5, 33, 0, 0, 98, 102, 5, 11, 0, 0, 99, 103, 3, 40, 20, 0, 100,
-		103, 3, 44, 22, 0, 101, 103, 3, 42, 21, 0, 102, 99, 1, 0, 0, 0, 102, 100,
-		1, 0, 0, 0, 102, 101, 1, 0, 0, 0, 103, 104, 1, 0, 0, 0, 104, 105, 3, 0,
-		0, 0, 105, 107, 1, 0, 0, 0, 106, 98, 1, 0, 0, 0, 107, 110, 1, 0, 0, 0,
-		108, 106, 1, 0, 0, 0, 108, 109, 1, 0, 0, 0, 109, 113, 1, 0, 0, 0, 110,
-		108, 1, 0, 0, 0, 111, 112, 5, 12, 0, 0, 112, 114, 3, 0, 0, 0, 113, 111,
-		1, 0, 0, 0, 113, 114, 1, 0, 0, 0, 114, 115, 1, 0, 0, 0, 115, 116, 5, 34,
-		0, 0, 116, 11, 1, 0, 0, 0, 117, 120, 3, 14, 7, 0, 118, 120, 3, 30, 15,
-		0, 119, 117, 1, 0, 0, 0, 119, 118, 1, 0, 0, 0, 120, 13, 1, 0, 0, 0, 121,
-		122, 3, 16, 8, 0, 122, 123, 5, 6, 0, 0, 123, 124, 3, 32, 16, 0, 124, 125,
-		5, 58, 0, 0, 125, 128, 1, 0, 0, 0, 126, 128, 3, 28, 14, 0, 127, 121, 1,
-		0, 0, 0, 127, 126, 1, 0, 0, 0, 128, 15, 1, 0, 0, 0, 129, 134, 3, 18, 9,
-		0, 130, 131, 5, 2, 0, 0, 131, 133, 3, 14, 7, 0, 132, 130, 1, 0, 0, 0, 133,
-		136, 1, 0, 0, 0, 134, 132, 1, 0, 0, 0, 134, 135, 1, 0, 0, 0, 135, 17, 1,
-		0, 0, 0, 136, 134, 1, 0, 0, 0, 137, 148, 3, 22, 11, 0, 138, 148, 3, 26,
-		13, 0, 139, 140, 5, 33, 0, 0, 140, 141, 3, 16, 8, 0, 141, 142, 5, 34, 0,
-		0, 142, 148, 1, 0, 0, 0, 143, 144, 5, 31, 0, 0, 144, 145, 3, 16, 8, 0,
-		145, 146, 5, 31, 0, 0, 146, 148, 1, 0, 0, 0, 147, 137, 1, 0, 0, 0, 147,
-		138, 1, 0, 0, 0, 147, 139, 1, 0, 0, 0, 147, 143, 1, 0, 0, 0, 148, 19, 1,
-		0, 0, 0, 149, 154, 3, 22, 11, 0, 150, 151, 5, 2, 0, 0, 151, 153, 3, 22,
-		11, 0, 152, 150, 1, 0, 0, 0, 153, 156, 1, 0, 0, 0, 154, 152, 1, 0, 0, 0,
-		154, 155, 1, 0, 0, 0, 155, 21, 1, 0, 0, 0, 156, 154, 1, 0, 0, 0, 157, 158,
-		3, 42, 21, 0, 158, 159, 3, 26, 13, 0, 159, 163, 1, 0, 0, 0, 160, 161, 5,
-		21, 0, 0, 161, 163, 3, 26, 13, 0, 162, 157, 1, 0, 0, 0, 162, 160, 1, 0,
-		0, 0, 163, 23, 1, 0, 0, 0, 164, 169, 3, 26, 13, 0, 165, 166, 5, 2, 0, 0,
-		166, 168, 3, 26, 13, 0, 167, 165, 1, 0, 0, 0, 168, 171, 1, 0, 0, 0, 169,
-		167, 1, 0, 0, 0, 169, 170, 1, 0, 0, 0, 170, 25, 1, 0, 0, 0, 171, 169, 1,
-		0, 0, 0, 172, 182, 3, 40, 20, 0, 173, 174, 5, 33, 0, 0, 174, 175, 3, 24,
-		12, 0, 175, 176, 5, 34, 0, 0, 176, 182, 1, 0, 0, 0, 177, 178, 5, 31, 0,
-		0, 178, 179, 3, 24, 12, 0, 179, 180, 5, 32, 0, 0, 180, 182, 1, 0, 0, 0,
-		181, 172, 1, 0, 0, 0, 181, 173, 1, 0, 0, 0, 181, 177, 1, 0, 0, 0, 182,
-		27, 1, 0, 0, 0, 183, 184, 3, 38, 19, 0, 184, 185, 7, 0, 0, 0, 185, 186,
-		3, 32, 16, 0, 186, 187, 5, 58, 0, 0, 187, 29, 1, 0, 0, 0, 188, 189, 3,
-		32, 16, 0, 189, 190, 5, 58, 0, 0, 190, 31, 1, 0, 0, 0, 191, 196, 3, 34,
-		17, 0, 192, 193, 5, 2, 0, 0, 193, 195, 3, 34, 17, 0, 194, 192, 1, 0, 0,
-		0, 195, 198, 1, 0, 0, 0, 196, 194, 1, 0, 0, 0, 196, 197, 1, 0, 0, 0, 197,
-		33, 1, 0, 0, 0, 198, 196, 1, 0, 0, 0, 199, 200, 6, 17, -1, 0, 200, 201,
-		5, 29, 0, 0, 201, 202, 3, 34, 17, 0, 202, 203, 5, 30, 0, 0, 203, 208, 1,
-		0, 0, 0, 204, 205, 7, 1, 0, 0, 205, 208, 3, 34, 17, 13, 206, 208, 3, 36,
-		18, 0, 207, 199, 1, 0, 0, 0, 207, 204, 1, 0, 0, 0, 207, 206, 1, 0, 0, 0,
-		208, 259, 1, 0, 0, 0, 209, 210, 10, 14, 0, 0, 210, 211, 7, 2, 0, 0, 211,
-		258, 3, 34, 17, 15, 212, 213, 10, 12, 0, 0, 213, 214, 7, 3, 0, 0, 214,
-		258, 3, 34, 17, 13, 215, 216, 10, 11, 0, 0, 216, 217, 7, 4, 0, 0, 217,
-		258, 3, 34, 17, 12, 218, 219, 10, 10, 0, 0, 219, 220, 7, 5, 0, 0, 220,
-		258, 3, 34, 17, 11, 221, 222, 10, 9, 0, 0, 222, 223, 7, 6, 0, 0, 223, 258,
-		3, 34, 17, 10, 224, 225, 10, 8, 0, 0, 225, 226, 5, 45, 0, 0, 226, 258,
-		3, 34, 17, 9, 227, 228, 10, 7, 0, 0, 228, 229, 5, 44, 0, 0, 229, 258, 3,
-		34, 17, 8, 230, 231, 10, 6, 0, 0, 231, 232, 5, 43, 0, 0, 232, 258, 3, 34,
-		17, 7, 233, 234, 10, 5, 0, 0, 234, 236, 5, 29, 0, 0, 235, 237, 3, 32, 16,
-		0, 236, 235, 1, 0, 0, 0, 236, 237, 1, 0, 0, 0, 237, 238, 1, 0, 0, 0, 238,
-		258, 5, 30, 0, 0, 239, 240, 10, 4, 0, 0, 240, 241, 5, 1, 0, 0, 241, 258,
-		3, 40, 20, 0, 242, 243, 10, 3, 0, 0, 243, 244, 5, 31, 0, 0, 244, 245, 3,
-		34, 17, 0, 245, 246, 5, 32, 0, 0, 246, 258, 1, 0, 0, 0, 247, 248, 10, 2,
-		0, 0, 248, 250, 5, 31, 0, 0, 249, 251, 3, 34, 17, 0, 250, 249, 1, 0, 0,
-		0, 250, 251, 1, 0, 0, 0, 251, 252, 1, 0, 0, 0, 252, 254, 5, 3, 0, 0, 253,
-		255, 3, 34, 17, 0, 254, 253, 1, 0, 0, 0, 254, 255, 1, 0, 0, 0, 255, 256,
-		1, 0, 0, 0, 256, 258, 5, 32, 0, 0, 257, 209, 1, 0, 0, 0, 257, 212, 1, 0,
-		0, 0, 257, 215, 1, 0, 0, 0, 257, 218, 1, 0, 0, 0, 257, 221, 1, 0, 0, 0,
-		257, 224, 1, 0, 0, 0, 257, 227, 1, 0, 0, 0, 257, 230, 1, 0, 0, 0, 257,
-		233, 1, 0, 0, 0, 257, 239, 1, 0, 0, 0, 257, 242, 1, 0, 0, 0, 257, 247,
-		1, 0, 0, 0, 258, 261, 1, 0, 0, 0, 259, 257, 1, 0, 0, 0, 259, 260, 1, 0,
-		0, 0, 260, 35, 1, 0, 0, 0, 261, 259, 1, 0, 0, 0, 262, 265, 3, 40, 20, 0,
-		263, 265, 3, 44, 22, 0, 264, 262, 1, 0, 0, 0, 264, 263, 1, 0, 0, 0, 265,
-		37, 1, 0, 0, 0, 266, 271, 3, 40, 20, 0, 267, 268, 5, 2, 0, 0, 268, 270,
-		3, 40, 20, 0, 269, 267, 1, 0, 0, 0, 270, 273, 1, 0, 0, 0, 271, 269, 1,
-		0, 0, 0, 271, 272, 1, 0, 0, 0, 272, 39, 1, 0, 0, 0, 273, 271, 1, 0, 0,
-		0, 274, 275, 5, 56, 0, 0, 275, 41, 1, 0, 0, 0, 276, 277, 5, 56, 0, 0, 277,
-		43, 1, 0, 0, 0, 278, 281, 3, 46, 23, 0, 279, 281, 3, 48, 24, 0, 280, 278,
-		1, 0, 0, 0, 280, 279, 1, 0, 0, 0, 281, 45, 1, 0, 0, 0, 282, 283, 5, 57,
-		0, 0, 283, 47, 1, 0, 0, 0, 284, 285, 3, 42, 21, 0, 285, 286, 5, 57, 0,
-		0, 286, 49, 1, 0, 0, 0, 28, 54, 62, 67, 73, 81, 83, 93, 102, 108, 113,
-		119, 127, 134, 147, 154, 162, 169, 181, 196, 207, 236, 250, 254, 257, 259,
-		264, 271, 280,
+		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 2, 26,
+		7, 26, 1, 0, 1, 0, 5, 0, 57, 8, 0, 10, 0, 12, 0, 60, 9, 0, 1, 0, 1, 0,
+		1, 1, 1, 1, 1, 1, 3, 1, 67, 8, 1, 1, 2, 1, 2, 1, 2, 1, 2, 3, 2, 73, 8,
+		2, 1, 3, 1, 3, 5, 3, 77, 8, 3, 10, 3, 12, 3, 80, 9, 3, 1, 3, 1, 3, 1, 3,
+		1, 3, 1, 3, 3, 3, 87, 8, 3, 3, 3, 89, 8, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1,
+		5, 1, 5, 5, 5, 97, 8, 5, 10, 5, 12, 5, 100, 9, 5, 1, 5, 1, 5, 1, 5, 1,
+		5, 1, 5, 3, 5, 107, 8, 5, 1, 5, 5, 5, 110, 8, 5, 10, 5, 12, 5, 113, 9,
+		5, 1, 5, 1, 5, 3, 5, 117, 8, 5, 1, 5, 1, 5, 1, 6, 1, 6, 3, 6, 123, 8, 6,
+		1, 7, 1, 7, 1, 7, 1, 7, 3, 7, 129, 8, 7, 1, 7, 1, 7, 3, 7, 133, 8, 7, 1,
+		7, 1, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 3, 8, 143, 8, 8, 1, 9, 1,
+		9, 1, 9, 5, 9, 148, 8, 9, 10, 9, 12, 9, 151, 9, 9, 1, 10, 1, 10, 1, 10,
+		1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 3, 10, 163, 8, 10, 1,
+		11, 1, 11, 1, 11, 5, 11, 168, 8, 11, 10, 11, 12, 11, 171, 9, 11, 1, 12,
+		1, 12, 1, 12, 1, 12, 3, 12, 177, 8, 12, 1, 13, 1, 13, 1, 13, 5, 13, 182,
+		8, 13, 10, 13, 12, 13, 185, 9, 13, 1, 14, 1, 14, 1, 14, 1, 14, 1, 14, 1,
+		14, 1, 14, 1, 14, 1, 14, 3, 14, 196, 8, 14, 1, 15, 1, 15, 1, 15, 1, 15,
+		1, 15, 1, 16, 1, 16, 1, 16, 1, 17, 1, 17, 1, 17, 5, 17, 209, 8, 17, 10,
+		17, 12, 17, 212, 9, 17, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18,
+		1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 3, 18, 230,
+		8, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1,
+		18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18,
+		1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 3, 18, 259, 8, 18, 1,
+		18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18,
+		1, 18, 3, 18, 273, 8, 18, 1, 18, 1, 18, 3, 18, 277, 8, 18, 1, 18, 5, 18,
+		280, 8, 18, 10, 18, 12, 18, 283, 9, 18, 1, 19, 1, 19, 1, 19, 3, 19, 288,
+		8, 19, 1, 19, 1, 19, 3, 19, 292, 8, 19, 1, 19, 1, 19, 1, 20, 1, 20, 1,
+		20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 5, 20, 305, 8, 20, 10, 20,
+		12, 20, 308, 9, 20, 1, 20, 3, 20, 311, 8, 20, 1, 20, 1, 20, 1, 21, 1, 21,
+		1, 21, 1, 21, 1, 21, 4, 21, 320, 8, 21, 11, 21, 12, 21, 321, 3, 21, 324,
+		8, 21, 1, 21, 1, 21, 1, 22, 1, 22, 3, 22, 330, 8, 22, 1, 23, 1, 23, 1,
+		23, 5, 23, 335, 8, 23, 10, 23, 12, 23, 338, 9, 23, 1, 24, 1, 24, 3, 24,
+		342, 8, 24, 1, 25, 1, 25, 1, 26, 1, 26, 1, 26, 1, 26, 0, 1, 36, 27, 0,
+		2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38,
+		40, 42, 44, 46, 48, 50, 52, 0, 10, 2, 0, 24, 24, 56, 56, 2, 0, 21, 21,
+		56, 56, 2, 0, 35, 36, 38, 47, 1, 0, 35, 37, 1, 0, 41, 42, 1, 0, 38, 40,
+		1, 0, 35, 36, 1, 0, 46, 47, 1, 0, 48, 53, 2, 0, 25, 25, 56, 56, 378, 0,
+		54, 1, 0, 0, 0, 2, 66, 1, 0, 0, 0, 4, 72, 1, 0, 0, 0, 6, 74, 1, 0, 0, 0,
+		8, 90, 1, 0, 0, 0, 10, 94, 1, 0, 0, 0, 12, 122, 1, 0, 0, 0, 14, 124, 1,
+		0, 0, 0, 16, 142, 1, 0, 0, 0, 18, 144, 1, 0, 0, 0, 20, 162, 1, 0, 0, 0,
+		22, 164, 1, 0, 0, 0, 24, 176, 1, 0, 0, 0, 26, 178, 1, 0, 0, 0, 28, 195,
+		1, 0, 0, 0, 30, 197, 1, 0, 0, 0, 32, 202, 1, 0, 0, 0, 34, 205, 1, 0, 0,
+		0, 36, 229, 1, 0, 0, 0, 38, 284, 1, 0, 0, 0, 40, 295, 1, 0, 0, 0, 42, 314,
+		1, 0, 0, 0, 44, 329, 1, 0, 0, 0, 46, 331, 1, 0, 0, 0, 48, 341, 1, 0, 0,
+		0, 50, 343, 1, 0, 0, 0, 52, 345, 1, 0, 0, 0, 54, 58, 5, 33, 0, 0, 55, 57,
+		3, 2, 1, 0, 56, 55, 1, 0, 0, 0, 57, 60, 1, 0, 0, 0, 58, 56, 1, 0, 0, 0,
+		58, 59, 1, 0, 0, 0, 59, 61, 1, 0, 0, 0, 60, 58, 1, 0, 0, 0, 61, 62, 5,
+		34, 0, 0, 62, 1, 1, 0, 0, 0, 63, 67, 3, 16, 8, 0, 64, 67, 3, 32, 16, 0,
+		65, 67, 3, 4, 2, 0, 66, 63, 1, 0, 0, 0, 66, 64, 1, 0, 0, 0, 66, 65, 1,
+		0, 0, 0, 67, 3, 1, 0, 0, 0, 68, 73, 3, 6, 3, 0, 69, 73, 3, 8, 4, 0, 70,
+		73, 3, 10, 5, 0, 71, 73, 3, 14, 7, 0, 72, 68, 1, 0, 0, 0, 72, 69, 1, 0,
+		0, 0, 72, 70, 1, 0, 0, 0, 72, 71, 1, 0, 0, 0, 73, 5, 1, 0, 0, 0, 74, 78,
+		5, 7, 0, 0, 75, 77, 3, 12, 6, 0, 76, 75, 1, 0, 0, 0, 77, 80, 1, 0, 0, 0,
+		78, 76, 1, 0, 0, 0, 78, 79, 1, 0, 0, 0, 79, 81, 1, 0, 0, 0, 80, 78, 1,
+		0, 0, 0, 81, 82, 3, 36, 18, 0, 82, 88, 3, 0, 0, 0, 83, 86, 5, 8, 0, 0,
+		84, 87, 3, 0, 0, 0, 85, 87, 3, 6, 3, 0, 86, 84, 1, 0, 0, 0, 86, 85, 1,
+		0, 0, 0, 87, 89, 1, 0, 0, 0, 88, 83, 1, 0, 0, 0, 88, 89, 1, 0, 0, 0, 89,
+		7, 1, 0, 0, 0, 90, 91, 5, 9, 0, 0, 91, 92, 3, 36, 18, 0, 92, 93, 3, 0,
+		0, 0, 93, 9, 1, 0, 0, 0, 94, 98, 5, 10, 0, 0, 95, 97, 3, 12, 6, 0, 96,
+		95, 1, 0, 0, 0, 97, 100, 1, 0, 0, 0, 98, 96, 1, 0, 0, 0, 98, 99, 1, 0,
+		0, 0, 99, 101, 1, 0, 0, 0, 100, 98, 1, 0, 0, 0, 101, 102, 3, 36, 18, 0,
+		102, 111, 5, 33, 0, 0, 103, 106, 5, 11, 0, 0, 104, 107, 5, 56, 0, 0, 105,
+		107, 3, 48, 24, 0, 106, 104, 1, 0, 0, 0, 106, 105, 1, 0, 0, 0, 107, 108,
+		1, 0, 0, 0, 108, 110, 3, 0, 0, 0, 109, 103, 1, 0, 0, 0, 110, 113, 1, 0,
+		0, 0, 111, 109, 1, 0, 0, 0, 111, 112, 1, 0, 0, 0, 112, 116, 1, 0, 0, 0,
+		113, 111, 1, 0, 0, 0, 114, 115, 5, 12, 0, 0, 115, 117, 3, 0, 0, 0, 116,
+		114, 1, 0, 0, 0, 116, 117, 1, 0, 0, 0, 117, 118, 1, 0, 0, 0, 118, 119,
+		5, 34, 0, 0, 119, 11, 1, 0, 0, 0, 120, 123, 3, 16, 8, 0, 121, 123, 3, 32,
+		16, 0, 122, 120, 1, 0, 0, 0, 122, 121, 1, 0, 0, 0, 123, 13, 1, 0, 0, 0,
+		124, 125, 7, 0, 0, 0, 125, 126, 5, 56, 0, 0, 126, 128, 5, 29, 0, 0, 127,
+		129, 3, 18, 9, 0, 128, 127, 1, 0, 0, 0, 128, 129, 1, 0, 0, 0, 129, 130,
+		1, 0, 0, 0, 130, 132, 5, 30, 0, 0, 131, 133, 7, 1, 0, 0, 132, 131, 1, 0,
+		0, 0, 132, 133, 1, 0, 0, 0, 133, 134, 1, 0, 0, 0, 134, 135, 3, 0, 0, 0,
+		135, 15, 1, 0, 0, 0, 136, 137, 3, 18, 9, 0, 137, 138, 5, 6, 0, 0, 138,
+		139, 3, 34, 17, 0, 139, 140, 5, 58, 0, 0, 140, 143, 1, 0, 0, 0, 141, 143,
+		3, 30, 15, 0, 142, 136, 1, 0, 0, 0, 142, 141, 1, 0, 0, 0, 143, 17, 1, 0,
+		0, 0, 144, 149, 3, 20, 10, 0, 145, 146, 5, 2, 0, 0, 146, 148, 3, 16, 8,
+		0, 147, 145, 1, 0, 0, 0, 148, 151, 1, 0, 0, 0, 149, 147, 1, 0, 0, 0, 149,
+		150, 1, 0, 0, 0, 150, 19, 1, 0, 0, 0, 151, 149, 1, 0, 0, 0, 152, 163, 3,
+		24, 12, 0, 153, 163, 3, 28, 14, 0, 154, 155, 5, 33, 0, 0, 155, 156, 3,
+		18, 9, 0, 156, 157, 5, 34, 0, 0, 157, 163, 1, 0, 0, 0, 158, 159, 5, 31,
+		0, 0, 159, 160, 3, 18, 9, 0, 160, 161, 5, 31, 0, 0, 161, 163, 1, 0, 0,
+		0, 162, 152, 1, 0, 0, 0, 162, 153, 1, 0, 0, 0, 162, 154, 1, 0, 0, 0, 162,
+		158, 1, 0, 0, 0, 163, 21, 1, 0, 0, 0, 164, 169, 3, 24, 12, 0, 165, 166,
+		5, 2, 0, 0, 166, 168, 3, 24, 12, 0, 167, 165, 1, 0, 0, 0, 168, 171, 1,
+		0, 0, 0, 169, 167, 1, 0, 0, 0, 169, 170, 1, 0, 0, 0, 170, 23, 1, 0, 0,
+		0, 171, 169, 1, 0, 0, 0, 172, 173, 5, 56, 0, 0, 173, 177, 3, 28, 14, 0,
+		174, 175, 5, 21, 0, 0, 175, 177, 3, 28, 14, 0, 176, 172, 1, 0, 0, 0, 176,
+		174, 1, 0, 0, 0, 177, 25, 1, 0, 0, 0, 178, 183, 3, 28, 14, 0, 179, 180,
+		5, 2, 0, 0, 180, 182, 3, 28, 14, 0, 181, 179, 1, 0, 0, 0, 182, 185, 1,
+		0, 0, 0, 183, 181, 1, 0, 0, 0, 183, 184, 1, 0, 0, 0, 184, 27, 1, 0, 0,
+		0, 185, 183, 1, 0, 0, 0, 186, 196, 5, 56, 0, 0, 187, 188, 5, 33, 0, 0,
+		188, 189, 3, 26, 13, 0, 189, 190, 5, 34, 0, 0, 190, 196, 1, 0, 0, 0, 191,
+		192, 5, 29, 0, 0, 192, 193, 3, 26, 13, 0, 193, 194, 5, 30, 0, 0, 194, 196,
+		1, 0, 0, 0, 195, 186, 1, 0, 0, 0, 195, 187, 1, 0, 0, 0, 195, 191, 1, 0,
+		0, 0, 196, 29, 1, 0, 0, 0, 197, 198, 5, 56, 0, 0, 198, 199, 7, 2, 0, 0,
+		199, 200, 3, 34, 17, 0, 200, 201, 5, 58, 0, 0, 201, 31, 1, 0, 0, 0, 202,
+		203, 3, 34, 17, 0, 203, 204, 5, 58, 0, 0, 204, 33, 1, 0, 0, 0, 205, 210,
+		3, 36, 18, 0, 206, 207, 5, 2, 0, 0, 207, 209, 3, 36, 18, 0, 208, 206, 1,
+		0, 0, 0, 209, 212, 1, 0, 0, 0, 210, 208, 1, 0, 0, 0, 210, 211, 1, 0, 0,
+		0, 211, 35, 1, 0, 0, 0, 212, 210, 1, 0, 0, 0, 213, 214, 6, 18, -1, 0, 214,
+		215, 5, 29, 0, 0, 215, 216, 3, 36, 18, 0, 216, 217, 5, 30, 0, 0, 217, 218,
+		3, 36, 18, 19, 218, 230, 1, 0, 0, 0, 219, 220, 5, 29, 0, 0, 220, 221, 3,
+		36, 18, 0, 221, 222, 5, 30, 0, 0, 222, 230, 1, 0, 0, 0, 223, 224, 7, 3,
+		0, 0, 224, 230, 3, 36, 18, 16, 225, 230, 3, 44, 22, 0, 226, 230, 3, 38,
+		19, 0, 227, 230, 3, 40, 20, 0, 228, 230, 3, 42, 21, 0, 229, 213, 1, 0,
+		0, 0, 229, 219, 1, 0, 0, 0, 229, 223, 1, 0, 0, 0, 229, 225, 1, 0, 0, 0,
+		229, 226, 1, 0, 0, 0, 229, 227, 1, 0, 0, 0, 229, 228, 1, 0, 0, 0, 230,
+		281, 1, 0, 0, 0, 231, 232, 10, 17, 0, 0, 232, 233, 7, 4, 0, 0, 233, 280,
+		3, 36, 18, 18, 234, 235, 10, 15, 0, 0, 235, 236, 7, 5, 0, 0, 236, 280,
+		3, 36, 18, 16, 237, 238, 10, 14, 0, 0, 238, 239, 7, 6, 0, 0, 239, 280,
+		3, 36, 18, 15, 240, 241, 10, 13, 0, 0, 241, 242, 7, 7, 0, 0, 242, 280,
+		3, 36, 18, 14, 243, 244, 10, 12, 0, 0, 244, 245, 7, 8, 0, 0, 245, 280,
+		3, 36, 18, 13, 246, 247, 10, 11, 0, 0, 247, 248, 5, 45, 0, 0, 248, 280,
+		3, 36, 18, 12, 249, 250, 10, 10, 0, 0, 250, 251, 5, 44, 0, 0, 251, 280,
+		3, 36, 18, 11, 252, 253, 10, 9, 0, 0, 253, 254, 5, 43, 0, 0, 254, 280,
+		3, 36, 18, 10, 255, 256, 10, 8, 0, 0, 256, 258, 5, 29, 0, 0, 257, 259,
+		3, 34, 17, 0, 258, 257, 1, 0, 0, 0, 258, 259, 1, 0, 0, 0, 259, 260, 1,
+		0, 0, 0, 260, 280, 5, 30, 0, 0, 261, 262, 10, 7, 0, 0, 262, 263, 5, 1,
+		0, 0, 263, 280, 5, 56, 0, 0, 264, 265, 10, 6, 0, 0, 265, 266, 5, 31, 0,
+		0, 266, 267, 3, 36, 18, 0, 267, 268, 5, 32, 0, 0, 268, 280, 1, 0, 0, 0,
+		269, 270, 10, 5, 0, 0, 270, 272, 5, 31, 0, 0, 271, 273, 3, 36, 18, 0, 272,
+		271, 1, 0, 0, 0, 272, 273, 1, 0, 0, 0, 273, 274, 1, 0, 0, 0, 274, 276,
+		5, 3, 0, 0, 275, 277, 3, 36, 18, 0, 276, 275, 1, 0, 0, 0, 276, 277, 1,
+		0, 0, 0, 277, 278, 1, 0, 0, 0, 278, 280, 5, 32, 0, 0, 279, 231, 1, 0, 0,
+		0, 279, 234, 1, 0, 0, 0, 279, 237, 1, 0, 0, 0, 279, 240, 1, 0, 0, 0, 279,
+		243, 1, 0, 0, 0, 279, 246, 1, 0, 0, 0, 279, 249, 1, 0, 0, 0, 279, 252,
+		1, 0, 0, 0, 279, 255, 1, 0, 0, 0, 279, 261, 1, 0, 0, 0, 279, 264, 1, 0,
+		0, 0, 279, 269, 1, 0, 0, 0, 280, 283, 1, 0, 0, 0, 281, 279, 1, 0, 0, 0,
+		281, 282, 1, 0, 0, 0, 282, 37, 1, 0, 0, 0, 283, 281, 1, 0, 0, 0, 284, 285,
+		7, 0, 0, 0, 285, 287, 5, 29, 0, 0, 286, 288, 3, 18, 9, 0, 287, 286, 1,
+		0, 0, 0, 287, 288, 1, 0, 0, 0, 288, 289, 1, 0, 0, 0, 289, 291, 5, 30, 0,
+		0, 290, 292, 7, 1, 0, 0, 291, 290, 1, 0, 0, 0, 291, 292, 1, 0, 0, 0, 292,
+		293, 1, 0, 0, 0, 293, 294, 3, 0, 0, 0, 294, 39, 1, 0, 0, 0, 295, 296, 7,
+		9, 0, 0, 296, 297, 5, 33, 0, 0, 297, 298, 5, 56, 0, 0, 298, 299, 5, 3,
+		0, 0, 299, 306, 3, 36, 18, 0, 300, 301, 5, 2, 0, 0, 301, 302, 5, 56, 0,
+		0, 302, 303, 5, 3, 0, 0, 303, 305, 3, 36, 18, 0, 304, 300, 1, 0, 0, 0,
+		305, 308, 1, 0, 0, 0, 306, 304, 1, 0, 0, 0, 306, 307, 1, 0, 0, 0, 307,
+		310, 1, 0, 0, 0, 308, 306, 1, 0, 0, 0, 309, 311, 5, 2, 0, 0, 310, 309,
+		1, 0, 0, 0, 310, 311, 1, 0, 0, 0, 311, 312, 1, 0, 0, 0, 312, 313, 5, 34,
+		0, 0, 313, 41, 1, 0, 0, 0, 314, 315, 5, 29, 0, 0, 315, 323, 3, 36, 18,
+		0, 316, 324, 5, 2, 0, 0, 317, 318, 5, 2, 0, 0, 318, 320, 3, 36, 18, 0,
+		319, 317, 1, 0, 0, 0, 320, 321, 1, 0, 0, 0, 321, 319, 1, 0, 0, 0, 321,
+		322, 1, 0, 0, 0, 322, 324, 1, 0, 0, 0, 323, 316, 1, 0, 0, 0, 323, 319,
+		1, 0, 0, 0, 324, 325, 1, 0, 0, 0, 325, 326, 5, 30, 0, 0, 326, 43, 1, 0,
+		0, 0, 327, 330, 5, 56, 0, 0, 328, 330, 3, 48, 24, 0, 329, 327, 1, 0, 0,
+		0, 329, 328, 1, 0, 0, 0, 330, 45, 1, 0, 0, 0, 331, 336, 5, 56, 0, 0, 332,
+		333, 5, 2, 0, 0, 333, 335, 5, 56, 0, 0, 334, 332, 1, 0, 0, 0, 335, 338,
+		1, 0, 0, 0, 336, 334, 1, 0, 0, 0, 336, 337, 1, 0, 0, 0, 337, 47, 1, 0,
+		0, 0, 338, 336, 1, 0, 0, 0, 339, 342, 3, 50, 25, 0, 340, 342, 3, 52, 26,
+		0, 341, 339, 1, 0, 0, 0, 341, 340, 1, 0, 0, 0, 342, 49, 1, 0, 0, 0, 343,
+		344, 5, 57, 0, 0, 344, 51, 1, 0, 0, 0, 345, 346, 5, 56, 0, 0, 346, 347,
+		5, 57, 0, 0, 347, 53, 1, 0, 0, 0, 36, 58, 66, 72, 78, 86, 88, 98, 106,
+		111, 116, 122, 128, 132, 142, 149, 162, 169, 176, 183, 195, 210, 229, 258,
+		272, 276, 279, 281, 287, 291, 306, 310, 321, 323, 329, 336, 341,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -297,24 +328,26 @@ const (
 	CaliburnParserRULE_for_statement                  = 4
 	CaliburnParserRULE_switch_statement               = 5
 	CaliburnParserRULE_inline_statement               = 6
-	CaliburnParserRULE_assign_statement               = 7
-	CaliburnParserRULE_assign_declarations            = 8
-	CaliburnParserRULE_assign_declaration             = 9
-	CaliburnParserRULE_declared_assign_declarations   = 10
-	CaliburnParserRULE_declared_assign_declaration    = 11
-	CaliburnParserRULE_undeclared_assign_declarations = 12
-	CaliburnParserRULE_undeclared_assign_declaration  = 13
-	CaliburnParserRULE_operator_assign_statement      = 14
-	CaliburnParserRULE_expression_statement           = 15
-	CaliburnParserRULE_expressions                    = 16
-	CaliburnParserRULE_expression                     = 17
-	CaliburnParserRULE_expression_atom                = 18
-	CaliburnParserRULE_value_atoms                    = 19
-	CaliburnParserRULE_value_atom                     = 20
-	CaliburnParserRULE_type_atom                      = 21
-	CaliburnParserRULE_literal_atom                   = 22
-	CaliburnParserRULE_untyped_literal_atom           = 23
-	CaliburnParserRULE_typed_literal_atom             = 24
+	CaliburnParserRULE_function_declaration_statement = 7
+	CaliburnParserRULE_assign_statement               = 8
+	CaliburnParserRULE_assign_declarations            = 9
+	CaliburnParserRULE_assign_declaration             = 10
+	CaliburnParserRULE_declared_assign_declarations   = 11
+	CaliburnParserRULE_declared_assign_declaration    = 12
+	CaliburnParserRULE_undeclared_assign_declarations = 13
+	CaliburnParserRULE_undeclared_assign_declaration  = 14
+	CaliburnParserRULE_operator_assign_statement      = 15
+	CaliburnParserRULE_expression_statement           = 16
+	CaliburnParserRULE_expressions                    = 17
+	CaliburnParserRULE_expression                     = 18
+	CaliburnParserRULE_function_expression            = 19
+	CaliburnParserRULE_struct_expression              = 20
+	CaliburnParserRULE_tuple_expression               = 21
+	CaliburnParserRULE_expression_atom                = 22
+	CaliburnParserRULE_identifiers                    = 23
+	CaliburnParserRULE_literal_atom                   = 24
+	CaliburnParserRULE_untyped_literal_atom           = 25
+	CaliburnParserRULE_typed_literal_atom             = 26
 )
 
 // IScoped_blockContext is an interface to support dynamic dispatch.
@@ -442,27 +475,27 @@ func (p *CaliburnParser) Scoped_block() (localctx IScoped_blockContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(50)
+		p.SetState(54)
 		p.Match(CaliburnParserL_C_BRACK)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(54)
+	p.SetState(58)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173033908340352) != 0 {
+	for (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173033958672000) != 0 {
 		{
-			p.SetState(51)
+			p.SetState(55)
 			p.Statement()
 		}
 
-		p.SetState(56)
+		p.SetState(60)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -470,7 +503,7 @@ func (p *CaliburnParser) Scoped_block() (localctx IScoped_blockContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(57)
+		p.SetState(61)
 		p.Match(CaliburnParserR_C_BRACK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -610,7 +643,7 @@ func (s *StatementContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CaliburnParser) Statement() (localctx IStatementContext) {
 	localctx = NewStatementContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 2, CaliburnParserRULE_statement)
-	p.SetState(62)
+	p.SetState(66)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -620,21 +653,21 @@ func (p *CaliburnParser) Statement() (localctx IStatementContext) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(59)
+			p.SetState(63)
 			p.Assign_statement()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(60)
+			p.SetState(64)
 			p.Expression_statement()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(61)
+			p.SetState(65)
 			p.Control_statement()
 		}
 
@@ -666,6 +699,7 @@ type IControl_statementContext interface {
 	If_statement() IIf_statementContext
 	For_statement() IFor_statementContext
 	Switch_statement() ISwitch_statementContext
+	Function_declaration_statement() IFunction_declaration_statementContext
 
 	// IsControl_statementContext differentiates from other interfaces.
 	IsControl_statementContext()
@@ -751,6 +785,22 @@ func (s *Control_statementContext) Switch_statement() ISwitch_statementContext {
 	return t.(ISwitch_statementContext)
 }
 
+func (s *Control_statementContext) Function_declaration_statement() IFunction_declaration_statementContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IFunction_declaration_statementContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IFunction_declaration_statementContext)
+}
+
 func (s *Control_statementContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -774,7 +824,7 @@ func (s *Control_statementContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CaliburnParser) Control_statement() (localctx IControl_statementContext) {
 	localctx = NewControl_statementContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 4, CaliburnParserRULE_control_statement)
-	p.SetState(67)
+	p.SetState(72)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -784,22 +834,29 @@ func (p *CaliburnParser) Control_statement() (localctx IControl_statementContext
 	case CaliburnParserIF:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(64)
+			p.SetState(68)
 			p.If_statement()
 		}
 
 	case CaliburnParserFOR:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(65)
+			p.SetState(69)
 			p.For_statement()
 		}
 
 	case CaliburnParserSWITCH:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(66)
+			p.SetState(70)
 			p.Switch_statement()
+		}
+
+	case CaliburnParserFUNC, CaliburnParserIdentifier:
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(71)
+			p.Function_declaration_statement()
 		}
 
 	default:
@@ -1024,14 +1081,14 @@ func (p *CaliburnParser) If_statement() (localctx IIf_statementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(69)
+		p.SetState(74)
 		p.Match(CaliburnParserIF)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(73)
+	p.SetState(78)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1043,12 +1100,12 @@ func (p *CaliburnParser) If_statement() (localctx IIf_statementContext) {
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(70)
+				p.SetState(75)
 				p.Inline_statement()
 			}
 
 		}
-		p.SetState(75)
+		p.SetState(80)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1059,14 +1116,14 @@ func (p *CaliburnParser) If_statement() (localctx IIf_statementContext) {
 		}
 	}
 	{
-		p.SetState(76)
+		p.SetState(81)
 		p.expression(0)
 	}
 	{
-		p.SetState(77)
+		p.SetState(82)
 		p.Scoped_block()
 	}
-	p.SetState(83)
+	p.SetState(88)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1075,14 +1132,14 @@ func (p *CaliburnParser) If_statement() (localctx IIf_statementContext) {
 
 	if _la == CaliburnParserELSE {
 		{
-			p.SetState(78)
+			p.SetState(83)
 			p.Match(CaliburnParserELSE)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(81)
+		p.SetState(86)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1091,13 +1148,13 @@ func (p *CaliburnParser) If_statement() (localctx IIf_statementContext) {
 		switch p.GetTokenStream().LA(1) {
 		case CaliburnParserL_C_BRACK:
 			{
-				p.SetState(79)
+				p.SetState(84)
 				p.Scoped_block()
 			}
 
 		case CaliburnParserIF:
 			{
-				p.SetState(80)
+				p.SetState(85)
 				p.If_statement()
 			}
 
@@ -1230,7 +1287,7 @@ func (p *CaliburnParser) For_statement() (localctx IFor_statementContext) {
 	p.EnterRule(localctx, 8, CaliburnParserRULE_for_statement)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(85)
+		p.SetState(90)
 		p.Match(CaliburnParserFOR)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1238,11 +1295,11 @@ func (p *CaliburnParser) For_statement() (localctx IFor_statementContext) {
 		}
 	}
 	{
-		p.SetState(86)
+		p.SetState(91)
 		p.expression(0)
 	}
 	{
-		p.SetState(87)
+		p.SetState(92)
 		p.Scoped_block()
 	}
 
@@ -1278,12 +1335,10 @@ type ISwitch_statementContext interface {
 	AllScoped_block() []IScoped_blockContext
 	Scoped_block(i int) IScoped_blockContext
 	DEFAULT() antlr.TerminalNode
-	AllValue_atom() []IValue_atomContext
-	Value_atom(i int) IValue_atomContext
+	AllIdentifier() []antlr.TerminalNode
+	Identifier(i int) antlr.TerminalNode
 	AllLiteral_atom() []ILiteral_atomContext
 	Literal_atom(i int) ILiteral_atomContext
-	AllType_atom() []IType_atomContext
-	Type_atom(i int) IType_atomContext
 
 	// IsSwitch_statementContext differentiates from other interfaces.
 	IsSwitch_statementContext()
@@ -1443,45 +1498,12 @@ func (s *Switch_statementContext) DEFAULT() antlr.TerminalNode {
 	return s.GetToken(CaliburnParserDEFAULT, 0)
 }
 
-func (s *Switch_statementContext) AllValue_atom() []IValue_atomContext {
-	children := s.GetChildren()
-	len := 0
-	for _, ctx := range children {
-		if _, ok := ctx.(IValue_atomContext); ok {
-			len++
-		}
-	}
-
-	tst := make([]IValue_atomContext, len)
-	i := 0
-	for _, ctx := range children {
-		if t, ok := ctx.(IValue_atomContext); ok {
-			tst[i] = t.(IValue_atomContext)
-			i++
-		}
-	}
-
-	return tst
+func (s *Switch_statementContext) AllIdentifier() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserIdentifier)
 }
 
-func (s *Switch_statementContext) Value_atom(i int) IValue_atomContext {
-	var t antlr.RuleContext
-	j := 0
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IValue_atomContext); ok {
-			if j == i {
-				t = ctx.(antlr.RuleContext)
-				break
-			}
-			j++
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValue_atomContext)
+func (s *Switch_statementContext) Identifier(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, i)
 }
 
 func (s *Switch_statementContext) AllLiteral_atom() []ILiteral_atomContext {
@@ -1525,47 +1547,6 @@ func (s *Switch_statementContext) Literal_atom(i int) ILiteral_atomContext {
 	return t.(ILiteral_atomContext)
 }
 
-func (s *Switch_statementContext) AllType_atom() []IType_atomContext {
-	children := s.GetChildren()
-	len := 0
-	for _, ctx := range children {
-		if _, ok := ctx.(IType_atomContext); ok {
-			len++
-		}
-	}
-
-	tst := make([]IType_atomContext, len)
-	i := 0
-	for _, ctx := range children {
-		if t, ok := ctx.(IType_atomContext); ok {
-			tst[i] = t.(IType_atomContext)
-			i++
-		}
-	}
-
-	return tst
-}
-
-func (s *Switch_statementContext) Type_atom(i int) IType_atomContext {
-	var t antlr.RuleContext
-	j := 0
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IType_atomContext); ok {
-			if j == i {
-				t = ctx.(antlr.RuleContext)
-				break
-			}
-			j++
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IType_atomContext)
-}
-
 func (s *Switch_statementContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1595,14 +1576,14 @@ func (p *CaliburnParser) Switch_statement() (localctx ISwitch_statementContext) 
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(89)
+		p.SetState(94)
 		p.Match(CaliburnParserSWITCH)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(93)
+	p.SetState(98)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1614,12 +1595,12 @@ func (p *CaliburnParser) Switch_statement() (localctx ISwitch_statementContext) 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			{
-				p.SetState(90)
+				p.SetState(95)
 				p.Inline_statement()
 			}
 
 		}
-		p.SetState(95)
+		p.SetState(100)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1630,18 +1611,18 @@ func (p *CaliburnParser) Switch_statement() (localctx ISwitch_statementContext) 
 		}
 	}
 	{
-		p.SetState(96)
+		p.SetState(101)
 		p.expression(0)
 	}
 	{
-		p.SetState(97)
+		p.SetState(102)
 		p.Match(CaliburnParserL_C_BRACK)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(108)
+	p.SetState(111)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1650,14 +1631,14 @@ func (p *CaliburnParser) Switch_statement() (localctx ISwitch_statementContext) 
 
 	for _la == CaliburnParserCASE {
 		{
-			p.SetState(98)
+			p.SetState(103)
 			p.Match(CaliburnParserCASE)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(102)
+		p.SetState(106)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1666,38 +1647,36 @@ func (p *CaliburnParser) Switch_statement() (localctx ISwitch_statementContext) 
 		switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext()) {
 		case 1:
 			{
-				p.SetState(99)
-				p.Value_atom()
+				p.SetState(104)
+				p.Match(CaliburnParserIdentifier)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
 			}
 
 		case 2:
 			{
-				p.SetState(100)
+				p.SetState(105)
 				p.Literal_atom()
-			}
-
-		case 3:
-			{
-				p.SetState(101)
-				p.Type_atom()
 			}
 
 		case antlr.ATNInvalidAltNumber:
 			goto errorExit
 		}
 		{
-			p.SetState(104)
+			p.SetState(108)
 			p.Scoped_block()
 		}
 
-		p.SetState(110)
+		p.SetState(113)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
 	}
-	p.SetState(113)
+	p.SetState(116)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1706,7 +1685,7 @@ func (p *CaliburnParser) Switch_statement() (localctx ISwitch_statementContext) 
 
 	if _la == CaliburnParserDEFAULT {
 		{
-			p.SetState(111)
+			p.SetState(114)
 			p.Match(CaliburnParserDEFAULT)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1714,13 +1693,13 @@ func (p *CaliburnParser) Switch_statement() (localctx ISwitch_statementContext) 
 			}
 		}
 		{
-			p.SetState(112)
+			p.SetState(115)
 			p.Scoped_block()
 		}
 
 	}
 	{
-		p.SetState(115)
+		p.SetState(118)
 		p.Match(CaliburnParserR_C_BRACK)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1843,7 +1822,7 @@ func (s *Inline_statementContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CaliburnParser) Inline_statement() (localctx IInline_statementContext) {
 	localctx = NewInline_statementContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 12, CaliburnParserRULE_inline_statement)
-	p.SetState(119)
+	p.SetState(122)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1853,19 +1832,292 @@ func (p *CaliburnParser) Inline_statement() (localctx IInline_statementContext) 
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(117)
+			p.SetState(120)
 			p.Assign_statement()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(118)
+			p.SetState(121)
 			p.Expression_statement()
 		}
 
 	case antlr.ATNInvalidAltNumber:
 		goto errorExit
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IFunction_declaration_statementContext is an interface to support dynamic dispatch.
+type IFunction_declaration_statementContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetType_ returns the type_ token.
+	GetType_() antlr.Token
+
+	// GetName returns the name token.
+	GetName() antlr.Token
+
+	// GetReturn_type returns the return_type token.
+	GetReturn_type() antlr.Token
+
+	// SetType_ sets the type_ token.
+	SetType_(antlr.Token)
+
+	// SetName sets the name token.
+	SetName(antlr.Token)
+
+	// SetReturn_type sets the return_type token.
+	SetReturn_type(antlr.Token)
+
+	// Getter signatures
+	L_PAREN() antlr.TerminalNode
+	R_PAREN() antlr.TerminalNode
+	Scoped_block() IScoped_blockContext
+	AllIdentifier() []antlr.TerminalNode
+	Identifier(i int) antlr.TerminalNode
+	FUNC() antlr.TerminalNode
+	Assign_declarations() IAssign_declarationsContext
+	VAR() antlr.TerminalNode
+
+	// IsFunction_declaration_statementContext differentiates from other interfaces.
+	IsFunction_declaration_statementContext()
+}
+
+type Function_declaration_statementContext struct {
+	antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	type_       antlr.Token
+	name        antlr.Token
+	return_type antlr.Token
+}
+
+func NewEmptyFunction_declaration_statementContext() *Function_declaration_statementContext {
+	var p = new(Function_declaration_statementContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_function_declaration_statement
+	return p
+}
+
+func InitEmptyFunction_declaration_statementContext(p *Function_declaration_statementContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_function_declaration_statement
+}
+
+func (*Function_declaration_statementContext) IsFunction_declaration_statementContext() {}
+
+func NewFunction_declaration_statementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Function_declaration_statementContext {
+	var p = new(Function_declaration_statementContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CaliburnParserRULE_function_declaration_statement
+
+	return p
+}
+
+func (s *Function_declaration_statementContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Function_declaration_statementContext) GetType_() antlr.Token { return s.type_ }
+
+func (s *Function_declaration_statementContext) GetName() antlr.Token { return s.name }
+
+func (s *Function_declaration_statementContext) GetReturn_type() antlr.Token { return s.return_type }
+
+func (s *Function_declaration_statementContext) SetType_(v antlr.Token) { s.type_ = v }
+
+func (s *Function_declaration_statementContext) SetName(v antlr.Token) { s.name = v }
+
+func (s *Function_declaration_statementContext) SetReturn_type(v antlr.Token) { s.return_type = v }
+
+func (s *Function_declaration_statementContext) L_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserL_PAREN, 0)
+}
+
+func (s *Function_declaration_statementContext) R_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserR_PAREN, 0)
+}
+
+func (s *Function_declaration_statementContext) Scoped_block() IScoped_blockContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IScoped_blockContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IScoped_blockContext)
+}
+
+func (s *Function_declaration_statementContext) AllIdentifier() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserIdentifier)
+}
+
+func (s *Function_declaration_statementContext) Identifier(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, i)
+}
+
+func (s *Function_declaration_statementContext) FUNC() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserFUNC, 0)
+}
+
+func (s *Function_declaration_statementContext) Assign_declarations() IAssign_declarationsContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAssign_declarationsContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAssign_declarationsContext)
+}
+
+func (s *Function_declaration_statementContext) VAR() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserVAR, 0)
+}
+
+func (s *Function_declaration_statementContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Function_declaration_statementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Function_declaration_statementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterFunction_declaration_statement(s)
+	}
+}
+
+func (s *Function_declaration_statementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitFunction_declaration_statement(s)
+	}
+}
+
+func (p *CaliburnParser) Function_declaration_statement() (localctx IFunction_declaration_statementContext) {
+	localctx = NewFunction_declaration_statementContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 14, CaliburnParserRULE_function_declaration_statement)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(124)
+
+		var _lt = p.GetTokenStream().LT(1)
+
+		localctx.(*Function_declaration_statementContext).type_ = _lt
+
+		_la = p.GetTokenStream().LA(1)
+
+		if !(_la == CaliburnParserFUNC || _la == CaliburnParserIdentifier) {
+			var _ri = p.GetErrorHandler().RecoverInline(p)
+
+			localctx.(*Function_declaration_statementContext).type_ = _ri
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
+	}
+	{
+		p.SetState(125)
+
+		var _m = p.Match(CaliburnParserIdentifier)
+
+		localctx.(*Function_declaration_statementContext).name = _m
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(126)
+		p.Match(CaliburnParserL_PAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	p.SetState(128)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&72057605314314240) != 0 {
+		{
+			p.SetState(127)
+			p.Assign_declarations()
+		}
+
+	}
+	{
+		p.SetState(130)
+		p.Match(CaliburnParserR_PAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	p.SetState(132)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if _la == CaliburnParserVAR || _la == CaliburnParserIdentifier {
+		{
+			p.SetState(131)
+
+			var _lt = p.GetTokenStream().LT(1)
+
+			localctx.(*Function_declaration_statementContext).return_type = _lt
+
+			_la = p.GetTokenStream().LA(1)
+
+			if !(_la == CaliburnParserVAR || _la == CaliburnParserIdentifier) {
+				var _ri = p.GetErrorHandler().RecoverInline(p)
+
+				localctx.(*Function_declaration_statementContext).return_type = _ri
+			} else {
+				p.GetErrorHandler().ReportMatch(p)
+				p.Consume()
+			}
+		}
+
+	}
+	{
+		p.SetState(134)
+		p.Scoped_block()
 	}
 
 errorExit:
@@ -2009,22 +2261,22 @@ func (s *Assign_statementContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *CaliburnParser) Assign_statement() (localctx IAssign_statementContext) {
 	localctx = NewAssign_statementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, CaliburnParserRULE_assign_statement)
-	p.SetState(127)
+	p.EnterRule(localctx, 16, CaliburnParserRULE_assign_statement)
+	p.SetState(142)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 11, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 13, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(121)
+			p.SetState(136)
 			p.Assign_declarations()
 		}
 		{
-			p.SetState(122)
+			p.SetState(137)
 			p.Match(CaliburnParserASSIGN)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2032,11 +2284,11 @@ func (p *CaliburnParser) Assign_statement() (localctx IAssign_statementContext) 
 			}
 		}
 		{
-			p.SetState(123)
+			p.SetState(138)
 			p.Expressions()
 		}
 		{
-			p.SetState(124)
+			p.SetState(139)
 			p.Match(CaliburnParserTerminator)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2047,7 +2299,7 @@ func (p *CaliburnParser) Assign_statement() (localctx IAssign_statementContext) 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(126)
+			p.SetState(141)
 			p.Operator_assign_statement()
 		}
 
@@ -2205,15 +2457,15 @@ func (s *Assign_declarationsContext) ExitRule(listener antlr.ParseTreeListener) 
 
 func (p *CaliburnParser) Assign_declarations() (localctx IAssign_declarationsContext) {
 	localctx = NewAssign_declarationsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, CaliburnParserRULE_assign_declarations)
+	p.EnterRule(localctx, 18, CaliburnParserRULE_assign_declarations)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(129)
+		p.SetState(144)
 		p.Assign_declaration()
 	}
-	p.SetState(134)
+	p.SetState(149)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2222,7 +2474,7 @@ func (p *CaliburnParser) Assign_declarations() (localctx IAssign_declarationsCon
 
 	for _la == CaliburnParserCOMMA {
 		{
-			p.SetState(130)
+			p.SetState(145)
 			p.Match(CaliburnParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2230,11 +2482,11 @@ func (p *CaliburnParser) Assign_declarations() (localctx IAssign_declarationsCon
 			}
 		}
 		{
-			p.SetState(131)
+			p.SetState(146)
 			p.Assign_statement()
 		}
 
-		p.SetState(136)
+		p.SetState(151)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2511,19 +2763,19 @@ func (s *TupleDestrutureAssignDeclarationContext) ExitRule(listener antlr.ParseT
 
 func (p *CaliburnParser) Assign_declaration() (localctx IAssign_declarationContext) {
 	localctx = NewAssign_declarationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, CaliburnParserRULE_assign_declaration)
-	p.SetState(147)
+	p.EnterRule(localctx, 20, CaliburnParserRULE_assign_declaration)
+	p.SetState(162)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 13, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 15, p.GetParserRuleContext()) {
 	case 1:
 		localctx = NewDeclaredAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(137)
+			p.SetState(152)
 			p.Declared_assign_declaration()
 		}
 
@@ -2531,7 +2783,7 @@ func (p *CaliburnParser) Assign_declaration() (localctx IAssign_declarationConte
 		localctx = NewUndeclaredAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(138)
+			p.SetState(153)
 			p.Undeclared_assign_declaration()
 		}
 
@@ -2539,7 +2791,7 @@ func (p *CaliburnParser) Assign_declaration() (localctx IAssign_declarationConte
 		localctx = NewStructDestrutureAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(139)
+			p.SetState(154)
 			p.Match(CaliburnParserL_C_BRACK)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2547,11 +2799,11 @@ func (p *CaliburnParser) Assign_declaration() (localctx IAssign_declarationConte
 			}
 		}
 		{
-			p.SetState(140)
+			p.SetState(155)
 			p.Assign_declarations()
 		}
 		{
-			p.SetState(141)
+			p.SetState(156)
 			p.Match(CaliburnParserR_C_BRACK)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2563,7 +2815,7 @@ func (p *CaliburnParser) Assign_declaration() (localctx IAssign_declarationConte
 		localctx = NewTupleDestrutureAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(143)
+			p.SetState(158)
 			p.Match(CaliburnParserL_S_BRACK)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2571,11 +2823,11 @@ func (p *CaliburnParser) Assign_declaration() (localctx IAssign_declarationConte
 			}
 		}
 		{
-			p.SetState(144)
+			p.SetState(159)
 			p.Assign_declarations()
 		}
 		{
-			p.SetState(145)
+			p.SetState(160)
 			p.Match(CaliburnParserL_S_BRACK)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2720,15 +2972,15 @@ func (s *Declared_assign_declarationsContext) ExitRule(listener antlr.ParseTreeL
 
 func (p *CaliburnParser) Declared_assign_declarations() (localctx IDeclared_assign_declarationsContext) {
 	localctx = NewDeclared_assign_declarationsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, CaliburnParserRULE_declared_assign_declarations)
+	p.EnterRule(localctx, 22, CaliburnParserRULE_declared_assign_declarations)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(149)
+		p.SetState(164)
 		p.Declared_assign_declaration()
 	}
-	p.SetState(154)
+	p.SetState(169)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2737,7 +2989,7 @@ func (p *CaliburnParser) Declared_assign_declarations() (localctx IDeclared_assi
 
 	for _la == CaliburnParserCOMMA {
 		{
-			p.SetState(150)
+			p.SetState(165)
 			p.Match(CaliburnParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2745,11 +2997,11 @@ func (p *CaliburnParser) Declared_assign_declarations() (localctx IDeclared_assi
 			}
 		}
 		{
-			p.SetState(151)
+			p.SetState(166)
 			p.Declared_assign_declaration()
 		}
 
-		p.SetState(156)
+		p.SetState(171)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2876,6 +3128,7 @@ func (s *UntypedDeclaredAssignDeclarationContext) ExitRule(listener antlr.ParseT
 
 type TypedDeclaredAssignDeclarationContext struct {
 	Declared_assign_declarationContext
+	type_ antlr.Token
 }
 
 func NewTypedDeclaredAssignDeclarationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TypedDeclaredAssignDeclarationContext {
@@ -2888,24 +3141,12 @@ func NewTypedDeclaredAssignDeclarationContext(parser antlr.Parser, ctx antlr.Par
 	return p
 }
 
+func (s *TypedDeclaredAssignDeclarationContext) GetType_() antlr.Token { return s.type_ }
+
+func (s *TypedDeclaredAssignDeclarationContext) SetType_(v antlr.Token) { s.type_ = v }
+
 func (s *TypedDeclaredAssignDeclarationContext) GetRuleContext() antlr.RuleContext {
 	return s
-}
-
-func (s *TypedDeclaredAssignDeclarationContext) Type_atom() IType_atomContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IType_atomContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IType_atomContext)
 }
 
 func (s *TypedDeclaredAssignDeclarationContext) Undeclared_assign_declaration() IUndeclared_assign_declarationContext {
@@ -2924,6 +3165,10 @@ func (s *TypedDeclaredAssignDeclarationContext) Undeclared_assign_declaration() 
 	return t.(IUndeclared_assign_declarationContext)
 }
 
+func (s *TypedDeclaredAssignDeclarationContext) Identifier() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, 0)
+}
+
 func (s *TypedDeclaredAssignDeclarationContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(CaliburnParserListener); ok {
 		listenerT.EnterTypedDeclaredAssignDeclaration(s)
@@ -2938,8 +3183,8 @@ func (s *TypedDeclaredAssignDeclarationContext) ExitRule(listener antlr.ParseTre
 
 func (p *CaliburnParser) Declared_assign_declaration() (localctx IDeclared_assign_declarationContext) {
 	localctx = NewDeclared_assign_declarationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, CaliburnParserRULE_declared_assign_declaration)
-	p.SetState(162)
+	p.EnterRule(localctx, 24, CaliburnParserRULE_declared_assign_declaration)
+	p.SetState(176)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2950,11 +3195,18 @@ func (p *CaliburnParser) Declared_assign_declaration() (localctx IDeclared_assig
 		localctx = NewTypedDeclaredAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(157)
-			p.Type_atom()
+			p.SetState(172)
+
+			var _m = p.Match(CaliburnParserIdentifier)
+
+			localctx.(*TypedDeclaredAssignDeclarationContext).type_ = _m
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
-			p.SetState(158)
+			p.SetState(173)
 			p.Undeclared_assign_declaration()
 		}
 
@@ -2962,7 +3214,7 @@ func (p *CaliburnParser) Declared_assign_declaration() (localctx IDeclared_assig
 		localctx = NewUntypedDeclaredAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(160)
+			p.SetState(174)
 			p.Match(CaliburnParserVAR)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2970,7 +3222,7 @@ func (p *CaliburnParser) Declared_assign_declaration() (localctx IDeclared_assig
 			}
 		}
 		{
-			p.SetState(161)
+			p.SetState(175)
 			p.Undeclared_assign_declaration()
 		}
 
@@ -3112,15 +3364,15 @@ func (s *Undeclared_assign_declarationsContext) ExitRule(listener antlr.ParseTre
 
 func (p *CaliburnParser) Undeclared_assign_declarations() (localctx IUndeclared_assign_declarationsContext) {
 	localctx = NewUndeclared_assign_declarationsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, CaliburnParserRULE_undeclared_assign_declarations)
+	p.EnterRule(localctx, 26, CaliburnParserRULE_undeclared_assign_declarations)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(164)
+		p.SetState(178)
 		p.Undeclared_assign_declaration()
 	}
-	p.SetState(169)
+	p.SetState(183)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3129,7 +3381,7 @@ func (p *CaliburnParser) Undeclared_assign_declarations() (localctx IUndeclared_
 
 	for _la == CaliburnParserCOMMA {
 		{
-			p.SetState(165)
+			p.SetState(179)
 			p.Match(CaliburnParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3137,11 +3389,11 @@ func (p *CaliburnParser) Undeclared_assign_declarations() (localctx IUndeclared_
 			}
 		}
 		{
-			p.SetState(166)
+			p.SetState(180)
 			p.Undeclared_assign_declaration()
 		}
 
-		p.SetState(171)
+		p.SetState(185)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3218,6 +3470,7 @@ func (s *Undeclared_assign_declarationContext) ToStringTree(ruleNames []string, 
 
 type UndeclaredAtomAssignDeclarationContext struct {
 	Undeclared_assign_declarationContext
+	var_ antlr.Token
 }
 
 func NewUndeclaredAtomAssignDeclarationContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *UndeclaredAtomAssignDeclarationContext {
@@ -3230,24 +3483,16 @@ func NewUndeclaredAtomAssignDeclarationContext(parser antlr.Parser, ctx antlr.Pa
 	return p
 }
 
+func (s *UndeclaredAtomAssignDeclarationContext) GetVar_() antlr.Token { return s.var_ }
+
+func (s *UndeclaredAtomAssignDeclarationContext) SetVar_(v antlr.Token) { s.var_ = v }
+
 func (s *UndeclaredAtomAssignDeclarationContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *UndeclaredAtomAssignDeclarationContext) Value_atom() IValue_atomContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IValue_atomContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValue_atomContext)
+func (s *UndeclaredAtomAssignDeclarationContext) Identifier() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, 0)
 }
 
 func (s *UndeclaredAtomAssignDeclarationContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -3280,8 +3525,8 @@ func (s *UndeclaredTupleDestrutureAssignDeclarationContext) GetRuleContext() ant
 	return s
 }
 
-func (s *UndeclaredTupleDestrutureAssignDeclarationContext) L_S_BRACK() antlr.TerminalNode {
-	return s.GetToken(CaliburnParserL_S_BRACK, 0)
+func (s *UndeclaredTupleDestrutureAssignDeclarationContext) L_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserL_PAREN, 0)
 }
 
 func (s *UndeclaredTupleDestrutureAssignDeclarationContext) Undeclared_assign_declarations() IUndeclared_assign_declarationsContext {
@@ -3300,8 +3545,8 @@ func (s *UndeclaredTupleDestrutureAssignDeclarationContext) Undeclared_assign_de
 	return t.(IUndeclared_assign_declarationsContext)
 }
 
-func (s *UndeclaredTupleDestrutureAssignDeclarationContext) R_S_BRACK() antlr.TerminalNode {
-	return s.GetToken(CaliburnParserR_S_BRACK, 0)
+func (s *UndeclaredTupleDestrutureAssignDeclarationContext) R_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserR_PAREN, 0)
 }
 
 func (s *UndeclaredTupleDestrutureAssignDeclarationContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -3372,8 +3617,8 @@ func (s *UndeclaredStructDestrutureAssignDeclarationContext) ExitRule(listener a
 
 func (p *CaliburnParser) Undeclared_assign_declaration() (localctx IUndeclared_assign_declarationContext) {
 	localctx = NewUndeclared_assign_declarationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, CaliburnParserRULE_undeclared_assign_declaration)
-	p.SetState(181)
+	p.EnterRule(localctx, 28, CaliburnParserRULE_undeclared_assign_declaration)
+	p.SetState(195)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3384,15 +3629,22 @@ func (p *CaliburnParser) Undeclared_assign_declaration() (localctx IUndeclared_a
 		localctx = NewUndeclaredAtomAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(172)
-			p.Value_atom()
+			p.SetState(186)
+
+			var _m = p.Match(CaliburnParserIdentifier)
+
+			localctx.(*UndeclaredAtomAssignDeclarationContext).var_ = _m
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case CaliburnParserL_C_BRACK:
 		localctx = NewUndeclaredStructDestrutureAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(173)
+			p.SetState(187)
 			p.Match(CaliburnParserL_C_BRACK)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3400,11 +3652,11 @@ func (p *CaliburnParser) Undeclared_assign_declaration() (localctx IUndeclared_a
 			}
 		}
 		{
-			p.SetState(174)
+			p.SetState(188)
 			p.Undeclared_assign_declarations()
 		}
 		{
-			p.SetState(175)
+			p.SetState(189)
 			p.Match(CaliburnParserR_C_BRACK)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3412,24 +3664,24 @@ func (p *CaliburnParser) Undeclared_assign_declaration() (localctx IUndeclared_a
 			}
 		}
 
-	case CaliburnParserL_S_BRACK:
+	case CaliburnParserL_PAREN:
 		localctx = NewUndeclaredTupleDestrutureAssignDeclarationContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(177)
-			p.Match(CaliburnParserL_S_BRACK)
+			p.SetState(191)
+			p.Match(CaliburnParserL_PAREN)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
 		{
-			p.SetState(178)
+			p.SetState(192)
 			p.Undeclared_assign_declarations()
 		}
 		{
-			p.SetState(179)
-			p.Match(CaliburnParserR_S_BRACK)
+			p.SetState(193)
+			p.Match(CaliburnParserR_PAREN)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
@@ -3510,7 +3762,8 @@ func (s *Operator_assign_statementContext) ToStringTree(ruleNames []string, reco
 
 type OperatorAssignmentContext struct {
 	Operator_assign_statementContext
-	op antlr.Token
+	var_ antlr.Token
+	op   antlr.Token
 }
 
 func NewOperatorAssignmentContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *OperatorAssignmentContext {
@@ -3523,28 +3776,16 @@ func NewOperatorAssignmentContext(parser antlr.Parser, ctx antlr.ParserRuleConte
 	return p
 }
 
+func (s *OperatorAssignmentContext) GetVar_() antlr.Token { return s.var_ }
+
 func (s *OperatorAssignmentContext) GetOp() antlr.Token { return s.op }
+
+func (s *OperatorAssignmentContext) SetVar_(v antlr.Token) { s.var_ = v }
 
 func (s *OperatorAssignmentContext) SetOp(v antlr.Token) { s.op = v }
 
 func (s *OperatorAssignmentContext) GetRuleContext() antlr.RuleContext {
 	return s
-}
-
-func (s *OperatorAssignmentContext) Value_atoms() IValue_atomsContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IValue_atomsContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValue_atomsContext)
 }
 
 func (s *OperatorAssignmentContext) Expressions() IExpressionsContext {
@@ -3565,6 +3806,10 @@ func (s *OperatorAssignmentContext) Expressions() IExpressionsContext {
 
 func (s *OperatorAssignmentContext) Terminator() antlr.TerminalNode {
 	return s.GetToken(CaliburnParserTerminator, 0)
+}
+
+func (s *OperatorAssignmentContext) Identifier() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, 0)
 }
 
 func (s *OperatorAssignmentContext) OP_ADD() antlr.TerminalNode {
@@ -3629,17 +3874,24 @@ func (s *OperatorAssignmentContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *CaliburnParser) Operator_assign_statement() (localctx IOperator_assign_statementContext) {
 	localctx = NewOperator_assign_statementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, CaliburnParserRULE_operator_assign_statement)
+	p.EnterRule(localctx, 30, CaliburnParserRULE_operator_assign_statement)
 	var _la int
 
 	localctx = NewOperatorAssignmentContext(p, localctx)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(183)
-		p.Value_atoms()
+		p.SetState(197)
+
+		var _m = p.Match(CaliburnParserIdentifier)
+
+		localctx.(*OperatorAssignmentContext).var_ = _m
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
-		p.SetState(184)
+		p.SetState(198)
 
 		var _lt = p.GetTokenStream().LT(1)
 
@@ -3657,11 +3909,11 @@ func (p *CaliburnParser) Operator_assign_statement() (localctx IOperator_assign_
 		}
 	}
 	{
-		p.SetState(185)
+		p.SetState(199)
 		p.Expressions()
 	}
 	{
-		p.SetState(186)
+		p.SetState(200)
 		p.Match(CaliburnParserTerminator)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3771,14 +4023,14 @@ func (s *Expression_statementContext) ExitRule(listener antlr.ParseTreeListener)
 
 func (p *CaliburnParser) Expression_statement() (localctx IExpression_statementContext) {
 	localctx = NewExpression_statementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, CaliburnParserRULE_expression_statement)
+	p.EnterRule(localctx, 32, CaliburnParserRULE_expression_statement)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(188)
+		p.SetState(202)
 		p.Expressions()
 	}
 	{
-		p.SetState(189)
+		p.SetState(203)
 		p.Match(CaliburnParserTerminator)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3919,15 +4171,15 @@ func (s *ExpressionsContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *CaliburnParser) Expressions() (localctx IExpressionsContext) {
 	localctx = NewExpressionsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, CaliburnParserRULE_expressions)
+	p.EnterRule(localctx, 34, CaliburnParserRULE_expressions)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(191)
+		p.SetState(205)
 		p.expression(0)
 	}
-	p.SetState(196)
+	p.SetState(210)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3936,7 +4188,7 @@ func (p *CaliburnParser) Expressions() (localctx IExpressionsContext) {
 
 	for _la == CaliburnParserCOMMA {
 		{
-			p.SetState(192)
+			p.SetState(206)
 			p.Match(CaliburnParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3944,11 +4196,11 @@ func (p *CaliburnParser) Expressions() (localctx IExpressionsContext) {
 			}
 		}
 		{
-			p.SetState(193)
+			p.SetState(207)
 			p.expression(0)
 		}
 
-		p.SetState(198)
+		p.SetState(212)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4325,6 +4577,52 @@ func (s *SliceExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *SliceExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(CaliburnParserListener); ok {
 		listenerT.ExitSliceExpression(s)
+	}
+}
+
+type TupleExpressionContext struct {
+	ExpressionContext
+}
+
+func NewTupleExpressionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *TupleExpressionContext {
+	var p = new(TupleExpressionContext)
+
+	InitEmptyExpressionContext(&p.ExpressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*ExpressionContext))
+
+	return p
+}
+
+func (s *TupleExpressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *TupleExpressionContext) Tuple_expression() ITuple_expressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ITuple_expressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ITuple_expressionContext)
+}
+
+func (s *TupleExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterTupleExpression(s)
+	}
+}
+
+func (s *TupleExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitTupleExpression(s)
 	}
 }
 
@@ -4713,20 +5011,8 @@ func (s *AccessExpressionContext) PERIOD() antlr.TerminalNode {
 	return s.GetToken(CaliburnParserPERIOD, 0)
 }
 
-func (s *AccessExpressionContext) Value_atom() IValue_atomContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IValue_atomContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValue_atomContext)
+func (s *AccessExpressionContext) Identifier() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, 0)
 }
 
 func (s *AccessExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -4916,6 +5202,98 @@ func (s *XOrExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
+type FunctionExpressionContext struct {
+	ExpressionContext
+}
+
+func NewFunctionExpressionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *FunctionExpressionContext {
+	var p = new(FunctionExpressionContext)
+
+	InitEmptyExpressionContext(&p.ExpressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*ExpressionContext))
+
+	return p
+}
+
+func (s *FunctionExpressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *FunctionExpressionContext) Function_expression() IFunction_expressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IFunction_expressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IFunction_expressionContext)
+}
+
+func (s *FunctionExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterFunctionExpression(s)
+	}
+}
+
+func (s *FunctionExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitFunctionExpression(s)
+	}
+}
+
+type StructExpressionContext struct {
+	ExpressionContext
+}
+
+func NewStructExpressionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *StructExpressionContext {
+	var p = new(StructExpressionContext)
+
+	InitEmptyExpressionContext(&p.ExpressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*ExpressionContext))
+
+	return p
+}
+
+func (s *StructExpressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *StructExpressionContext) Struct_expression() IStruct_expressionContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IStruct_expressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IStruct_expressionContext)
+}
+
+func (s *StructExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterStructExpression(s)
+	}
+}
+
+func (s *StructExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitStructExpression(s)
+	}
+}
+
 type AndExpressionContext struct {
 	ExpressionContext
 }
@@ -4988,6 +5366,85 @@ func (s *AndExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *AndExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(CaliburnParserListener); ok {
 		listenerT.ExitAndExpression(s)
+	}
+}
+
+type CastExpressionContext struct {
+	ExpressionContext
+}
+
+func NewCastExpressionContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *CastExpressionContext {
+	var p = new(CastExpressionContext)
+
+	InitEmptyExpressionContext(&p.ExpressionContext)
+	p.parser = parser
+	p.CopyAll(ctx.(*ExpressionContext))
+
+	return p
+}
+
+func (s *CastExpressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CastExpressionContext) L_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserL_PAREN, 0)
+}
+
+func (s *CastExpressionContext) AllExpression() []IExpressionContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IExpressionContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IExpressionContext); ok {
+			tst[i] = t.(IExpressionContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *CastExpressionContext) Expression(i int) IExpressionContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *CastExpressionContext) R_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserR_PAREN, 0)
+}
+
+func (s *CastExpressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterCastExpression(s)
+	}
+}
+
+func (s *CastExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitCastExpression(s)
 	}
 }
 
@@ -5160,27 +5617,27 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 	localctx = NewExpressionContext(p, p.GetParserRuleContext(), _parentState)
 	var _prevctx IExpressionContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
-	_startState := 34
-	p.EnterRecursionRule(localctx, 34, CaliburnParserRULE_expression, _p)
+	_startState := 36
+	p.EnterRecursionRule(localctx, 36, CaliburnParserRULE_expression, _p)
 	var _la int
 
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(207)
+	p.SetState(229)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetTokenStream().LA(1) {
-	case CaliburnParserL_PAREN:
-		localctx = NewBracketedExpressionContext(p, localctx)
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 21, p.GetParserRuleContext()) {
+	case 1:
+		localctx = NewCastExpressionContext(p, localctx)
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 
 		{
-			p.SetState(200)
+			p.SetState(214)
 			p.Match(CaliburnParserL_PAREN)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5188,11 +5645,40 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 			}
 		}
 		{
-			p.SetState(201)
+			p.SetState(215)
 			p.expression(0)
 		}
 		{
-			p.SetState(202)
+			p.SetState(216)
+			p.Match(CaliburnParserR_PAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(217)
+			p.expression(19)
+		}
+
+	case 2:
+		localctx = NewBracketedExpressionContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(219)
+			p.Match(CaliburnParserL_PAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(220)
+			p.expression(0)
+		}
+		{
+			p.SetState(221)
 			p.Match(CaliburnParserR_PAREN)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5200,12 +5686,12 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 			}
 		}
 
-	case CaliburnParserOP_ADD, CaliburnParserOP_SUB, CaliburnParserOP_NOT:
+	case 3:
 		localctx = NewUnaryExpressionContext(p, localctx)
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(204)
+			p.SetState(223)
 
 			var _lt = p.GetTokenStream().LT(1)
 
@@ -5223,30 +5709,56 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 			}
 		}
 		{
-			p.SetState(205)
-			p.expression(13)
+			p.SetState(224)
+			p.expression(16)
 		}
 
-	case CaliburnParserIdentifier, CaliburnParserLiteral:
+	case 4:
 		localctx = NewAtomExpressionContext(p, localctx)
 		p.SetParserRuleContext(localctx)
 		_prevctx = localctx
 		{
-			p.SetState(206)
+			p.SetState(225)
 			p.Expression_atom()
 		}
 
-	default:
-		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	case 5:
+		localctx = NewFunctionExpressionContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(226)
+			p.Function_expression()
+		}
+
+	case 6:
+		localctx = NewStructExpressionContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(227)
+			p.Struct_expression()
+		}
+
+	case 7:
+		localctx = NewTupleExpressionContext(p, localctx)
+		p.SetParserRuleContext(localctx)
+		_prevctx = localctx
+		{
+			p.SetState(228)
+			p.Tuple_expression()
+		}
+
+	case antlr.ATNInvalidAltNumber:
 		goto errorExit
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
-	p.SetState(259)
+	p.SetState(281)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
-	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 24, p.GetParserRuleContext())
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 26, p.GetParserRuleContext())
 	if p.HasError() {
 		goto errorExit
 	}
@@ -5256,24 +5768,24 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 				p.TriggerExitRuleEvent()
 			}
 			_prevctx = localctx
-			p.SetState(257)
+			p.SetState(279)
 			p.GetErrorHandler().Sync(p)
 			if p.HasError() {
 				goto errorExit
 			}
 
-			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 23, p.GetParserRuleContext()) {
+			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 25, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewExponentExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(209)
+				p.SetState(231)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 14)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 14)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 17)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 17)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(210)
+					p.SetState(232)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5291,21 +5803,21 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(211)
-					p.expression(15)
+					p.SetState(233)
+					p.expression(18)
 				}
 
 			case 2:
 				localctx = NewMultiplicativeExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(212)
+				p.SetState(234)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 12)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 12)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 15)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 15)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(213)
+					p.SetState(235)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5323,21 +5835,21 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(214)
-					p.expression(13)
+					p.SetState(236)
+					p.expression(16)
 				}
 
 			case 3:
 				localctx = NewAdditionExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(215)
+				p.SetState(237)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 11)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 11)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 14)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 14)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(216)
+					p.SetState(238)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5355,21 +5867,21 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(217)
-					p.expression(12)
+					p.SetState(239)
+					p.expression(15)
 				}
 
 			case 4:
 				localctx = NewShiftExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(218)
+				p.SetState(240)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 13)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 13)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(219)
+					p.SetState(241)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5387,21 +5899,21 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(220)
-					p.expression(11)
+					p.SetState(242)
+					p.expression(14)
 				}
 
 			case 5:
 				localctx = NewComparisonExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(221)
+				p.SetState(243)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 9)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 12)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 12)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(222)
+					p.SetState(244)
 
 					var _lt = p.GetTokenStream().LT(1)
 
@@ -5419,21 +5931,21 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(223)
-					p.expression(10)
+					p.SetState(245)
+					p.expression(13)
 				}
 
 			case 6:
 				localctx = NewAndExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(224)
+				p.SetState(246)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 8)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 11)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 11)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(225)
+					p.SetState(247)
 					p.Match(CaliburnParserOP_AND)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5441,21 +5953,21 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(226)
-					p.expression(9)
+					p.SetState(248)
+					p.expression(12)
 				}
 
 			case 7:
 				localctx = NewXOrExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(227)
+				p.SetState(249)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 7)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 7)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 10)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 10)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(228)
+					p.SetState(250)
 					p.Match(CaliburnParserOP_XOR)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5463,21 +5975,21 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(229)
-					p.expression(8)
+					p.SetState(251)
+					p.expression(11)
 				}
 
 			case 8:
 				localctx = NewOrExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(230)
+				p.SetState(252)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 6)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 6)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 9)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 9)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(231)
+					p.SetState(253)
 					p.Match(CaliburnParserOP_OR)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5485,43 +5997,43 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(232)
-					p.expression(7)
+					p.SetState(254)
+					p.expression(10)
 				}
 
 			case 9:
 				localctx = NewCallExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(233)
+				p.SetState(255)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 8)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 8)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(234)
+					p.SetState(256)
 					p.Match(CaliburnParserL_PAREN)
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit
 					}
 				}
-				p.SetState(236)
+				p.SetState(258)
 				p.GetErrorHandler().Sync(p)
 				if p.HasError() {
 					goto errorExit
 				}
 				_la = p.GetTokenStream().LA(1)
 
-				if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173023168823296) != 0 {
+				if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173023219154944) != 0 {
 					{
-						p.SetState(235)
+						p.SetState(257)
 						p.Expressions()
 					}
 
 				}
 				{
-					p.SetState(238)
+					p.SetState(260)
 					p.Match(CaliburnParserR_PAREN)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5532,14 +6044,14 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 			case 10:
 				localctx = NewAccessExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(239)
+				p.SetState(261)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 7)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 7)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(240)
+					p.SetState(262)
 					p.Match(CaliburnParserPERIOD)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5547,21 +6059,25 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(241)
-					p.Value_atom()
+					p.SetState(263)
+					p.Match(CaliburnParserIdentifier)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 
 			case 11:
 				localctx = NewIndexExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(242)
+				p.SetState(264)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 6)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 6)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(243)
+					p.SetState(265)
 					p.Match(CaliburnParserL_S_BRACK)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5569,11 +6085,11 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 					}
 				}
 				{
-					p.SetState(244)
+					p.SetState(266)
 					p.expression(0)
 				}
 				{
-					p.SetState(245)
+					p.SetState(267)
 					p.Match(CaliburnParserR_S_BRACK)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5584,58 +6100,58 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 			case 12:
 				localctx = NewSliceExpressionContext(p, NewExpressionContext(p, _parentctx, _parentState))
 				p.PushNewRecursionContext(localctx, _startState, CaliburnParserRULE_expression)
-				p.SetState(247)
+				p.SetState(269)
 
-				if !(p.Precpred(p.GetParserRuleContext(), 2)) {
-					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 2)", ""))
+				if !(p.Precpred(p.GetParserRuleContext(), 5)) {
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 5)", ""))
 					goto errorExit
 				}
 				{
-					p.SetState(248)
+					p.SetState(270)
 					p.Match(CaliburnParserL_S_BRACK)
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit
 					}
 				}
-				p.SetState(250)
+				p.SetState(272)
 				p.GetErrorHandler().Sync(p)
 				if p.HasError() {
 					goto errorExit
 				}
 				_la = p.GetTokenStream().LA(1)
 
-				if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173023168823296) != 0 {
+				if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173023219154944) != 0 {
 					{
-						p.SetState(249)
+						p.SetState(271)
 						p.expression(0)
 					}
 
 				}
 				{
-					p.SetState(252)
+					p.SetState(274)
 					p.Match(CaliburnParserCOLON)
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit
 					}
 				}
-				p.SetState(254)
+				p.SetState(276)
 				p.GetErrorHandler().Sync(p)
 				if p.HasError() {
 					goto errorExit
 				}
 				_la = p.GetTokenStream().LA(1)
 
-				if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173023168823296) != 0 {
+				if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&216173023219154944) != 0 {
 					{
-						p.SetState(253)
+						p.SetState(275)
 						p.expression(0)
 					}
 
 				}
 				{
-					p.SetState(256)
+					p.SetState(278)
 					p.Match(CaliburnParserR_S_BRACK)
 					if p.HasError() {
 						// Recognition error - abort rule
@@ -5648,12 +6164,12 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 			}
 
 		}
-		p.SetState(261)
+		p.SetState(283)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
-		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 24, p.GetParserRuleContext())
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 26, p.GetParserRuleContext())
 		if p.HasError() {
 			goto errorExit
 		}
@@ -5672,6 +6188,789 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
+// IFunction_expressionContext is an interface to support dynamic dispatch.
+type IFunction_expressionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetType_ returns the type_ token.
+	GetType_() antlr.Token
+
+	// GetReturn_type returns the return_type token.
+	GetReturn_type() antlr.Token
+
+	// SetType_ sets the type_ token.
+	SetType_(antlr.Token)
+
+	// SetReturn_type sets the return_type token.
+	SetReturn_type(antlr.Token)
+
+	// Getter signatures
+	L_PAREN() antlr.TerminalNode
+	R_PAREN() antlr.TerminalNode
+	Scoped_block() IScoped_blockContext
+	Assign_declarations() IAssign_declarationsContext
+	FUNC() antlr.TerminalNode
+	AllIdentifier() []antlr.TerminalNode
+	Identifier(i int) antlr.TerminalNode
+	VAR() antlr.TerminalNode
+
+	// IsFunction_expressionContext differentiates from other interfaces.
+	IsFunction_expressionContext()
+}
+
+type Function_expressionContext struct {
+	antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	type_       antlr.Token
+	return_type antlr.Token
+}
+
+func NewEmptyFunction_expressionContext() *Function_expressionContext {
+	var p = new(Function_expressionContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_function_expression
+	return p
+}
+
+func InitEmptyFunction_expressionContext(p *Function_expressionContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_function_expression
+}
+
+func (*Function_expressionContext) IsFunction_expressionContext() {}
+
+func NewFunction_expressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Function_expressionContext {
+	var p = new(Function_expressionContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CaliburnParserRULE_function_expression
+
+	return p
+}
+
+func (s *Function_expressionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Function_expressionContext) GetType_() antlr.Token { return s.type_ }
+
+func (s *Function_expressionContext) GetReturn_type() antlr.Token { return s.return_type }
+
+func (s *Function_expressionContext) SetType_(v antlr.Token) { s.type_ = v }
+
+func (s *Function_expressionContext) SetReturn_type(v antlr.Token) { s.return_type = v }
+
+func (s *Function_expressionContext) L_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserL_PAREN, 0)
+}
+
+func (s *Function_expressionContext) R_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserR_PAREN, 0)
+}
+
+func (s *Function_expressionContext) Scoped_block() IScoped_blockContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IScoped_blockContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IScoped_blockContext)
+}
+
+func (s *Function_expressionContext) Assign_declarations() IAssign_declarationsContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IAssign_declarationsContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IAssign_declarationsContext)
+}
+
+func (s *Function_expressionContext) FUNC() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserFUNC, 0)
+}
+
+func (s *Function_expressionContext) AllIdentifier() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserIdentifier)
+}
+
+func (s *Function_expressionContext) Identifier(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, i)
+}
+
+func (s *Function_expressionContext) VAR() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserVAR, 0)
+}
+
+func (s *Function_expressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Function_expressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Function_expressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterFunction_expression(s)
+	}
+}
+
+func (s *Function_expressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitFunction_expression(s)
+	}
+}
+
+func (p *CaliburnParser) Function_expression() (localctx IFunction_expressionContext) {
+	localctx = NewFunction_expressionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 38, CaliburnParserRULE_function_expression)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(284)
+
+		var _lt = p.GetTokenStream().LT(1)
+
+		localctx.(*Function_expressionContext).type_ = _lt
+
+		_la = p.GetTokenStream().LA(1)
+
+		if !(_la == CaliburnParserFUNC || _la == CaliburnParserIdentifier) {
+			var _ri = p.GetErrorHandler().RecoverInline(p)
+
+			localctx.(*Function_expressionContext).type_ = _ri
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
+	}
+
+	{
+		p.SetState(285)
+		p.Match(CaliburnParserL_PAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	p.SetState(287)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&72057605314314240) != 0 {
+		{
+			p.SetState(286)
+			p.Assign_declarations()
+		}
+
+	}
+	{
+		p.SetState(289)
+		p.Match(CaliburnParserR_PAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	p.SetState(291)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if _la == CaliburnParserVAR || _la == CaliburnParserIdentifier {
+		{
+			p.SetState(290)
+
+			var _lt = p.GetTokenStream().LT(1)
+
+			localctx.(*Function_expressionContext).return_type = _lt
+
+			_la = p.GetTokenStream().LA(1)
+
+			if !(_la == CaliburnParserVAR || _la == CaliburnParserIdentifier) {
+				var _ri = p.GetErrorHandler().RecoverInline(p)
+
+				localctx.(*Function_expressionContext).return_type = _ri
+			} else {
+				p.GetErrorHandler().ReportMatch(p)
+				p.Consume()
+			}
+		}
+
+	}
+	{
+		p.SetState(293)
+		p.Scoped_block()
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IStruct_expressionContext is an interface to support dynamic dispatch.
+type IStruct_expressionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetType_ returns the type_ token.
+	GetType_() antlr.Token
+
+	// SetType_ sets the type_ token.
+	SetType_(antlr.Token)
+
+	// Getter signatures
+	L_C_BRACK() antlr.TerminalNode
+	AllCOLON() []antlr.TerminalNode
+	COLON(i int) antlr.TerminalNode
+	AllExpression() []IExpressionContext
+	Expression(i int) IExpressionContext
+	R_C_BRACK() antlr.TerminalNode
+	STRUCT() antlr.TerminalNode
+	AllIdentifier() []antlr.TerminalNode
+	Identifier(i int) antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
+
+	// IsStruct_expressionContext differentiates from other interfaces.
+	IsStruct_expressionContext()
+}
+
+type Struct_expressionContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+	type_  antlr.Token
+}
+
+func NewEmptyStruct_expressionContext() *Struct_expressionContext {
+	var p = new(Struct_expressionContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_struct_expression
+	return p
+}
+
+func InitEmptyStruct_expressionContext(p *Struct_expressionContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_struct_expression
+}
+
+func (*Struct_expressionContext) IsStruct_expressionContext() {}
+
+func NewStruct_expressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Struct_expressionContext {
+	var p = new(Struct_expressionContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CaliburnParserRULE_struct_expression
+
+	return p
+}
+
+func (s *Struct_expressionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Struct_expressionContext) GetType_() antlr.Token { return s.type_ }
+
+func (s *Struct_expressionContext) SetType_(v antlr.Token) { s.type_ = v }
+
+func (s *Struct_expressionContext) L_C_BRACK() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserL_C_BRACK, 0)
+}
+
+func (s *Struct_expressionContext) AllCOLON() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserCOLON)
+}
+
+func (s *Struct_expressionContext) COLON(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserCOLON, i)
+}
+
+func (s *Struct_expressionContext) AllExpression() []IExpressionContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IExpressionContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IExpressionContext); ok {
+			tst[i] = t.(IExpressionContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Struct_expressionContext) Expression(i int) IExpressionContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *Struct_expressionContext) R_C_BRACK() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserR_C_BRACK, 0)
+}
+
+func (s *Struct_expressionContext) STRUCT() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserSTRUCT, 0)
+}
+
+func (s *Struct_expressionContext) AllIdentifier() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserIdentifier)
+}
+
+func (s *Struct_expressionContext) Identifier(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, i)
+}
+
+func (s *Struct_expressionContext) AllCOMMA() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserCOMMA)
+}
+
+func (s *Struct_expressionContext) COMMA(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserCOMMA, i)
+}
+
+func (s *Struct_expressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Struct_expressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Struct_expressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterStruct_expression(s)
+	}
+}
+
+func (s *Struct_expressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitStruct_expression(s)
+	}
+}
+
+func (p *CaliburnParser) Struct_expression() (localctx IStruct_expressionContext) {
+	localctx = NewStruct_expressionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 40, CaliburnParserRULE_struct_expression)
+	var _la int
+
+	var _alt int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(295)
+
+		var _lt = p.GetTokenStream().LT(1)
+
+		localctx.(*Struct_expressionContext).type_ = _lt
+
+		_la = p.GetTokenStream().LA(1)
+
+		if !(_la == CaliburnParserSTRUCT || _la == CaliburnParserIdentifier) {
+			var _ri = p.GetErrorHandler().RecoverInline(p)
+
+			localctx.(*Struct_expressionContext).type_ = _ri
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
+	}
+	{
+		p.SetState(296)
+		p.Match(CaliburnParserL_C_BRACK)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+	{
+		p.SetState(297)
+		p.Match(CaliburnParserIdentifier)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+	{
+		p.SetState(298)
+		p.Match(CaliburnParserCOLON)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(299)
+		p.expression(0)
+	}
+	p.SetState(306)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 29, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
+	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
+		if _alt == 1 {
+			{
+				p.SetState(300)
+				p.Match(CaliburnParserCOMMA)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
+			}
+
+			{
+				p.SetState(301)
+				p.Match(CaliburnParserIdentifier)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
+			}
+
+			{
+				p.SetState(302)
+				p.Match(CaliburnParserCOLON)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
+			}
+			{
+				p.SetState(303)
+				p.expression(0)
+			}
+
+		}
+		p.SetState(308)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 29, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
+	}
+	p.SetState(310)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if _la == CaliburnParserCOMMA {
+		{
+			p.SetState(309)
+			p.Match(CaliburnParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	}
+	{
+		p.SetState(312)
+		p.Match(CaliburnParserR_C_BRACK)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// ITuple_expressionContext is an interface to support dynamic dispatch.
+type ITuple_expressionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	L_PAREN() antlr.TerminalNode
+	AllExpression() []IExpressionContext
+	Expression(i int) IExpressionContext
+	R_PAREN() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
+
+	// IsTuple_expressionContext differentiates from other interfaces.
+	IsTuple_expressionContext()
+}
+
+type Tuple_expressionContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyTuple_expressionContext() *Tuple_expressionContext {
+	var p = new(Tuple_expressionContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_tuple_expression
+	return p
+}
+
+func InitEmptyTuple_expressionContext(p *Tuple_expressionContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = CaliburnParserRULE_tuple_expression
+}
+
+func (*Tuple_expressionContext) IsTuple_expressionContext() {}
+
+func NewTuple_expressionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Tuple_expressionContext {
+	var p = new(Tuple_expressionContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = CaliburnParserRULE_tuple_expression
+
+	return p
+}
+
+func (s *Tuple_expressionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Tuple_expressionContext) L_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserL_PAREN, 0)
+}
+
+func (s *Tuple_expressionContext) AllExpression() []IExpressionContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IExpressionContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IExpressionContext); ok {
+			tst[i] = t.(IExpressionContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Tuple_expressionContext) Expression(i int) IExpressionContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IExpressionContext)
+}
+
+func (s *Tuple_expressionContext) R_PAREN() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserR_PAREN, 0)
+}
+
+func (s *Tuple_expressionContext) AllCOMMA() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserCOMMA)
+}
+
+func (s *Tuple_expressionContext) COMMA(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserCOMMA, i)
+}
+
+func (s *Tuple_expressionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Tuple_expressionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Tuple_expressionContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.EnterTuple_expression(s)
+	}
+}
+
+func (s *Tuple_expressionContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(CaliburnParserListener); ok {
+		listenerT.ExitTuple_expression(s)
+	}
+}
+
+func (p *CaliburnParser) Tuple_expression() (localctx ITuple_expressionContext) {
+	localctx = NewTuple_expressionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 42, CaliburnParserRULE_tuple_expression)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(314)
+		p.Match(CaliburnParserL_PAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(315)
+		p.expression(0)
+	}
+	p.SetState(323)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 32, p.GetParserRuleContext()) {
+	case 1:
+		{
+			p.SetState(316)
+			p.Match(CaliburnParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+
+	case 2:
+		p.SetState(319)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+
+		for ok := true; ok; ok = _la == CaliburnParserCOMMA {
+			{
+				p.SetState(317)
+				p.Match(CaliburnParserCOMMA)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
+			}
+			{
+				p.SetState(318)
+				p.expression(0)
+			}
+
+			p.SetState(321)
+			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
+			_la = p.GetTokenStream().LA(1)
+		}
+
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
+	}
+	{
+		p.SetState(325)
+		p.Match(CaliburnParserR_PAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
 // IExpression_atomContext is an interface to support dynamic dispatch.
 type IExpression_atomContext interface {
 	antlr.ParserRuleContext
@@ -5680,7 +6979,7 @@ type IExpression_atomContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Value_atom() IValue_atomContext
+	Identifier() antlr.TerminalNode
 	Literal_atom() ILiteral_atomContext
 
 	// IsExpression_atomContext differentiates from other interfaces.
@@ -5719,20 +7018,8 @@ func NewExpression_atomContext(parser antlr.Parser, parent antlr.ParserRuleConte
 
 func (s *Expression_atomContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Expression_atomContext) Value_atom() IValue_atomContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IValue_atomContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValue_atomContext)
+func (s *Expression_atomContext) Identifier() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, 0)
 }
 
 func (s *Expression_atomContext) Literal_atom() ILiteral_atomContext {
@@ -5773,25 +7060,29 @@ func (s *Expression_atomContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *CaliburnParser) Expression_atom() (localctx IExpression_atomContext) {
 	localctx = NewExpression_atomContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, CaliburnParserRULE_expression_atom)
-	p.SetState(264)
+	p.EnterRule(localctx, 44, CaliburnParserRULE_expression_atom)
+	p.SetState(329)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 25, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 33, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(262)
-			p.Value_atom()
+			p.SetState(327)
+			p.Match(CaliburnParserIdentifier)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(263)
+			p.SetState(328)
 			p.Literal_atom()
 		}
 
@@ -5812,135 +7103,106 @@ errorExit:
 	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
-// IValue_atomsContext is an interface to support dynamic dispatch.
-type IValue_atomsContext interface {
+// IIdentifiersContext is an interface to support dynamic dispatch.
+type IIdentifiersContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	AllValue_atom() []IValue_atomContext
-	Value_atom(i int) IValue_atomContext
+	AllIdentifier() []antlr.TerminalNode
+	Identifier(i int) antlr.TerminalNode
 	AllCOMMA() []antlr.TerminalNode
 	COMMA(i int) antlr.TerminalNode
 
-	// IsValue_atomsContext differentiates from other interfaces.
-	IsValue_atomsContext()
+	// IsIdentifiersContext differentiates from other interfaces.
+	IsIdentifiersContext()
 }
 
-type Value_atomsContext struct {
+type IdentifiersContext struct {
 	antlr.BaseParserRuleContext
 	parser antlr.Parser
 }
 
-func NewEmptyValue_atomsContext() *Value_atomsContext {
-	var p = new(Value_atomsContext)
+func NewEmptyIdentifiersContext() *IdentifiersContext {
+	var p = new(IdentifiersContext)
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = CaliburnParserRULE_value_atoms
+	p.RuleIndex = CaliburnParserRULE_identifiers
 	return p
 }
 
-func InitEmptyValue_atomsContext(p *Value_atomsContext) {
+func InitEmptyIdentifiersContext(p *IdentifiersContext) {
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = CaliburnParserRULE_value_atoms
+	p.RuleIndex = CaliburnParserRULE_identifiers
 }
 
-func (*Value_atomsContext) IsValue_atomsContext() {}
+func (*IdentifiersContext) IsIdentifiersContext() {}
 
-func NewValue_atomsContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Value_atomsContext {
-	var p = new(Value_atomsContext)
+func NewIdentifiersContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IdentifiersContext {
+	var p = new(IdentifiersContext)
 
 	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = CaliburnParserRULE_value_atoms
+	p.RuleIndex = CaliburnParserRULE_identifiers
 
 	return p
 }
 
-func (s *Value_atomsContext) GetParser() antlr.Parser { return s.parser }
+func (s *IdentifiersContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Value_atomsContext) AllValue_atom() []IValue_atomContext {
-	children := s.GetChildren()
-	len := 0
-	for _, ctx := range children {
-		if _, ok := ctx.(IValue_atomContext); ok {
-			len++
-		}
-	}
-
-	tst := make([]IValue_atomContext, len)
-	i := 0
-	for _, ctx := range children {
-		if t, ok := ctx.(IValue_atomContext); ok {
-			tst[i] = t.(IValue_atomContext)
-			i++
-		}
-	}
-
-	return tst
+func (s *IdentifiersContext) AllIdentifier() []antlr.TerminalNode {
+	return s.GetTokens(CaliburnParserIdentifier)
 }
 
-func (s *Value_atomsContext) Value_atom(i int) IValue_atomContext {
-	var t antlr.RuleContext
-	j := 0
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IValue_atomContext); ok {
-			if j == i {
-				t = ctx.(antlr.RuleContext)
-				break
-			}
-			j++
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IValue_atomContext)
+func (s *IdentifiersContext) Identifier(i int) antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, i)
 }
 
-func (s *Value_atomsContext) AllCOMMA() []antlr.TerminalNode {
+func (s *IdentifiersContext) AllCOMMA() []antlr.TerminalNode {
 	return s.GetTokens(CaliburnParserCOMMA)
 }
 
-func (s *Value_atomsContext) COMMA(i int) antlr.TerminalNode {
+func (s *IdentifiersContext) COMMA(i int) antlr.TerminalNode {
 	return s.GetToken(CaliburnParserCOMMA, i)
 }
 
-func (s *Value_atomsContext) GetRuleContext() antlr.RuleContext {
+func (s *IdentifiersContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *Value_atomsContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *IdentifiersContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *Value_atomsContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *IdentifiersContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(CaliburnParserListener); ok {
-		listenerT.EnterValue_atoms(s)
+		listenerT.EnterIdentifiers(s)
 	}
 }
 
-func (s *Value_atomsContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *IdentifiersContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(CaliburnParserListener); ok {
-		listenerT.ExitValue_atoms(s)
+		listenerT.ExitIdentifiers(s)
 	}
 }
 
-func (p *CaliburnParser) Value_atoms() (localctx IValue_atomsContext) {
-	localctx = NewValue_atomsContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, CaliburnParserRULE_value_atoms)
+func (p *CaliburnParser) Identifiers() (localctx IIdentifiersContext) {
+	localctx = NewIdentifiersContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 46, CaliburnParserRULE_identifiers)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(266)
-		p.Value_atom()
+		p.SetState(331)
+		p.Match(CaliburnParserIdentifier)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
-	p.SetState(271)
+	p.SetState(336)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -5949,7 +7211,7 @@ func (p *CaliburnParser) Value_atoms() (localctx IValue_atomsContext) {
 
 	for _la == CaliburnParserCOMMA {
 		{
-			p.SetState(267)
+			p.SetState(332)
 			p.Match(CaliburnParserCOMMA)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5957,208 +7219,20 @@ func (p *CaliburnParser) Value_atoms() (localctx IValue_atomsContext) {
 			}
 		}
 		{
-			p.SetState(268)
-			p.Value_atom()
+			p.SetState(333)
+			p.Match(CaliburnParserIdentifier)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
-		p.SetState(273)
+		p.SetState(338)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
 		}
 		_la = p.GetTokenStream().LA(1)
-	}
-
-errorExit:
-	if p.HasError() {
-		v := p.GetError()
-		localctx.SetException(v)
-		p.GetErrorHandler().ReportError(p, v)
-		p.GetErrorHandler().Recover(p, v)
-		p.SetError(nil)
-	}
-	p.ExitRule()
-	return localctx
-	goto errorExit // Trick to prevent compiler error if the label is not used
-}
-
-// IValue_atomContext is an interface to support dynamic dispatch.
-type IValue_atomContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// Getter signatures
-	Identifier() antlr.TerminalNode
-
-	// IsValue_atomContext differentiates from other interfaces.
-	IsValue_atomContext()
-}
-
-type Value_atomContext struct {
-	antlr.BaseParserRuleContext
-	parser antlr.Parser
-}
-
-func NewEmptyValue_atomContext() *Value_atomContext {
-	var p = new(Value_atomContext)
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = CaliburnParserRULE_value_atom
-	return p
-}
-
-func InitEmptyValue_atomContext(p *Value_atomContext) {
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = CaliburnParserRULE_value_atom
-}
-
-func (*Value_atomContext) IsValue_atomContext() {}
-
-func NewValue_atomContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Value_atomContext {
-	var p = new(Value_atomContext)
-
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = CaliburnParserRULE_value_atom
-
-	return p
-}
-
-func (s *Value_atomContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *Value_atomContext) Identifier() antlr.TerminalNode {
-	return s.GetToken(CaliburnParserIdentifier, 0)
-}
-
-func (s *Value_atomContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *Value_atomContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *Value_atomContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(CaliburnParserListener); ok {
-		listenerT.EnterValue_atom(s)
-	}
-}
-
-func (s *Value_atomContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(CaliburnParserListener); ok {
-		listenerT.ExitValue_atom(s)
-	}
-}
-
-func (p *CaliburnParser) Value_atom() (localctx IValue_atomContext) {
-	localctx = NewValue_atomContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, CaliburnParserRULE_value_atom)
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(274)
-		p.Match(CaliburnParserIdentifier)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
-		}
-	}
-
-errorExit:
-	if p.HasError() {
-		v := p.GetError()
-		localctx.SetException(v)
-		p.GetErrorHandler().ReportError(p, v)
-		p.GetErrorHandler().Recover(p, v)
-		p.SetError(nil)
-	}
-	p.ExitRule()
-	return localctx
-	goto errorExit // Trick to prevent compiler error if the label is not used
-}
-
-// IType_atomContext is an interface to support dynamic dispatch.
-type IType_atomContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// Getter signatures
-	Identifier() antlr.TerminalNode
-
-	// IsType_atomContext differentiates from other interfaces.
-	IsType_atomContext()
-}
-
-type Type_atomContext struct {
-	antlr.BaseParserRuleContext
-	parser antlr.Parser
-}
-
-func NewEmptyType_atomContext() *Type_atomContext {
-	var p = new(Type_atomContext)
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = CaliburnParserRULE_type_atom
-	return p
-}
-
-func InitEmptyType_atomContext(p *Type_atomContext) {
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
-	p.RuleIndex = CaliburnParserRULE_type_atom
-}
-
-func (*Type_atomContext) IsType_atomContext() {}
-
-func NewType_atomContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Type_atomContext {
-	var p = new(Type_atomContext)
-
-	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = CaliburnParserRULE_type_atom
-
-	return p
-}
-
-func (s *Type_atomContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *Type_atomContext) Identifier() antlr.TerminalNode {
-	return s.GetToken(CaliburnParserIdentifier, 0)
-}
-
-func (s *Type_atomContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *Type_atomContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *Type_atomContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(CaliburnParserListener); ok {
-		listenerT.EnterType_atom(s)
-	}
-}
-
-func (s *Type_atomContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(CaliburnParserListener); ok {
-		listenerT.ExitType_atom(s)
-	}
-}
-
-func (p *CaliburnParser) Type_atom() (localctx IType_atomContext) {
-	localctx = NewType_atomContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, CaliburnParserRULE_type_atom)
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(276)
-		p.Match(CaliburnParserIdentifier)
-		if p.HasError() {
-			// Recognition error - abort rule
-			goto errorExit
-		}
 	}
 
 errorExit:
@@ -6275,8 +7349,8 @@ func (s *Literal_atomContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *CaliburnParser) Literal_atom() (localctx ILiteral_atomContext) {
 	localctx = NewLiteral_atomContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, CaliburnParserRULE_literal_atom)
-	p.SetState(280)
+	p.EnterRule(localctx, 48, CaliburnParserRULE_literal_atom)
+	p.SetState(341)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -6286,14 +7360,14 @@ func (p *CaliburnParser) Literal_atom() (localctx ILiteral_atomContext) {
 	case CaliburnParserLiteral:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(278)
+			p.SetState(339)
 			p.Untyped_literal_atom()
 		}
 
 	case CaliburnParserIdentifier:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(279)
+			p.SetState(340)
 			p.Typed_literal_atom()
 		}
 
@@ -6387,10 +7461,10 @@ func (s *Untyped_literal_atomContext) ExitRule(listener antlr.ParseTreeListener)
 
 func (p *CaliburnParser) Untyped_literal_atom() (localctx IUntyped_literal_atomContext) {
 	localctx = NewUntyped_literal_atomContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, CaliburnParserRULE_untyped_literal_atom)
+	p.EnterRule(localctx, 50, CaliburnParserRULE_untyped_literal_atom)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(282)
+		p.SetState(343)
 		p.Match(CaliburnParserLiteral)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -6419,7 +7493,7 @@ type ITyped_literal_atomContext interface {
 	GetParser() antlr.Parser
 
 	// Getter signatures
-	Type_atom() IType_atomContext
+	Identifier() antlr.TerminalNode
 	Literal() antlr.TerminalNode
 
 	// IsTyped_literal_atomContext differentiates from other interfaces.
@@ -6458,20 +7532,8 @@ func NewTyped_literal_atomContext(parser antlr.Parser, parent antlr.ParserRuleCo
 
 func (s *Typed_literal_atomContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *Typed_literal_atomContext) Type_atom() IType_atomContext {
-	var t antlr.RuleContext
-	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(IType_atomContext); ok {
-			t = ctx.(antlr.RuleContext)
-			break
-		}
-	}
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IType_atomContext)
+func (s *Typed_literal_atomContext) Identifier() antlr.TerminalNode {
+	return s.GetToken(CaliburnParserIdentifier, 0)
 }
 
 func (s *Typed_literal_atomContext) Literal() antlr.TerminalNode {
@@ -6500,14 +7562,18 @@ func (s *Typed_literal_atomContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *CaliburnParser) Typed_literal_atom() (localctx ITyped_literal_atomContext) {
 	localctx = NewTyped_literal_atomContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, CaliburnParserRULE_typed_literal_atom)
+	p.EnterRule(localctx, 52, CaliburnParserRULE_typed_literal_atom)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(284)
-		p.Type_atom()
+		p.SetState(345)
+		p.Match(CaliburnParserIdentifier)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
-		p.SetState(285)
+		p.SetState(346)
 		p.Match(CaliburnParserLiteral)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -6530,7 +7596,7 @@ errorExit:
 
 func (p *CaliburnParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {
 	switch ruleIndex {
-	case 17:
+	case 18:
 		var t *ExpressionContext = nil
 		if localctx != nil {
 			t = localctx.(*ExpressionContext)
@@ -6545,40 +7611,40 @@ func (p *CaliburnParser) Sempred(localctx antlr.RuleContext, ruleIndex, predInde
 func (p *CaliburnParser) Expression_Sempred(localctx antlr.RuleContext, predIndex int) bool {
 	switch predIndex {
 	case 0:
-		return p.Precpred(p.GetParserRuleContext(), 14)
+		return p.Precpred(p.GetParserRuleContext(), 17)
 
 	case 1:
-		return p.Precpred(p.GetParserRuleContext(), 12)
+		return p.Precpred(p.GetParserRuleContext(), 15)
 
 	case 2:
-		return p.Precpred(p.GetParserRuleContext(), 11)
+		return p.Precpred(p.GetParserRuleContext(), 14)
 
 	case 3:
-		return p.Precpred(p.GetParserRuleContext(), 10)
+		return p.Precpred(p.GetParserRuleContext(), 13)
 
 	case 4:
-		return p.Precpred(p.GetParserRuleContext(), 9)
+		return p.Precpred(p.GetParserRuleContext(), 12)
 
 	case 5:
-		return p.Precpred(p.GetParserRuleContext(), 8)
+		return p.Precpred(p.GetParserRuleContext(), 11)
 
 	case 6:
-		return p.Precpred(p.GetParserRuleContext(), 7)
+		return p.Precpred(p.GetParserRuleContext(), 10)
 
 	case 7:
-		return p.Precpred(p.GetParserRuleContext(), 6)
+		return p.Precpred(p.GetParserRuleContext(), 9)
 
 	case 8:
-		return p.Precpred(p.GetParserRuleContext(), 5)
+		return p.Precpred(p.GetParserRuleContext(), 8)
 
 	case 9:
-		return p.Precpred(p.GetParserRuleContext(), 4)
+		return p.Precpred(p.GetParserRuleContext(), 7)
 
 	case 10:
-		return p.Precpred(p.GetParserRuleContext(), 3)
+		return p.Precpred(p.GetParserRuleContext(), 6)
 
 	case 11:
-		return p.Precpred(p.GetParserRuleContext(), 2)
+		return p.Precpred(p.GetParserRuleContext(), 5)
 
 	default:
 		panic("No predicate with index: " + fmt.Sprint(predIndex))
