@@ -1,8 +1,8 @@
 PERIOD=1
 COMMA=2
 COLON=3
-SEMICOLON=4
-QUESTION=5
+QUESTION=4
+Terminator=5
 ASSIGN=6
 IF=7
 ELSE=8
@@ -55,12 +55,11 @@ WhiteSpace=54
 Comment=55
 Identifier=56
 Literal=57
-Terminator=58
 '.'=1
 ','=2
 ':'=3
-';'=4
-'?'=5
+'?'=4
+';'=5
 '='=6
 'if'=7
 'else'=8

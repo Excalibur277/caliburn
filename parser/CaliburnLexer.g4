@@ -11,9 +11,9 @@ COMMA: ',';
 
 COLON: ':';
 
-SEMICOLON: ';';
-
 QUESTION: '?';
+
+Terminator: ';';
 
 ASSIGN: '=';
 
@@ -116,5 +116,3 @@ fragment SQUOTE: '\'';
 fragment DQUOTE: '"';
 
 Literal: SQUOTE LITERAL_TEXT? SQUOTE | DQUOTE LITERAL_TEXT? DQUOTE;
-
-Terminator: SEMICOLON;

@@ -1,0 +1,10 @@
+
+func main() {
+    var a = bool"true";
+
+    a &= bool"false";
+
+    a = a | 
+
+    return a;
+}

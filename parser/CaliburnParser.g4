@@ -6,6 +6,16 @@ options {
     tokenVocab = CaliburnLexer;
 }
 
+// Module
+module
+    : definition*
+    ;
+
+// Definitions
+definition
+    : function_declaration_statement
+    ;
+
 // Blocks
 scoped_block
     : L_C_BRACK statement* R_C_BRACK
@@ -16,6 +26,26 @@ statement
     : assign_statement
     | expression_statement
     | control_statement
+    | jump_statement
+    ;
+
+// Jump Statements
+jump_statement
+    : return_statement
+    | break_statement
+    | continue_statement
+    ;
+
+return_statement
+    : RETURN expressions? Terminator
+    ;
+
+break_statement
+    : BREAK Terminator
+    ;
+
+continue_statement
+    : CONTINUE Terminator
     ;
 
 // Control Statement
@@ -38,9 +68,9 @@ for_statement
 
 // Switch Statement
 switch_statement
-    : SWITCH inline_statement* expression L_C_BRACK (CASE (Identifier | literal_atom) scoped_block)* (
-        DEFAULT scoped_block
-    )? R_C_BRACK
+    : SWITCH inline_statement* expression L_C_BRACK (
+        CASE (type_expression | expression) scoped_block
+    )* (DEFAULT scoped_block)? R_C_BRACK
     ;
 
 // Allow for type and value matching
@@ -53,8 +83,8 @@ inline_statement
 
 // Function Declaration Statement
 function_declaration_statement
-    : type = (FUNC | Identifier) name = Identifier L_PAREN assign_declarations? R_PAREN (
-        return_type = (VAR | Identifier)
+    : type = type_expression name = Identifier L_PAREN assign_declarations? R_PAREN (
+        return_type = type_expression
     )? scoped_block
     ;
 
@@ -80,8 +110,8 @@ declared_assign_declarations
     ;
 
 declared_assign_declaration
-    : type = Identifier undeclared_assign_declaration # TypedDeclaredAssignDeclaration
-    | VAR undeclared_assign_declaration               # UntypedDeclaredAssignDeclaration
+    : type = type_expression undeclared_assign_declaration # TypedDeclaredAssignDeclaration
+    | VAR undeclared_assign_declaration                    # UntypedDeclaredAssignDeclaration
     ;
 
 undeclared_assign_declarations
@@ -89,14 +119,14 @@ undeclared_assign_declarations
     ;
 
 undeclared_assign_declaration
-    : var = Identifier                                   # UndeclaredAtomAssignDeclaration
+    : var = type_expression                              # UndeclaredAtomAssignDeclaration
     | L_C_BRACK undeclared_assign_declarations R_C_BRACK # UndeclaredStructDestrutureAssignDeclaration
     | L_PAREN undeclared_assign_declarations R_PAREN     # UndeclaredTupleDestrutureAssignDeclaration
     ;
 
 // Operator Assign Statement
 operator_assign_statement
-    : var = Identifier op = (
+    : var = expression op = (
         OP_ADD
         | OP_SUB
         | OP_MUL
@@ -109,7 +139,7 @@ operator_assign_statement
         | OP_AND
         | OP_LSHIFT
         | OP_RSHIFT
-    ) expressions Terminator # OperatorAssignment
+    ) ASSIGN expressions Terminator # OperatorAssignment
     ;
 
 // Expression Statement
@@ -123,36 +153,35 @@ expressions
     ;
 
 expression
-    : L_PAREN expression R_PAREN expression                                            # CastExpression
-    | L_PAREN expression R_PAREN                                                       # BracketedExpression
-    | expression op = (OP_POW | OP_ROOT) expression                                    # ExponentExpression
-    | op = (OP_NOT | OP_ADD | OP_SUB) expression                                       # UnaryExpression
-    | expression op = (OP_MUL | OP_DIV | OP_MOD) expression                            # MultiplicativeExpression
-    | expression op = (OP_ADD | OP_SUB) expression                                     # AdditionExpression
-    | expression op = (OP_LSHIFT | OP_RSHIFT) expression                               # ShiftExpression
-    | expression op = (OP_EQU | OP_NEQ | OP_LTE | OP_GTE | OP_LST | OP_GRT) expression # ComparisonExpression
-    | expression OP_AND expression                                                     # AndExpression
-    | expression OP_XOR expression                                                     # XOrExpression
-    | expression OP_OR expression                                                      # OrExpression
-    | expression L_PAREN expressions? R_PAREN                                          # CallExpression
-    | expression PERIOD Identifier                                                     # AccessExpression
-    | expression L_S_BRACK expression R_S_BRACK                                        # IndexExpression
-    | expression L_S_BRACK expression? COLON expression? R_S_BRACK                     # SliceExpression
-    | expression_atom                                                                  # AtomExpression
-    | function_expression                                                              # FunctionExpression
-    | struct_expression                                                                # StructExpression
-    | tuple_expression                                                                 # TupleExpression
+    : L_PAREN type = type_expression R_PAREN exp = expression                                              # CastExpression
+    | L_PAREN exp = expression R_PAREN                                                                     # BracketedExpression
+    | lhs_exp = expression op = (OP_POW | OP_ROOT) rhs_exp = expression                                    # BinaryExpression
+    | op = (OP_NOT | OP_ADD | OP_SUB) exp = expression                                                     # UnaryExpression
+    | lhs_exp = expression op = (OP_MUL | OP_DIV | OP_MOD) rhs_exp = expression                            # BinaryExpression
+    | lhs_exp = expression op = (OP_ADD | OP_SUB) rhs_exp = expression                                     # BinaryExpression
+    | lhs_exp = expression op = (OP_LSHIFT | OP_RSHIFT) rhs_exp = expression                               # BinaryExpression
+    | lhs_exp = expression op = (OP_EQU | OP_NEQ | OP_LTE | OP_GTE | OP_LST | OP_GRT) rhs_exp = expression # BooleanBinaryExpression
+    | lhs_exp = expression OP_AND rhs_exp = expression                                                     # BinaryExpression
+    | lhs_exp = expression OP_XOR rhs_exp = expression                                                     # BinaryExpression
+    | lhs_exp = expression OP_OR rhs_exp = expression                                                      # BinaryExpression
+    | exp = expression L_PAREN args = expressions? R_PAREN                                                 # CallExpression
+    | exp = expression PERIOD identifier = Identifier                                                      # AccessExpression
+    | exp = expression L_S_BRACK index = expression R_S_BRACK                                              # IndexExpression
+    | exp = expression L_S_BRACK start_index = expression? COLON end_index = expression? R_S_BRACK         # SliceExpression
+    | identifier = Identifier                                                                              # IdentifierExpression
+    | literal = literal_atom                                                                               # LiteralExpression
+    | exp = function_expression                                                                            # FunctionExpression
+    | exp = struct_expression                                                                              # StructExpression
+    | exp = tuple_expression                                                                               # TupleExpression
     ;
 
-// Type Expressions
+// Composite Expressions
 function_expression
-    : (type = (FUNC | Identifier)) L_PAREN assign_declarations? R_PAREN (
-        return_type = (VAR | Identifier)
-    )? scoped_block
+    : type = type_expression L_PAREN assign_declarations? R_PAREN (return_type = type_expression)? scoped_block
     ;
 
 struct_expression
-    : type = (STRUCT | Identifier) L_C_BRACK (Identifier) COLON expression (
+    : type = type_expression L_C_BRACK (Identifier) COLON expression (
         COMMA (Identifier) COLON expression
     )* COMMA? R_C_BRACK
     ;
@@ -161,9 +190,18 @@ tuple_expression
     : L_PAREN expression (COMMA | (COMMA expression)+) R_PAREN
     ;
 
-expression_atom
+// Type Expressions
+
+type_expression
+    : complex_type_expression
+    | FUNC
+    | STRUCT
+    | TUPLE
+    ;
+
+complex_type_expression
     : Identifier
-    | literal_atom
+    | complex_type_expression PERIOD Identifier
     ;
 
 // Atoms
@@ -172,8 +210,8 @@ identifiers
     ;
 
 literal_atom
-    : untyped_literal_atom
-    | typed_literal_atom
+    : untyped_literal_atom # UntypedLiteralAtom
+    | typed_literal_atom   # TypedLiteralAtom
     ;
 
 untyped_literal_atom
