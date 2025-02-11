@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 
-	"caliburncode.com/m/listener"
 	"caliburncode.com/m/parsing"
 	"github.com/antlr4-go/antlr/v4"
 )

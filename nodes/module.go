@@ -1,4 +1,4 @@
-package ast
+package nodes
 
 type Module interface {
 	IsModule()

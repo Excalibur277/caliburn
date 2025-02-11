@@ -1,4 +1,4 @@
-package ast
+package nodes
 
 type Type interface {
 }
