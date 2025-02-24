@@ -4,7 +4,9 @@ func main() {
 
     a &= bool"false";
 
-    a = a | 
+    bool b = bool"false";
+
+    a = a | b;
 
     return a;
 }

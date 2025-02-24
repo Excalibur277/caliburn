@@ -13,8 +13,26 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#definition.
 	VisitDefinition(ctx *DefinitionContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#scoped_block.
-	VisitScoped_block(ctx *Scoped_blockContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#function_definition.
+	VisitFunction_definition(ctx *Function_definitionContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#parameters.
+	VisitParameters(ctx *ParametersContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#TypedParameter.
+	VisitTypedParameter(ctx *TypedParameterContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#UntypedParameter.
+	VisitUntypedParameter(ctx *UntypedParameterContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#StructDestrutureParameter.
+	VisitStructDestrutureParameter(ctx *StructDestrutureParameterContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#TupleDestrutureParameter.
+	VisitTupleDestrutureParameter(ctx *TupleDestrutureParameterContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#block.
+	VisitBlock(ctx *BlockContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#statement.
 	VisitStatement(ctx *StatementContext) interface{}
@@ -43,23 +61,44 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#switch_statement.
 	VisitSwitch_statement(ctx *Switch_statementContext) interface{}
 
+	// Visit a parse tree produced by CaliburnParser#case_statements.
+	VisitCase_statements(ctx *Case_statementsContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#option_case_statement.
+	VisitOption_case_statement(ctx *Option_case_statementContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#default_case_statement.
+	VisitDefault_case_statement(ctx *Default_case_statementContext) interface{}
+
 	// Visit a parse tree produced by CaliburnParser#inline_statement.
 	VisitInline_statement(ctx *Inline_statementContext) interface{}
-
-	// Visit a parse tree produced by CaliburnParser#function_declaration_statement.
-	VisitFunction_declaration_statement(ctx *Function_declaration_statementContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#assign_statement.
 	VisitAssign_statement(ctx *Assign_statementContext) interface{}
 
+	// Visit a parse tree produced by CaliburnParser#assign_expressions.
+	VisitAssign_expressions(ctx *Assign_expressionsContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ExpressionAssignExpression.
+	VisitExpressionAssignExpression(ctx *ExpressionAssignExpressionContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#StructDestrutureAssignExpression.
+	VisitStructDestrutureAssignExpression(ctx *StructDestrutureAssignExpressionContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#TupleDestrutureAssignExpression.
+	VisitTupleDestrutureAssignExpression(ctx *TupleDestrutureAssignExpressionContext) interface{}
+
 	// Visit a parse tree produced by CaliburnParser#assign_declarations.
 	VisitAssign_declarations(ctx *Assign_declarationsContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#DeclaredAssignDeclaration.
-	VisitDeclaredAssignDeclaration(ctx *DeclaredAssignDeclarationContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#ExpressionAssignDeclaration.
+	VisitExpressionAssignDeclaration(ctx *ExpressionAssignDeclarationContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#UndeclaredAssignDeclaration.
-	VisitUndeclaredAssignDeclaration(ctx *UndeclaredAssignDeclarationContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#TypedAssignDeclaration.
+	VisitTypedAssignDeclaration(ctx *TypedAssignDeclarationContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#UntypedAssignDeclaration.
+	VisitUntypedAssignDeclaration(ctx *UntypedAssignDeclarationContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#StructDestrutureAssignDeclaration.
 	VisitStructDestrutureAssignDeclaration(ctx *StructDestrutureAssignDeclarationContext) interface{}
@@ -67,29 +106,23 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#TupleDestrutureAssignDeclaration.
 	VisitTupleDestrutureAssignDeclaration(ctx *TupleDestrutureAssignDeclarationContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#declared_assign_declarations.
-	VisitDeclared_assign_declarations(ctx *Declared_assign_declarationsContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#typed_assign_declarations.
+	VisitTyped_assign_declarations(ctx *Typed_assign_declarationsContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#TypedDeclaredAssignDeclaration.
-	VisitTypedDeclaredAssignDeclaration(ctx *TypedDeclaredAssignDeclarationContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#TypedTypedAssignDeclaration.
+	VisitTypedTypedAssignDeclaration(ctx *TypedTypedAssignDeclarationContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#UntypedDeclaredAssignDeclaration.
-	VisitUntypedDeclaredAssignDeclaration(ctx *UntypedDeclaredAssignDeclarationContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#untyped_assign_declarations.
+	VisitUntyped_assign_declarations(ctx *Untyped_assign_declarationsContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#undeclared_assign_declarations.
-	VisitUndeclared_assign_declarations(ctx *Undeclared_assign_declarationsContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#UntypedAtomAssignDeclaration.
+	VisitUntypedAtomAssignDeclaration(ctx *UntypedAtomAssignDeclarationContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#UndeclaredAtomAssignDeclaration.
-	VisitUndeclaredAtomAssignDeclaration(ctx *UndeclaredAtomAssignDeclarationContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#UntypedStructDestrutureAssignDeclaration.
+	VisitUntypedStructDestrutureAssignDeclaration(ctx *UntypedStructDestrutureAssignDeclarationContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#UndeclaredStructDestrutureAssignDeclaration.
-	VisitUndeclaredStructDestrutureAssignDeclaration(ctx *UndeclaredStructDestrutureAssignDeclarationContext) interface{}
-
-	// Visit a parse tree produced by CaliburnParser#UndeclaredTupleDestrutureAssignDeclaration.
-	VisitUndeclaredTupleDestrutureAssignDeclaration(ctx *UndeclaredTupleDestrutureAssignDeclarationContext) interface{}
-
-	// Visit a parse tree produced by CaliburnParser#OperatorAssignment.
-	VisitOperatorAssignment(ctx *OperatorAssignmentContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#UntypedTupleDestrutureAssignDeclaration.
+	VisitUntypedTupleDestrutureAssignDeclaration(ctx *UntypedTupleDestrutureAssignDeclarationContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#expression_statement.
 	VisitExpression_statement(ctx *Expression_statementContext) interface{}
@@ -148,11 +181,17 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#tuple_expression.
 	VisitTuple_expression(ctx *Tuple_expressionContext) interface{}
 
+	// Visit a parse tree produced by CaliburnParser#function_type.
+	VisitFunction_type(ctx *Function_typeContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#struct_type.
+	VisitStruct_type(ctx *Struct_typeContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#tuple_type.
+	VisitTuple_type(ctx *Tuple_typeContext) interface{}
+
 	// Visit a parse tree produced by CaliburnParser#type_expression.
 	VisitType_expression(ctx *Type_expressionContext) interface{}
-
-	// Visit a parse tree produced by CaliburnParser#complex_type_expression.
-	VisitComplex_type_expression(ctx *Complex_type_expressionContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#identifiers.
 	VisitIdentifiers(ctx *IdentifiersContext) interface{}

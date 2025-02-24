@@ -17,6 +17,8 @@ Terminator: ';';
 
 ASSIGN: '=';
 
+ARROW: '->';
+
 // Structural Keywords
 IF   : 'if';
 ELSE : 'else';

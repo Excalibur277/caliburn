@@ -13,11 +13,31 @@ module
 
 // Definitions
 definition
-    : function_declaration_statement
+    : function_definition
+    //| class_definition
+    //| type_definition
+    ;
+
+// Function Declaration Statement
+function_definition
+    : type = function_type name = Identifier L_PAREN parameters? R_PAREN (
+        return_type = type_expression
+    )? block
+    ;
+
+parameters
+    : parameter (COMMA parameter)*
+    ;
+
+parameter
+    : typed_assign_declaration       # TypedParameter
+    | untyped_assign_declaration     # UntypedParameter
+    | L_C_BRACK parameters R_C_BRACK # StructDestrutureParameter
+    | L_S_BRACK parameters R_S_BRACK # TupleDestrutureParameter
     ;
 
 // Blocks
-scoped_block
+block
     : L_C_BRACK statement* R_C_BRACK
     ;
 
@@ -37,7 +57,7 @@ jump_statement
     ;
 
 return_statement
-    : RETURN expressions? Terminator
+    : RETURN expression Terminator
     ;
 
 break_statement
@@ -53,27 +73,34 @@ control_statement
     : if_statement
     | for_statement
     | switch_statement
-    | function_declaration_statement
     ;
 
 // If Statement
 if_statement
-    : IF inline_statement* expression scoped_block (ELSE (scoped_block | if_statement))?
+    : IF inline_statement* expression block (ELSE (block | if_statement))?
     ;
 
 // For Statement
 for_statement
-    : FOR expression scoped_block
+    : FOR inline_statement+ expression (ARROW inline_statement+)? block
     ;
 
 // Switch Statement
 switch_statement
-    : SWITCH inline_statement* expression L_C_BRACK (
-        CASE (type_expression | expression) scoped_block
-    )* (DEFAULT scoped_block)? R_C_BRACK
+    : SWITCH inline_statement* expression L_C_BRACK case_statements R_C_BRACK
     ;
 
-// Allow for type and value matching
+case_statements
+    : option_case_statement* default_case_statement?
+    ;
+
+option_case_statement
+    : CASE expression block
+    ;
+
+default_case_statement
+    : DEFAULT block
+    ;
 
 // Inlinable Statements
 inline_statement
@@ -81,52 +108,10 @@ inline_statement
     | expression_statement
     ;
 
-// Function Declaration Statement
-function_declaration_statement
-    : type = type_expression name = Identifier L_PAREN assign_declarations? R_PAREN (
-        return_type = type_expression
-    )? scoped_block
-    ;
-
 // Assign Statement
 assign_statement
     : assign_declarations ASSIGN expressions Terminator
-    | operator_assign_statement
-    ;
-
-assign_declarations
-    : assign_declaration (COMMA assign_statement)*
-    ;
-
-assign_declaration
-    : declared_assign_declaration             # DeclaredAssignDeclaration
-    | undeclared_assign_declaration           # UndeclaredAssignDeclaration
-    | L_C_BRACK assign_declarations R_C_BRACK # StructDestrutureAssignDeclaration
-    | L_S_BRACK assign_declarations L_S_BRACK # TupleDestrutureAssignDeclaration
-    ;
-
-declared_assign_declarations
-    : declared_assign_declaration (COMMA declared_assign_declaration)*
-    ;
-
-declared_assign_declaration
-    : type = type_expression undeclared_assign_declaration # TypedDeclaredAssignDeclaration
-    | VAR undeclared_assign_declaration                    # UntypedDeclaredAssignDeclaration
-    ;
-
-undeclared_assign_declarations
-    : undeclared_assign_declaration (COMMA undeclared_assign_declaration)*
-    ;
-
-undeclared_assign_declaration
-    : var = type_expression                              # UndeclaredAtomAssignDeclaration
-    | L_C_BRACK undeclared_assign_declarations R_C_BRACK # UndeclaredStructDestrutureAssignDeclaration
-    | L_PAREN undeclared_assign_declarations R_PAREN     # UndeclaredTupleDestrutureAssignDeclaration
-    ;
-
-// Operator Assign Statement
-operator_assign_statement
-    : var = expression op = (
+    | assign_expressions op = (
         OP_ADD
         | OP_SUB
         | OP_MUL
@@ -139,7 +124,47 @@ operator_assign_statement
         | OP_AND
         | OP_LSHIFT
         | OP_RSHIFT
-    ) ASSIGN expressions Terminator # OperatorAssignment
+    ) ASSIGN expressions Terminator
+    ;
+
+assign_expressions
+    : assign_expression (COMMA assign_expression)*
+    ;
+
+assign_expression
+    : expression                             # ExpressionAssignExpression
+    | L_C_BRACK assign_expressions R_C_BRACK # StructDestrutureAssignExpression
+    | L_S_BRACK assign_expressions R_S_BRACK # TupleDestrutureAssignExpression
+    ;
+
+assign_declarations
+    : assign_declaration (COMMA assign_statement)*
+    ;
+
+assign_declaration
+    : expression                              # ExpressionAssignDeclaration
+    | typed_assign_declaration                # TypedAssignDeclaration
+    | VAR untyped_assign_declaration          # UntypedAssignDeclaration
+    | L_C_BRACK assign_declarations R_C_BRACK # StructDestrutureAssignDeclaration
+    | L_S_BRACK assign_declarations R_S_BRACK # TupleDestrutureAssignDeclaration
+    ;
+
+typed_assign_declarations
+    : typed_assign_declaration (COMMA typed_assign_declaration)*
+    ;
+
+typed_assign_declaration
+    : type = type_expression untyped_assign_declaration # TypedTypedAssignDeclaration
+    ;
+
+untyped_assign_declarations
+    : untyped_assign_declaration (COMMA untyped_assign_declaration)*
+    ;
+
+untyped_assign_declaration
+    : var = Identifier                                # UntypedAtomAssignDeclaration
+    | L_C_BRACK untyped_assign_declarations R_C_BRACK # UntypedStructDestrutureAssignDeclaration
+    | L_S_BRACK untyped_assign_declarations R_S_BRACK # UntypedTupleDestrutureAssignDeclaration
     ;
 
 // Expression Statement
@@ -177,11 +202,11 @@ expression
 
 // Composite Expressions
 function_expression
-    : type = type_expression L_PAREN assign_declarations? R_PAREN (return_type = type_expression)? scoped_block
+    : type = function_type L_PAREN assign_declarations? R_PAREN (return_type = type_expression)? block
     ;
 
 struct_expression
-    : type = type_expression L_C_BRACK (Identifier) COLON expression (
+    : type = struct_type L_C_BRACK (Identifier) COLON expression (
         COMMA (Identifier) COLON expression
     )* COMMA? R_C_BRACK
     ;
@@ -191,17 +216,24 @@ tuple_expression
     ;
 
 // Type Expressions
-
-type_expression
-    : complex_type_expression
-    | FUNC
-    | STRUCT
-    | TUPLE
+function_type
+    : FUNC
+    | type_expression
     ;
 
-complex_type_expression
+struct_type
+    : STRUCT
+    | type_expression
+    ;
+
+tuple_type
+    : TUPLE
+    | type_expression
+    ;
+
+type_expression
     : Identifier
-    | complex_type_expression PERIOD Identifier
+    | type_expression PERIOD Identifier
     ;
 
 // Atoms

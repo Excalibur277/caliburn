@@ -13,8 +13,26 @@ type CaliburnParserListener interface {
 	// EnterDefinition is called when entering the definition production.
 	EnterDefinition(c *DefinitionContext)
 
-	// EnterScoped_block is called when entering the scoped_block production.
-	EnterScoped_block(c *Scoped_blockContext)
+	// EnterFunction_definition is called when entering the function_definition production.
+	EnterFunction_definition(c *Function_definitionContext)
+
+	// EnterParameters is called when entering the parameters production.
+	EnterParameters(c *ParametersContext)
+
+	// EnterTypedParameter is called when entering the TypedParameter production.
+	EnterTypedParameter(c *TypedParameterContext)
+
+	// EnterUntypedParameter is called when entering the UntypedParameter production.
+	EnterUntypedParameter(c *UntypedParameterContext)
+
+	// EnterStructDestrutureParameter is called when entering the StructDestrutureParameter production.
+	EnterStructDestrutureParameter(c *StructDestrutureParameterContext)
+
+	// EnterTupleDestrutureParameter is called when entering the TupleDestrutureParameter production.
+	EnterTupleDestrutureParameter(c *TupleDestrutureParameterContext)
+
+	// EnterBlock is called when entering the block production.
+	EnterBlock(c *BlockContext)
 
 	// EnterStatement is called when entering the statement production.
 	EnterStatement(c *StatementContext)
@@ -43,23 +61,44 @@ type CaliburnParserListener interface {
 	// EnterSwitch_statement is called when entering the switch_statement production.
 	EnterSwitch_statement(c *Switch_statementContext)
 
+	// EnterCase_statements is called when entering the case_statements production.
+	EnterCase_statements(c *Case_statementsContext)
+
+	// EnterOption_case_statement is called when entering the option_case_statement production.
+	EnterOption_case_statement(c *Option_case_statementContext)
+
+	// EnterDefault_case_statement is called when entering the default_case_statement production.
+	EnterDefault_case_statement(c *Default_case_statementContext)
+
 	// EnterInline_statement is called when entering the inline_statement production.
 	EnterInline_statement(c *Inline_statementContext)
-
-	// EnterFunction_declaration_statement is called when entering the function_declaration_statement production.
-	EnterFunction_declaration_statement(c *Function_declaration_statementContext)
 
 	// EnterAssign_statement is called when entering the assign_statement production.
 	EnterAssign_statement(c *Assign_statementContext)
 
+	// EnterAssign_expressions is called when entering the assign_expressions production.
+	EnterAssign_expressions(c *Assign_expressionsContext)
+
+	// EnterExpressionAssignExpression is called when entering the ExpressionAssignExpression production.
+	EnterExpressionAssignExpression(c *ExpressionAssignExpressionContext)
+
+	// EnterStructDestrutureAssignExpression is called when entering the StructDestrutureAssignExpression production.
+	EnterStructDestrutureAssignExpression(c *StructDestrutureAssignExpressionContext)
+
+	// EnterTupleDestrutureAssignExpression is called when entering the TupleDestrutureAssignExpression production.
+	EnterTupleDestrutureAssignExpression(c *TupleDestrutureAssignExpressionContext)
+
 	// EnterAssign_declarations is called when entering the assign_declarations production.
 	EnterAssign_declarations(c *Assign_declarationsContext)
 
-	// EnterDeclaredAssignDeclaration is called when entering the DeclaredAssignDeclaration production.
-	EnterDeclaredAssignDeclaration(c *DeclaredAssignDeclarationContext)
+	// EnterExpressionAssignDeclaration is called when entering the ExpressionAssignDeclaration production.
+	EnterExpressionAssignDeclaration(c *ExpressionAssignDeclarationContext)
 
-	// EnterUndeclaredAssignDeclaration is called when entering the UndeclaredAssignDeclaration production.
-	EnterUndeclaredAssignDeclaration(c *UndeclaredAssignDeclarationContext)
+	// EnterTypedAssignDeclaration is called when entering the TypedAssignDeclaration production.
+	EnterTypedAssignDeclaration(c *TypedAssignDeclarationContext)
+
+	// EnterUntypedAssignDeclaration is called when entering the UntypedAssignDeclaration production.
+	EnterUntypedAssignDeclaration(c *UntypedAssignDeclarationContext)
 
 	// EnterStructDestrutureAssignDeclaration is called when entering the StructDestrutureAssignDeclaration production.
 	EnterStructDestrutureAssignDeclaration(c *StructDestrutureAssignDeclarationContext)
@@ -67,29 +106,23 @@ type CaliburnParserListener interface {
 	// EnterTupleDestrutureAssignDeclaration is called when entering the TupleDestrutureAssignDeclaration production.
 	EnterTupleDestrutureAssignDeclaration(c *TupleDestrutureAssignDeclarationContext)
 
-	// EnterDeclared_assign_declarations is called when entering the declared_assign_declarations production.
-	EnterDeclared_assign_declarations(c *Declared_assign_declarationsContext)
+	// EnterTyped_assign_declarations is called when entering the typed_assign_declarations production.
+	EnterTyped_assign_declarations(c *Typed_assign_declarationsContext)
 
-	// EnterTypedDeclaredAssignDeclaration is called when entering the TypedDeclaredAssignDeclaration production.
-	EnterTypedDeclaredAssignDeclaration(c *TypedDeclaredAssignDeclarationContext)
+	// EnterTypedTypedAssignDeclaration is called when entering the TypedTypedAssignDeclaration production.
+	EnterTypedTypedAssignDeclaration(c *TypedTypedAssignDeclarationContext)
 
-	// EnterUntypedDeclaredAssignDeclaration is called when entering the UntypedDeclaredAssignDeclaration production.
-	EnterUntypedDeclaredAssignDeclaration(c *UntypedDeclaredAssignDeclarationContext)
+	// EnterUntyped_assign_declarations is called when entering the untyped_assign_declarations production.
+	EnterUntyped_assign_declarations(c *Untyped_assign_declarationsContext)
 
-	// EnterUndeclared_assign_declarations is called when entering the undeclared_assign_declarations production.
-	EnterUndeclared_assign_declarations(c *Undeclared_assign_declarationsContext)
+	// EnterUntypedAtomAssignDeclaration is called when entering the UntypedAtomAssignDeclaration production.
+	EnterUntypedAtomAssignDeclaration(c *UntypedAtomAssignDeclarationContext)
 
-	// EnterUndeclaredAtomAssignDeclaration is called when entering the UndeclaredAtomAssignDeclaration production.
-	EnterUndeclaredAtomAssignDeclaration(c *UndeclaredAtomAssignDeclarationContext)
+	// EnterUntypedStructDestrutureAssignDeclaration is called when entering the UntypedStructDestrutureAssignDeclaration production.
+	EnterUntypedStructDestrutureAssignDeclaration(c *UntypedStructDestrutureAssignDeclarationContext)
 
-	// EnterUndeclaredStructDestrutureAssignDeclaration is called when entering the UndeclaredStructDestrutureAssignDeclaration production.
-	EnterUndeclaredStructDestrutureAssignDeclaration(c *UndeclaredStructDestrutureAssignDeclarationContext)
-
-	// EnterUndeclaredTupleDestrutureAssignDeclaration is called when entering the UndeclaredTupleDestrutureAssignDeclaration production.
-	EnterUndeclaredTupleDestrutureAssignDeclaration(c *UndeclaredTupleDestrutureAssignDeclarationContext)
-
-	// EnterOperatorAssignment is called when entering the OperatorAssignment production.
-	EnterOperatorAssignment(c *OperatorAssignmentContext)
+	// EnterUntypedTupleDestrutureAssignDeclaration is called when entering the UntypedTupleDestrutureAssignDeclaration production.
+	EnterUntypedTupleDestrutureAssignDeclaration(c *UntypedTupleDestrutureAssignDeclarationContext)
 
 	// EnterExpression_statement is called when entering the expression_statement production.
 	EnterExpression_statement(c *Expression_statementContext)
@@ -148,11 +181,17 @@ type CaliburnParserListener interface {
 	// EnterTuple_expression is called when entering the tuple_expression production.
 	EnterTuple_expression(c *Tuple_expressionContext)
 
+	// EnterFunction_type is called when entering the function_type production.
+	EnterFunction_type(c *Function_typeContext)
+
+	// EnterStruct_type is called when entering the struct_type production.
+	EnterStruct_type(c *Struct_typeContext)
+
+	// EnterTuple_type is called when entering the tuple_type production.
+	EnterTuple_type(c *Tuple_typeContext)
+
 	// EnterType_expression is called when entering the type_expression production.
 	EnterType_expression(c *Type_expressionContext)
-
-	// EnterComplex_type_expression is called when entering the complex_type_expression production.
-	EnterComplex_type_expression(c *Complex_type_expressionContext)
 
 	// EnterIdentifiers is called when entering the identifiers production.
 	EnterIdentifiers(c *IdentifiersContext)
@@ -175,8 +214,26 @@ type CaliburnParserListener interface {
 	// ExitDefinition is called when exiting the definition production.
 	ExitDefinition(c *DefinitionContext)
 
-	// ExitScoped_block is called when exiting the scoped_block production.
-	ExitScoped_block(c *Scoped_blockContext)
+	// ExitFunction_definition is called when exiting the function_definition production.
+	ExitFunction_definition(c *Function_definitionContext)
+
+	// ExitParameters is called when exiting the parameters production.
+	ExitParameters(c *ParametersContext)
+
+	// ExitTypedParameter is called when exiting the TypedParameter production.
+	ExitTypedParameter(c *TypedParameterContext)
+
+	// ExitUntypedParameter is called when exiting the UntypedParameter production.
+	ExitUntypedParameter(c *UntypedParameterContext)
+
+	// ExitStructDestrutureParameter is called when exiting the StructDestrutureParameter production.
+	ExitStructDestrutureParameter(c *StructDestrutureParameterContext)
+
+	// ExitTupleDestrutureParameter is called when exiting the TupleDestrutureParameter production.
+	ExitTupleDestrutureParameter(c *TupleDestrutureParameterContext)
+
+	// ExitBlock is called when exiting the block production.
+	ExitBlock(c *BlockContext)
 
 	// ExitStatement is called when exiting the statement production.
 	ExitStatement(c *StatementContext)
@@ -205,23 +262,44 @@ type CaliburnParserListener interface {
 	// ExitSwitch_statement is called when exiting the switch_statement production.
 	ExitSwitch_statement(c *Switch_statementContext)
 
+	// ExitCase_statements is called when exiting the case_statements production.
+	ExitCase_statements(c *Case_statementsContext)
+
+	// ExitOption_case_statement is called when exiting the option_case_statement production.
+	ExitOption_case_statement(c *Option_case_statementContext)
+
+	// ExitDefault_case_statement is called when exiting the default_case_statement production.
+	ExitDefault_case_statement(c *Default_case_statementContext)
+
 	// ExitInline_statement is called when exiting the inline_statement production.
 	ExitInline_statement(c *Inline_statementContext)
-
-	// ExitFunction_declaration_statement is called when exiting the function_declaration_statement production.
-	ExitFunction_declaration_statement(c *Function_declaration_statementContext)
 
 	// ExitAssign_statement is called when exiting the assign_statement production.
 	ExitAssign_statement(c *Assign_statementContext)
 
+	// ExitAssign_expressions is called when exiting the assign_expressions production.
+	ExitAssign_expressions(c *Assign_expressionsContext)
+
+	// ExitExpressionAssignExpression is called when exiting the ExpressionAssignExpression production.
+	ExitExpressionAssignExpression(c *ExpressionAssignExpressionContext)
+
+	// ExitStructDestrutureAssignExpression is called when exiting the StructDestrutureAssignExpression production.
+	ExitStructDestrutureAssignExpression(c *StructDestrutureAssignExpressionContext)
+
+	// ExitTupleDestrutureAssignExpression is called when exiting the TupleDestrutureAssignExpression production.
+	ExitTupleDestrutureAssignExpression(c *TupleDestrutureAssignExpressionContext)
+
 	// ExitAssign_declarations is called when exiting the assign_declarations production.
 	ExitAssign_declarations(c *Assign_declarationsContext)
 
-	// ExitDeclaredAssignDeclaration is called when exiting the DeclaredAssignDeclaration production.
-	ExitDeclaredAssignDeclaration(c *DeclaredAssignDeclarationContext)
+	// ExitExpressionAssignDeclaration is called when exiting the ExpressionAssignDeclaration production.
+	ExitExpressionAssignDeclaration(c *ExpressionAssignDeclarationContext)
 
-	// ExitUndeclaredAssignDeclaration is called when exiting the UndeclaredAssignDeclaration production.
-	ExitUndeclaredAssignDeclaration(c *UndeclaredAssignDeclarationContext)
+	// ExitTypedAssignDeclaration is called when exiting the TypedAssignDeclaration production.
+	ExitTypedAssignDeclaration(c *TypedAssignDeclarationContext)
+
+	// ExitUntypedAssignDeclaration is called when exiting the UntypedAssignDeclaration production.
+	ExitUntypedAssignDeclaration(c *UntypedAssignDeclarationContext)
 
 	// ExitStructDestrutureAssignDeclaration is called when exiting the StructDestrutureAssignDeclaration production.
 	ExitStructDestrutureAssignDeclaration(c *StructDestrutureAssignDeclarationContext)
@@ -229,29 +307,23 @@ type CaliburnParserListener interface {
 	// ExitTupleDestrutureAssignDeclaration is called when exiting the TupleDestrutureAssignDeclaration production.
 	ExitTupleDestrutureAssignDeclaration(c *TupleDestrutureAssignDeclarationContext)
 
-	// ExitDeclared_assign_declarations is called when exiting the declared_assign_declarations production.
-	ExitDeclared_assign_declarations(c *Declared_assign_declarationsContext)
+	// ExitTyped_assign_declarations is called when exiting the typed_assign_declarations production.
+	ExitTyped_assign_declarations(c *Typed_assign_declarationsContext)
 
-	// ExitTypedDeclaredAssignDeclaration is called when exiting the TypedDeclaredAssignDeclaration production.
-	ExitTypedDeclaredAssignDeclaration(c *TypedDeclaredAssignDeclarationContext)
+	// ExitTypedTypedAssignDeclaration is called when exiting the TypedTypedAssignDeclaration production.
+	ExitTypedTypedAssignDeclaration(c *TypedTypedAssignDeclarationContext)
 
-	// ExitUntypedDeclaredAssignDeclaration is called when exiting the UntypedDeclaredAssignDeclaration production.
-	ExitUntypedDeclaredAssignDeclaration(c *UntypedDeclaredAssignDeclarationContext)
+	// ExitUntyped_assign_declarations is called when exiting the untyped_assign_declarations production.
+	ExitUntyped_assign_declarations(c *Untyped_assign_declarationsContext)
 
-	// ExitUndeclared_assign_declarations is called when exiting the undeclared_assign_declarations production.
-	ExitUndeclared_assign_declarations(c *Undeclared_assign_declarationsContext)
+	// ExitUntypedAtomAssignDeclaration is called when exiting the UntypedAtomAssignDeclaration production.
+	ExitUntypedAtomAssignDeclaration(c *UntypedAtomAssignDeclarationContext)
 
-	// ExitUndeclaredAtomAssignDeclaration is called when exiting the UndeclaredAtomAssignDeclaration production.
-	ExitUndeclaredAtomAssignDeclaration(c *UndeclaredAtomAssignDeclarationContext)
+	// ExitUntypedStructDestrutureAssignDeclaration is called when exiting the UntypedStructDestrutureAssignDeclaration production.
+	ExitUntypedStructDestrutureAssignDeclaration(c *UntypedStructDestrutureAssignDeclarationContext)
 
-	// ExitUndeclaredStructDestrutureAssignDeclaration is called when exiting the UndeclaredStructDestrutureAssignDeclaration production.
-	ExitUndeclaredStructDestrutureAssignDeclaration(c *UndeclaredStructDestrutureAssignDeclarationContext)
-
-	// ExitUndeclaredTupleDestrutureAssignDeclaration is called when exiting the UndeclaredTupleDestrutureAssignDeclaration production.
-	ExitUndeclaredTupleDestrutureAssignDeclaration(c *UndeclaredTupleDestrutureAssignDeclarationContext)
-
-	// ExitOperatorAssignment is called when exiting the OperatorAssignment production.
-	ExitOperatorAssignment(c *OperatorAssignmentContext)
+	// ExitUntypedTupleDestrutureAssignDeclaration is called when exiting the UntypedTupleDestrutureAssignDeclaration production.
+	ExitUntypedTupleDestrutureAssignDeclaration(c *UntypedTupleDestrutureAssignDeclarationContext)
 
 	// ExitExpression_statement is called when exiting the expression_statement production.
 	ExitExpression_statement(c *Expression_statementContext)
@@ -310,11 +382,17 @@ type CaliburnParserListener interface {
 	// ExitTuple_expression is called when exiting the tuple_expression production.
 	ExitTuple_expression(c *Tuple_expressionContext)
 
+	// ExitFunction_type is called when exiting the function_type production.
+	ExitFunction_type(c *Function_typeContext)
+
+	// ExitStruct_type is called when exiting the struct_type production.
+	ExitStruct_type(c *Struct_typeContext)
+
+	// ExitTuple_type is called when exiting the tuple_type production.
+	ExitTuple_type(c *Tuple_typeContext)
+
 	// ExitType_expression is called when exiting the type_expression production.
 	ExitType_expression(c *Type_expressionContext)
-
-	// ExitComplex_type_expression is called when exiting the complex_type_expression production.
-	ExitComplex_type_expression(c *Complex_type_expressionContext)
 
 	// ExitIdentifiers is called when exiting the identifiers production.
 	ExitIdentifiers(c *IdentifiersContext)
