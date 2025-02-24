@@ -1,6 +1,6 @@
 
-func main() {
-    var a = bool"true";
+func main() bool {
+`    var a = bool"true";
 
     a &= bool"false";
 
@@ -8,5 +8,5 @@ func main() {
 
     a = a | b;
 
-    return a;
+    return a;`
 }

@@ -10,14 +10,32 @@ type CaliburnParserListener interface {
 	// EnterModuleRule is called when entering the ModuleRule production.
 	EnterModuleRule(c *ModuleRuleContext)
 
+	// EnterDefinitionsAppend is called when entering the DefinitionsAppend production.
+	EnterDefinitionsAppend(c *DefinitionsAppendContext)
+
+	// EnterDefinitionsInitial is called when entering the DefinitionsInitial production.
+	EnterDefinitionsInitial(c *DefinitionsInitialContext)
+
 	// EnterDefinition is called when entering the definition production.
 	EnterDefinition(c *DefinitionContext)
 
 	// EnterFunctionDefinition is called when entering the FunctionDefinition production.
 	EnterFunctionDefinition(c *FunctionDefinitionContext)
 
-	// EnterParametersRule is called when entering the ParametersRule production.
-	EnterParametersRule(c *ParametersRuleContext)
+	// EnterFunctionDefinitionNoReturnType is called when entering the FunctionDefinitionNoReturnType production.
+	EnterFunctionDefinitionNoReturnType(c *FunctionDefinitionNoReturnTypeContext)
+
+	// EnterParametersEmpty is called when entering the ParametersEmpty production.
+	EnterParametersEmpty(c *ParametersEmptyContext)
+
+	// EnterParametersFilled is called when entering the ParametersFilled production.
+	EnterParametersFilled(c *ParametersFilledContext)
+
+	// EnterParametersListInitial is called when entering the ParametersListInitial production.
+	EnterParametersListInitial(c *ParametersListInitialContext)
+
+	// EnterParametersListAppend is called when entering the ParametersListAppend production.
+	EnterParametersListAppend(c *ParametersListAppendContext)
 
 	// EnterTypedParameter is called when entering the TypedParameter production.
 	EnterTypedParameter(c *TypedParameterContext)
@@ -33,6 +51,12 @@ type CaliburnParserListener interface {
 
 	// EnterBlockRule is called when entering the BlockRule production.
 	EnterBlockRule(c *BlockRuleContext)
+
+	// EnterStatementsAppend is called when entering the StatementsAppend production.
+	EnterStatementsAppend(c *StatementsAppendContext)
+
+	// EnterStatementsInitial is called when entering the StatementsInitial production.
+	EnterStatementsInitial(c *StatementsInitialContext)
 
 	// EnterStatement is called when entering the statement production.
 	EnterStatement(c *StatementContext)
@@ -55,8 +79,20 @@ type CaliburnParserListener interface {
 	// EnterIfStatement is called when entering the IfStatement production.
 	EnterIfStatement(c *IfStatementContext)
 
+	// EnterIfElseStatement is called when entering the IfElseStatement production.
+	EnterIfElseStatement(c *IfElseStatementContext)
+
+	// EnterElseStatement is called when entering the ElseStatement production.
+	EnterElseStatement(c *ElseStatementContext)
+
+	// EnterElseIfStatement is called when entering the ElseIfStatement production.
+	EnterElseIfStatement(c *ElseIfStatementContext)
+
 	// EnterForStatement is called when entering the ForStatement production.
 	EnterForStatement(c *ForStatementContext)
+
+	// EnterForStatementWithAfter is called when entering the ForStatementWithAfter production.
+	EnterForStatementWithAfter(c *ForStatementWithAfterContext)
 
 	// EnterSwitchStatement is called when entering the SwitchStatement production.
 	EnterSwitchStatement(c *SwitchStatementContext)
@@ -69,6 +105,12 @@ type CaliburnParserListener interface {
 
 	// EnterDefaultCaseBlock is called when entering the DefaultCaseBlock production.
 	EnterDefaultCaseBlock(c *DefaultCaseBlockContext)
+
+	// EnterInlineStatementsInitial is called when entering the InlineStatementsInitial production.
+	EnterInlineStatementsInitial(c *InlineStatementsInitialContext)
+
+	// EnterInlineStatementsAppend is called when entering the InlineStatementsAppend production.
+	EnterInlineStatementsAppend(c *InlineStatementsAppendContext)
 
 	// EnterInline_statement is called when entering the inline_statement production.
 	EnterInline_statement(c *Inline_statementContext)
@@ -202,14 +244,20 @@ type CaliburnParserListener interface {
 	// EnterIdentifiersRule is called when entering the IdentifiersRule production.
 	EnterIdentifiersRule(c *IdentifiersRuleContext)
 
-	// EnterUntypedLiteralAtom is called when entering the UntypedLiteralAtom production.
-	EnterUntypedLiteralAtom(c *UntypedLiteralAtomContext)
+	// EnterUntypedLiteral is called when entering the UntypedLiteral production.
+	EnterUntypedLiteral(c *UntypedLiteralContext)
 
-	// EnterTypedLiteralAtom is called when entering the TypedLiteralAtom production.
-	EnterTypedLiteralAtom(c *TypedLiteralAtomContext)
+	// EnterTypedLiteral is called when entering the TypedLiteral production.
+	EnterTypedLiteral(c *TypedLiteralContext)
 
 	// ExitModuleRule is called when exiting the ModuleRule production.
 	ExitModuleRule(c *ModuleRuleContext)
+
+	// ExitDefinitionsAppend is called when exiting the DefinitionsAppend production.
+	ExitDefinitionsAppend(c *DefinitionsAppendContext)
+
+	// ExitDefinitionsInitial is called when exiting the DefinitionsInitial production.
+	ExitDefinitionsInitial(c *DefinitionsInitialContext)
 
 	// ExitDefinition is called when exiting the definition production.
 	ExitDefinition(c *DefinitionContext)
@@ -217,8 +265,20 @@ type CaliburnParserListener interface {
 	// ExitFunctionDefinition is called when exiting the FunctionDefinition production.
 	ExitFunctionDefinition(c *FunctionDefinitionContext)
 
-	// ExitParametersRule is called when exiting the ParametersRule production.
-	ExitParametersRule(c *ParametersRuleContext)
+	// ExitFunctionDefinitionNoReturnType is called when exiting the FunctionDefinitionNoReturnType production.
+	ExitFunctionDefinitionNoReturnType(c *FunctionDefinitionNoReturnTypeContext)
+
+	// ExitParametersEmpty is called when exiting the ParametersEmpty production.
+	ExitParametersEmpty(c *ParametersEmptyContext)
+
+	// ExitParametersFilled is called when exiting the ParametersFilled production.
+	ExitParametersFilled(c *ParametersFilledContext)
+
+	// ExitParametersListInitial is called when exiting the ParametersListInitial production.
+	ExitParametersListInitial(c *ParametersListInitialContext)
+
+	// ExitParametersListAppend is called when exiting the ParametersListAppend production.
+	ExitParametersListAppend(c *ParametersListAppendContext)
 
 	// ExitTypedParameter is called when exiting the TypedParameter production.
 	ExitTypedParameter(c *TypedParameterContext)
@@ -234,6 +294,12 @@ type CaliburnParserListener interface {
 
 	// ExitBlockRule is called when exiting the BlockRule production.
 	ExitBlockRule(c *BlockRuleContext)
+
+	// ExitStatementsAppend is called when exiting the StatementsAppend production.
+	ExitStatementsAppend(c *StatementsAppendContext)
+
+	// ExitStatementsInitial is called when exiting the StatementsInitial production.
+	ExitStatementsInitial(c *StatementsInitialContext)
 
 	// ExitStatement is called when exiting the statement production.
 	ExitStatement(c *StatementContext)
@@ -256,8 +322,20 @@ type CaliburnParserListener interface {
 	// ExitIfStatement is called when exiting the IfStatement production.
 	ExitIfStatement(c *IfStatementContext)
 
+	// ExitIfElseStatement is called when exiting the IfElseStatement production.
+	ExitIfElseStatement(c *IfElseStatementContext)
+
+	// ExitElseStatement is called when exiting the ElseStatement production.
+	ExitElseStatement(c *ElseStatementContext)
+
+	// ExitElseIfStatement is called when exiting the ElseIfStatement production.
+	ExitElseIfStatement(c *ElseIfStatementContext)
+
 	// ExitForStatement is called when exiting the ForStatement production.
 	ExitForStatement(c *ForStatementContext)
+
+	// ExitForStatementWithAfter is called when exiting the ForStatementWithAfter production.
+	ExitForStatementWithAfter(c *ForStatementWithAfterContext)
 
 	// ExitSwitchStatement is called when exiting the SwitchStatement production.
 	ExitSwitchStatement(c *SwitchStatementContext)
@@ -270,6 +348,12 @@ type CaliburnParserListener interface {
 
 	// ExitDefaultCaseBlock is called when exiting the DefaultCaseBlock production.
 	ExitDefaultCaseBlock(c *DefaultCaseBlockContext)
+
+	// ExitInlineStatementsInitial is called when exiting the InlineStatementsInitial production.
+	ExitInlineStatementsInitial(c *InlineStatementsInitialContext)
+
+	// ExitInlineStatementsAppend is called when exiting the InlineStatementsAppend production.
+	ExitInlineStatementsAppend(c *InlineStatementsAppendContext)
 
 	// ExitInline_statement is called when exiting the inline_statement production.
 	ExitInline_statement(c *Inline_statementContext)
@@ -403,9 +487,9 @@ type CaliburnParserListener interface {
 	// ExitIdentifiersRule is called when exiting the IdentifiersRule production.
 	ExitIdentifiersRule(c *IdentifiersRuleContext)
 
-	// ExitUntypedLiteralAtom is called when exiting the UntypedLiteralAtom production.
-	ExitUntypedLiteralAtom(c *UntypedLiteralAtomContext)
+	// ExitUntypedLiteral is called when exiting the UntypedLiteral production.
+	ExitUntypedLiteral(c *UntypedLiteralContext)
 
-	// ExitTypedLiteralAtom is called when exiting the TypedLiteralAtom production.
-	ExitTypedLiteralAtom(c *TypedLiteralAtomContext)
+	// ExitTypedLiteral is called when exiting the TypedLiteral production.
+	ExitTypedLiteral(c *TypedLiteralContext)
 }

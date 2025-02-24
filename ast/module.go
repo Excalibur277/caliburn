@@ -4,8 +4,12 @@ type Module interface {
 	IsModule()
 }
 
-type BaseModule struct {
-	Definitions []Definition
+type ModuleBase struct {
+	definitions []Definition
 }
 
-func (bm *BaseModule) IsModule() {}
+func (bm *ModuleBase) IsModule() {}
+
+func NewModule(definitions []Definition) Module {
+	return &ModuleBase{definitions: definitions}
+}

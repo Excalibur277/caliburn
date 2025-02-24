@@ -13,20 +13,28 @@ func (db *DefinitionBase) IsDefinition() {}
 
 type FunctionDefinition struct {
 	DefinitionBase
-	DefinedFunction Function
+	identifier      Identifier
+	definedFunction Function
+}
+
+func NewFunctionDefinition(functionType FunctionType, identifier Identifier, parameters []Parameter, returnType Type, block Block) Definition {
+	return &FunctionDefinition{
+		identifier:      identifier,
+		definedFunction: NewFunction(functionType, parameters, returnType, block),
+	}
 }
 
 type TypeDefinition struct {
 	DefinitionBase
-	DefinedType Type
+	definedType Type
 }
 
 type ClassDefinition struct {
 	DefinitionBase
-	DefinedClass Class
+	definedClass Class
 }
 
 type UsingDefinition struct {
 	DefinitionBase
-	DefinedUsing Using
+	definedUsing Using
 }

@@ -8,25 +8,35 @@ options {
 
 // Module
 module
-    : definition* # ModuleRule
+    : definitions EOF # ModuleRule
     ;
 
 // Definitions
+definitions
+    :                        # DefinitionsInitial
+    | definitions definition # DefinitionsAppend
+    ;
+
 definition
     : function_definition
     //| class_definition
     //| type_definition
     ;
 
-// Function Declaration Statement
+// Function Definition Statement
 function_definition
-    : type = function_type name = Identifier L_PAREN parameters? R_PAREN (
-        return_type = type_expression
-    )? block # FunctionDefinition
+    : type = function_type name = Identifier L_PAREN parameters R_PAREN return_type = type_expression block # FunctionDefinition
+    | type = function_type name = Identifier L_PAREN parameters R_PAREN return_type = type_expression block # FunctionDefinitionNoReturnType
     ;
 
 parameters
-    : parameter (COMMA parameter)* # ParametersRule
+    :                 # ParametersEmpty
+    | parameters_list # ParametersFilled
+    ;
+
+parameters_list
+    : parameter                       # ParametersListInitial
+    | parameters_list COMMA parameter # ParametersListAppend
     ;
 
 parameter
@@ -42,6 +52,11 @@ block
     ;
 
 // Statement
+statements
+    :                      # StatementsInitial
+    | statements statement # StatementsAppend
+    ;
+
 statement
     : assign_statement
     | expression_statement
@@ -77,17 +92,24 @@ control_statement
 
 // If Statement
 if_statement
-    : IF inline_statement* expression block (ELSE (block | if_statement))? # IfStatement
+    : IF inline_statements expression block                # IfStatement
+    | IF inline_statements expression block else_statement # IfElseStatement
+    ;
+
+else_statement
+    : ELSE block        # ElseStatement
+    | ELSE if_statement # ElseIfStatement
     ;
 
 // For Statement
 for_statement
-    : FOR inline_statement+ expression (ARROW inline_statement+)? block # ForStatement
+    : FOR inline_statements expression block                         # ForStatement
+    | FOR inline_statements expression ARROW inline_statements block # ForStatementWithAfter
     ;
 
 // Switch Statement
 switch_statement
-    : SWITCH inline_statement* expression L_C_BRACK case_blocks R_C_BRACK # SwitchStatement
+    : SWITCH inline_statements expression L_C_BRACK case_blocks R_C_BRACK # SwitchStatement
     ;
 
 case_blocks
@@ -103,6 +125,11 @@ default_case_block
     ;
 
 // Inlinable Statements
+inline_statements
+    :                                    # InlineStatementsInitial
+    | inline_statements inline_statement # InlineStatementsAppend
+    ;
+
 inline_statement
     : assign_statement
     | expression_statement
@@ -229,6 +256,6 @@ identifiers
     ;
 
 literal_atom
-    : Literal            # UntypedLiteralAtom
-    | Identifier Literal # TypedLiteralAtom
+    : Literal            # UntypedLiteral
+    | Identifier Literal # TypedLiteral
     ;

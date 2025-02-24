@@ -98,10 +98,10 @@ OP_LST : '<';
 // Keywords
 
 // Parse out
-WhiteSpace: [\p{White_Space}]+ -> skip;
+WhiteSpace: [\p{White_Space}]+ -> channel(HIDDEN);
 
-Comment: '`' .*? '`' | '#' ~['"\r\n\\] '\r'? '\n';
-
+CommentMultiLine  : '`' .*? '`'                -> channel(HIDDEN);
+CommentSingleLine : '#' ~['"\r\n\\] '\r'? '\n' -> channel(HIDDEN);
 // Identifier
 
 Identifier: [\p{L}_] [\p{L}\p{N}_]*;

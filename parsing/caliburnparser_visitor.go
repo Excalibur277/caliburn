@@ -10,14 +10,32 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#ModuleRule.
 	VisitModuleRule(ctx *ModuleRuleContext) interface{}
 
+	// Visit a parse tree produced by CaliburnParser#DefinitionsAppend.
+	VisitDefinitionsAppend(ctx *DefinitionsAppendContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#DefinitionsInitial.
+	VisitDefinitionsInitial(ctx *DefinitionsInitialContext) interface{}
+
 	// Visit a parse tree produced by CaliburnParser#definition.
 	VisitDefinition(ctx *DefinitionContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#FunctionDefinition.
 	VisitFunctionDefinition(ctx *FunctionDefinitionContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#ParametersRule.
-	VisitParametersRule(ctx *ParametersRuleContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#FunctionDefinitionNoReturnType.
+	VisitFunctionDefinitionNoReturnType(ctx *FunctionDefinitionNoReturnTypeContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ParametersEmpty.
+	VisitParametersEmpty(ctx *ParametersEmptyContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ParametersFilled.
+	VisitParametersFilled(ctx *ParametersFilledContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ParametersListInitial.
+	VisitParametersListInitial(ctx *ParametersListInitialContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ParametersListAppend.
+	VisitParametersListAppend(ctx *ParametersListAppendContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#TypedParameter.
 	VisitTypedParameter(ctx *TypedParameterContext) interface{}
@@ -33,6 +51,12 @@ type CaliburnParserVisitor interface {
 
 	// Visit a parse tree produced by CaliburnParser#BlockRule.
 	VisitBlockRule(ctx *BlockRuleContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#StatementsAppend.
+	VisitStatementsAppend(ctx *StatementsAppendContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#StatementsInitial.
+	VisitStatementsInitial(ctx *StatementsInitialContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#statement.
 	VisitStatement(ctx *StatementContext) interface{}
@@ -55,8 +79,20 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#IfStatement.
 	VisitIfStatement(ctx *IfStatementContext) interface{}
 
+	// Visit a parse tree produced by CaliburnParser#IfElseStatement.
+	VisitIfElseStatement(ctx *IfElseStatementContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ElseStatement.
+	VisitElseStatement(ctx *ElseStatementContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ElseIfStatement.
+	VisitElseIfStatement(ctx *ElseIfStatementContext) interface{}
+
 	// Visit a parse tree produced by CaliburnParser#ForStatement.
 	VisitForStatement(ctx *ForStatementContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#ForStatementWithAfter.
+	VisitForStatementWithAfter(ctx *ForStatementWithAfterContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#SwitchStatement.
 	VisitSwitchStatement(ctx *SwitchStatementContext) interface{}
@@ -69,6 +105,12 @@ type CaliburnParserVisitor interface {
 
 	// Visit a parse tree produced by CaliburnParser#DefaultCaseBlock.
 	VisitDefaultCaseBlock(ctx *DefaultCaseBlockContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#InlineStatementsInitial.
+	VisitInlineStatementsInitial(ctx *InlineStatementsInitialContext) interface{}
+
+	// Visit a parse tree produced by CaliburnParser#InlineStatementsAppend.
+	VisitInlineStatementsAppend(ctx *InlineStatementsAppendContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#inline_statement.
 	VisitInline_statement(ctx *Inline_statementContext) interface{}
@@ -202,9 +244,9 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#IdentifiersRule.
 	VisitIdentifiersRule(ctx *IdentifiersRuleContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#UntypedLiteralAtom.
-	VisitUntypedLiteralAtom(ctx *UntypedLiteralAtomContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#UntypedLiteral.
+	VisitUntypedLiteral(ctx *UntypedLiteralContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#TypedLiteralAtom.
-	VisitTypedLiteralAtom(ctx *TypedLiteralAtomContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#TypedLiteral.
+	VisitTypedLiteral(ctx *TypedLiteralContext) interface{}
 }

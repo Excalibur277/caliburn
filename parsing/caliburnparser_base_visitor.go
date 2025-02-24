@@ -11,6 +11,14 @@ func (v *BaseCaliburnParserVisitor) VisitModuleRule(ctx *ModuleRuleContext) inte
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseCaliburnParserVisitor) VisitDefinitionsAppend(ctx *DefinitionsAppendContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitDefinitionsInitial(ctx *DefinitionsInitialContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseCaliburnParserVisitor) VisitDefinition(ctx *DefinitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -19,7 +27,23 @@ func (v *BaseCaliburnParserVisitor) VisitFunctionDefinition(ctx *FunctionDefinit
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitParametersRule(ctx *ParametersRuleContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitFunctionDefinitionNoReturnType(ctx *FunctionDefinitionNoReturnTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitParametersEmpty(ctx *ParametersEmptyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitParametersFilled(ctx *ParametersFilledContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitParametersListInitial(ctx *ParametersListInitialContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitParametersListAppend(ctx *ParametersListAppendContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -40,6 +64,14 @@ func (v *BaseCaliburnParserVisitor) VisitTupleDestrutureParameter(ctx *TupleDest
 }
 
 func (v *BaseCaliburnParserVisitor) VisitBlockRule(ctx *BlockRuleContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitStatementsAppend(ctx *StatementsAppendContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitStatementsInitial(ctx *StatementsInitialContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -71,7 +103,23 @@ func (v *BaseCaliburnParserVisitor) VisitIfStatement(ctx *IfStatementContext) in
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseCaliburnParserVisitor) VisitIfElseStatement(ctx *IfElseStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitElseStatement(ctx *ElseStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitElseIfStatement(ctx *ElseIfStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseCaliburnParserVisitor) VisitForStatement(ctx *ForStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitForStatementWithAfter(ctx *ForStatementWithAfterContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -88,6 +136,14 @@ func (v *BaseCaliburnParserVisitor) VisitOptionCaseBlock(ctx *OptionCaseBlockCon
 }
 
 func (v *BaseCaliburnParserVisitor) VisitDefaultCaseBlock(ctx *DefaultCaseBlockContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitInlineStatementsInitial(ctx *InlineStatementsInitialContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitInlineStatementsAppend(ctx *InlineStatementsAppendContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -267,10 +323,10 @@ func (v *BaseCaliburnParserVisitor) VisitIdentifiersRule(ctx *IdentifiersRuleCon
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitUntypedLiteralAtom(ctx *UntypedLiteralAtomContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitUntypedLiteral(ctx *UntypedLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitTypedLiteralAtom(ctx *TypedLiteralAtomContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitTypedLiteral(ctx *TypedLiteralContext) interface{} {
 	return v.VisitChildren(ctx)
 }
