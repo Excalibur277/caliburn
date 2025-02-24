@@ -4,5 +4,5 @@ type Function interface {
 }
 
 type FunctionBase struct {
-	Statements []Statement
+	Block Block
 }

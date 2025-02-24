@@ -7,7 +7,7 @@ type BaseCaliburnParserVisitor struct {
 	*antlr.BaseParseTreeVisitor
 }
 
-func (v *BaseCaliburnParserVisitor) VisitModule(ctx *ModuleContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitModuleRule(ctx *ModuleRuleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -15,11 +15,11 @@ func (v *BaseCaliburnParserVisitor) VisitDefinition(ctx *DefinitionContext) inte
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitFunction_definition(ctx *Function_definitionContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitFunctionDefinition(ctx *FunctionDefinitionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitParameters(ctx *ParametersContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitParametersRule(ctx *ParametersRuleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -39,7 +39,7 @@ func (v *BaseCaliburnParserVisitor) VisitTupleDestrutureParameter(ctx *TupleDest
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitBlock(ctx *BlockContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitBlockRule(ctx *BlockRuleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -51,15 +51,15 @@ func (v *BaseCaliburnParserVisitor) VisitJump_statement(ctx *Jump_statementConte
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitReturn_statement(ctx *Return_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitReturnStatement(ctx *ReturnStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitBreak_statement(ctx *Break_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitBreakStatement(ctx *BreakStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitContinue_statement(ctx *Continue_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitContinueStatement(ctx *ContinueStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -67,27 +67,27 @@ func (v *BaseCaliburnParserVisitor) VisitControl_statement(ctx *Control_statemen
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitIf_statement(ctx *If_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitIfStatement(ctx *IfStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitFor_statement(ctx *For_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitForStatement(ctx *ForStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitSwitch_statement(ctx *Switch_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitSwitchStatement(ctx *SwitchStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitCase_statements(ctx *Case_statementsContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitCaseBlocks(ctx *CaseBlocksContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitOption_case_statement(ctx *Option_case_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitOptionCaseBlock(ctx *OptionCaseBlockContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitDefault_case_statement(ctx *Default_case_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitDefaultCaseBlock(ctx *DefaultCaseBlockContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -95,11 +95,15 @@ func (v *BaseCaliburnParserVisitor) VisitInline_statement(ctx *Inline_statementC
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitAssign_statement(ctx *Assign_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitAssignStatement(ctx *AssignStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitAssign_expressions(ctx *Assign_expressionsContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitAssignOperationStatement(ctx *AssignOperationStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitAssignExpressions(ctx *AssignExpressionsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -115,7 +119,7 @@ func (v *BaseCaliburnParserVisitor) VisitTupleDestrutureAssignExpression(ctx *Tu
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitAssign_declarations(ctx *Assign_declarationsContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitAssignDeclarations(ctx *AssignDeclarationsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -123,11 +127,11 @@ func (v *BaseCaliburnParserVisitor) VisitExpressionAssignDeclaration(ctx *Expres
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitTypedAssignDeclaration(ctx *TypedAssignDeclarationContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitTypedAssignDeclarationDeclaration(ctx *TypedAssignDeclarationDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitUntypedAssignDeclaration(ctx *UntypedAssignDeclarationContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitUntypedAssignDeclarationDeclaration(ctx *UntypedAssignDeclarationDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -139,19 +143,19 @@ func (v *BaseCaliburnParserVisitor) VisitTupleDestrutureAssignDeclaration(ctx *T
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitTyped_assign_declarations(ctx *Typed_assign_declarationsContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitTypedAssignDeclarations(ctx *TypedAssignDeclarationsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitTypedTypedAssignDeclaration(ctx *TypedTypedAssignDeclarationContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitTypedAssignDeclaration(ctx *TypedAssignDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitUntyped_assign_declarations(ctx *Untyped_assign_declarationsContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitUntypedAssignDeclarations(ctx *UntypedAssignDeclarationsContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitUntypedAtomAssignDeclaration(ctx *UntypedAtomAssignDeclarationContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitUntypedIdentifierAssignDeclaration(ctx *UntypedIdentifierAssignDeclarationContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -163,11 +167,11 @@ func (v *BaseCaliburnParserVisitor) VisitUntypedTupleDestrutureAssignDeclaration
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitExpression_statement(ctx *Expression_statementContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitExpressionStatement(ctx *ExpressionStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitExpressions(ctx *ExpressionsContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitExpressionsRule(ctx *ExpressionsRuleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -227,35 +231,39 @@ func (v *BaseCaliburnParserVisitor) VisitCallExpression(ctx *CallExpressionConte
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitFunction_expression(ctx *Function_expressionContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitFunctionTypeFunc(ctx *FunctionTypeFuncContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitStruct_expression(ctx *Struct_expressionContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitFunctionTypeExpression(ctx *FunctionTypeExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitTuple_expression(ctx *Tuple_expressionContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitStructTypeStruct(ctx *StructTypeStructContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitFunction_type(ctx *Function_typeContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitStructTypeExpression(ctx *StructTypeExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitStruct_type(ctx *Struct_typeContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitTupleTypeTuple(ctx *TupleTypeTupleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitTuple_type(ctx *Tuple_typeContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitTupleTypeExpression(ctx *TupleTypeExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitType_expression(ctx *Type_expressionContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitAccessTypeExpression(ctx *AccessTypeExpressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitIdentifiers(ctx *IdentifiersContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitIdentifierTypeExpression(ctx *IdentifierTypeExpressionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseCaliburnParserVisitor) VisitIdentifiersRule(ctx *IdentifiersRuleContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -264,13 +272,5 @@ func (v *BaseCaliburnParserVisitor) VisitUntypedLiteralAtom(ctx *UntypedLiteralA
 }
 
 func (v *BaseCaliburnParserVisitor) VisitTypedLiteralAtom(ctx *TypedLiteralAtomContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseCaliburnParserVisitor) VisitUntyped_literal_atom(ctx *Untyped_literal_atomContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseCaliburnParserVisitor) VisitTyped_literal_atom(ctx *Typed_literal_atomContext) interface{} {
 	return v.VisitChildren(ctx)
 }
