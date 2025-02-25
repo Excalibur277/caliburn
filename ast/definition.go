@@ -26,15 +26,12 @@ func NewFunctionDefinition(functionType FunctionType, identifier Identifier, par
 
 type TypeDefinition struct {
 	DefinitionBase
-	definedType Type
 }
 
 type ClassDefinition struct {
 	DefinitionBase
-	definedClass Class
 }
 
 type UsingDefinition struct {
 	DefinitionBase
-	definedUsing Using
 }

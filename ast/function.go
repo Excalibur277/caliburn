@@ -25,7 +25,32 @@ func NewFunction(functionType FunctionType, parameters []Parameter, returnType T
 type Parameter interface {
 	IsParameter()
 }
-type ParameterBase struct {
+type TypedParameter struct {
+	typedAssignDeclaration TypedAssignDeclaration
 }
 
-func (f *ParameterBase) IsParameter() {}
+func NewTypedParameter(typedAssignDeclaration TypedAssignDeclaration) *TypedParameter {
+	return &TypedParameter{typedAssignDeclaration: typedAssignDeclaration}
+}
+
+func (p *TypedParameter) IsParameter() {}
+
+type UntypedParameter struct {
+	untypedAssignDeclaration UntypedAssignDeclaration
+}
+
+func NewUntypedParameter(untypedAssignDeclaration UntypedAssignDeclaration) *UntypedParameter {
+	return &UntypedParameter{untypedAssignDeclaration: untypedAssignDeclaration}
+}
+
+func (p *UntypedParameter) IsParameter() {}
+
+type StructDestrutureParameter struct {
+	parameters []Parameter
+}
+
+func NewStructDestructureParameter(parameters []Parameter) *StructDestrutureParameter {
+	return &StructDestrutureParameter{parameters: parameters}
+}
+
+func (p *StructDestrutureParameter) IsParameter() {}

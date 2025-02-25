@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"caliburncode.com/m/ast"
 	"caliburncode.com/m/listener"
 	"caliburncode.com/m/parsing"
 	"github.com/antlr4-go/antlr/v4"
@@ -28,9 +29,11 @@ func main() {
 
 	p := parsing.NewCaliburnParser(stream)
 
-	listener := listener.NewListener()
+	lis := listener.NewListener()
 
 	// Finally parse the expression
-	antlr.ParseTreeWalkerDefault.Walk(listener, p.Module())
+	antlr.ParseTreeWalkerDefault.Walk(lis, p.Module())
 
+	module := listener.Pop[ast.Module](lis)
+	fmt.Println(module)
 }

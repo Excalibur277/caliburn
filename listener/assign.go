@@ -21,7 +21,7 @@ func (l *CaliburnListener) ExitAssignExpressionsInitial(c *parsing.AssignExpress
 }
 
 // assign_expressions: assign_expressions COMMA assign_expression # AssignExpressionsAppend
-func (l *CaliburnListener) ExitAssignExpressionsAppend(c *parsing.AssignExpressionsInitialContext) {
+func (l *CaliburnListener) ExitAssignExpressionsAppend(c *parsing.AssignExpressionsAppendContext) {
 	Push(l, append(Pop[[]ast.AssignExpression](l), Pop[ast.AssignExpression](l)))
 }
 
@@ -33,6 +33,16 @@ func (l *CaliburnListener) ExitAliasableAssignExpressionsInitial(c *parsing.Alia
 // aliasable_assign_expressions: aliasable_assign_expressions COMMA aliasable_assign_expression # AliasableAssignExpressionsAppend
 func (l *CaliburnListener) ExitAliasableAssignExpressionsAppend(c *parsing.AliasableAssignExpressionsAppendContext) {
 	Push(l, append(Pop[[]ast.AliasableAssignExpression](l), Pop[ast.AliasableAssignExpression](l)))
+}
+
+// aliasable_assign_expression: assign_expression COLON identifier # AliasedAssignExpression
+func (l *CaliburnListener) ExitAliasedAssignExpression(c *parsing.AliasedAssignExpressionContext) {
+	Push(l, ast.NewAliasedAssignExpression(Pop[ast.AssignExpression](l), Pop[ast.Identifier](l)))
+}
+
+// aliasable_assign_expression: assign_expression # UnaliasedAssignExpression
+func (l *CaliburnListener) ExitUnaliasedAssignExpression(c *parsing.UnaliasedAssignExpressionContext) {
+	Push(l, ast.NewUnaliasedAssignExpression(Pop[ast.AssignExpression](l)))
 }
 
 // assign_expression: expression # ExpressionAssignExpression

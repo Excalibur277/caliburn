@@ -98,7 +98,7 @@ func (l *CaliburnListener) ExitStructExpression(c *parsing.StructExpressionConte
 }
 
 // expression: type_expression L_S_BRACK collection_values R_S_BRACK # CollectionExpression
-func (l *CaliburnListener) ExitStructExpression(c *parsing.StructExpressionContext) {
+func (l *CaliburnListener) ExitCollectionExpression(c *parsing.CollectionExpressionContext) {
 	Push(l, ast.NewCollectionExpression(Pop[ast.TypeExpression](l), Pop[[]ast.CollectionValue](l)))
 }
 
@@ -129,7 +129,7 @@ func (l *CaliburnListener) ExitNamedStructValue(c *parsing.NamedStructValueConte
 
 // collection_values: # CollectionValuesInitial
 func (l *CaliburnListener) ExitCollectionValuesInitial(c *parsing.CollectionValuesInitialContext) {
-	Push(l, []ast.NamedStructValue{})
+	Push(l, []ast.CollectionValue{})
 }
 
 // collection_values: collection_values COMMA collection_value # CollectionValuesAppend

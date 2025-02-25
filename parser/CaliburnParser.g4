@@ -47,7 +47,7 @@ parameter
 
 // Blocks
 block
-    : L_C_BRACK statement* R_C_BRACK # BlockRule
+    : L_C_BRACK statements R_C_BRACK # BlockRule
     ;
 
 // Statement
@@ -262,8 +262,9 @@ expression
     ;
 
 struct_values
-    : named_struct_values COMMA? # StructValuesNamed
-    | expressions_optional       # StructValuesUnamed
+    : named_struct_values       # StructValuesNamed
+    | named_struct_values COMMA # StructValuesNamed
+    | expressions_optional      # StructValuesUnamed
     ;
 
 named_struct_values

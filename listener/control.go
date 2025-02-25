@@ -17,12 +17,12 @@ func (l *CaliburnListener) ExitIfElseStatement(c *parsing.IfElseStatementContext
 
 // else_statement: ELSE block # ElseStatement
 func (l *CaliburnListener) ExitElseStatement(c *parsing.ElseStatementContext) {
-	Push(l, ast.NewElseStatement(Pop[[]ast.Block](l)))
+	Push(l, ast.NewElseStatement(Pop[ast.Block](l)))
 }
 
 // else_statement: ELSE if_statement # ElseIfStatement
 func (l *CaliburnListener) ExitElseIfStatement(c *parsing.ElseIfStatementContext) {
-	Push(l, ast.NewElseIfStatement(Pop[[]ast.IfStatement](l)))
+	Push(l, ast.NewElseIfStatement(Pop[ast.IfStatement](l)))
 }
 
 // for_statement: FOR inline_statements expression block # ForStatement
@@ -32,7 +32,7 @@ func (l *CaliburnListener) ExitForStatement(c *parsing.ForStatementContext) {
 
 // for_statement: FOR inline_statements expression ARROW inline_statements block # ForStatementWithAfter
 func (l *CaliburnListener) ExitForStatementWithAfter(c *parsing.ForStatementWithAfterContext) {
-	Push(l, ast.NewForStatement(Pop[[]ast.InlineStatement](l), Pop[ast.Expression](l), Pop[[]ast.InlineStatement](l), Pop[ast.Block](l)))
+	Push(l, ast.NewForStatementWithPost(Pop[[]ast.InlineStatement](l), Pop[ast.Expression](l), Pop[[]ast.InlineStatement](l), Pop[ast.Block](l)))
 }
 
 // switch_statement: SWITCH inline_statements expression L_C_BRACK case_blocks R_C_BRACK # SwitchStatement
@@ -46,7 +46,7 @@ func (l *CaliburnListener) ExitCaseBlocks(c *parsing.CaseBlocksContext) {
 }
 
 // case_blocks: option_case_blocks default_case_block # CaseBlocksDefault
-func (l *CaliburnListener) ExitCaseBlocksDefault(c *parsing.CaseBlocksContext) {
+func (l *CaliburnListener) ExitCaseBlocksDefault(c *parsing.CaseBlocksDefaultContext) {
 	Push(l, ast.NewCaseBlocksDefault(Pop[[]ast.OptionCaseBlock](l), Pop[ast.DefaultCaseBlock](l)))
 }
 

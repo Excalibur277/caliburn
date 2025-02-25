@@ -5,6 +5,11 @@ type Block interface {
 }
 
 type BlockBase struct {
+	statements []Statement
+}
+
+func NewBlock(statements []Statement) *BlockBase {
+	return &BlockBase{statements: statements}
 }
 
 func (b *BlockBase) IsBlock() {}
