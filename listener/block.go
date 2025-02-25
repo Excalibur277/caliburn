@@ -7,5 +7,6 @@ import (
 
 // block: L_C_BRACK statement* R_C_BRACK # BlockRule
 func (l *CaliburnListener) ExitBlock(c *parsing.BlockContext) {
-	Push(l, ast.NewBlock(Pop[[]ast.Statement](l)))
+	l.Pop(1)
+	Push(l, ast.NewBlock(Dequeue[[]ast.Statement](l)))
 }

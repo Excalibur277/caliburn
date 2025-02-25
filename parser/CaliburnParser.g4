@@ -47,7 +47,7 @@ parameter
 
 // Blocks
 block
-    : L_C_BRACK statements R_C_BRACK # BlockRule
+    : L_C_BRACK statements R_C_BRACK
     ;
 
 // Statement

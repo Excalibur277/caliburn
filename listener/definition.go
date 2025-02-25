@@ -12,27 +12,30 @@ func (l *CaliburnListener) ExitDefinitionsInitial(c *parsing.DefinitionsInitialC
 
 // definitions: definitions definition # DefinitionsAppend
 func (l *CaliburnListener) ExitDefinitionsAppend(c *parsing.DefinitionsAppendContext) {
-	Push(l, append(Pop[[]ast.Definition](l), Pop[ast.Definition](l)))
+	l.Pop(2)
+	Push(l, append(Dequeue[[]ast.Definition](l), Dequeue[ast.Definition](l)))
 }
 
 // function_definition: function_type identifier L_PAREN parameters R_PAREN type_expression block # FunctionDefinition
 func (l *CaliburnListener) ExitFunctionDefinition(c *parsing.FunctionDefinitionContext) {
+	l.Pop(5)
 	Push(l, ast.NewFunctionDefinition(
-		Pop[ast.FunctionType](l),
-		Pop[ast.Identifier](l),
-		Pop[[]ast.Parameter](l),
-		Pop[ast.TypeExpression](l),
-		Pop[ast.Block](l),
+		Dequeue[ast.FunctionType](l),
+		Dequeue[ast.Identifier](l),
+		Dequeue[[]ast.Parameter](l),
+		Dequeue[ast.TypeExpression](l),
+		Dequeue[ast.Block](l),
 	))
 }
 
 // function_definition: function_type identifier L_PAREN parameters R_PAREN block                 # FunctionDefinitionNoReturnType
 func (l *CaliburnListener) ExitFunctionDefinitionNoReturnType(c *parsing.FunctionDefinitionNoReturnTypeContext) {
+	l.Pop(4)
 	Push(l, ast.NewFunctionDefinition(
-		Pop[ast.FunctionType](l),
-		Pop[ast.Identifier](l),
-		Pop[[]ast.Parameter](l),
+		Dequeue[ast.FunctionType](l),
+		Dequeue[ast.Identifier](l),
+		Dequeue[[]ast.Parameter](l),
 		ast.NewEmptyType(),
-		Pop[ast.Block](l),
+		Dequeue[ast.Block](l),
 	))
 }

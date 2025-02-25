@@ -96,6 +96,7 @@ type TypeExpressionBase struct {
 }
 
 func (te *TypeExpressionBase) IsTypeExpression() {}
+func (te *TypeExpressionBase) IsImplicit() bool  { return false }
 
 type IdentifierTypeExpression struct {
 	TypeExpressionBase

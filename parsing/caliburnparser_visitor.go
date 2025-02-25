@@ -46,8 +46,8 @@ type CaliburnParserVisitor interface {
 	// Visit a parse tree produced by CaliburnParser#StructDestrutureParameter.
 	VisitStructDestrutureParameter(ctx *StructDestrutureParameterContext) interface{}
 
-	// Visit a parse tree produced by CaliburnParser#BlockRule.
-	VisitBlockRule(ctx *BlockRuleContext) interface{}
+	// Visit a parse tree produced by CaliburnParser#block.
+	VisitBlock(ctx *BlockContext) interface{}
 
 	// Visit a parse tree produced by CaliburnParser#StatementsAppend.
 	VisitStatementsAppend(ctx *StatementsAppendContext) interface{}

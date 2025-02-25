@@ -46,8 +46,8 @@ type CaliburnParserListener interface {
 	// EnterStructDestrutureParameter is called when entering the StructDestrutureParameter production.
 	EnterStructDestrutureParameter(c *StructDestrutureParameterContext)
 
-	// EnterBlockRule is called when entering the BlockRule production.
-	EnterBlockRule(c *BlockRuleContext)
+	// EnterBlock is called when entering the block production.
+	EnterBlock(c *BlockContext)
 
 	// EnterStatementsAppend is called when entering the StatementsAppend production.
 	EnterStatementsAppend(c *StatementsAppendContext)
@@ -358,8 +358,8 @@ type CaliburnParserListener interface {
 	// ExitStructDestrutureParameter is called when exiting the StructDestrutureParameter production.
 	ExitStructDestrutureParameter(c *StructDestrutureParameterContext)
 
-	// ExitBlockRule is called when exiting the BlockRule production.
-	ExitBlockRule(c *BlockRuleContext)
+	// ExitBlock is called when exiting the block production.
+	ExitBlock(c *BlockContext)
 
 	// ExitStatementsAppend is called when exiting the StatementsAppend production.
 	ExitStatementsAppend(c *StatementsAppendContext)

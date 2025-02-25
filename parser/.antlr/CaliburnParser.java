@@ -651,31 +651,21 @@ public class CaliburnParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class BlockContext extends ParserRuleContext {
-		public BlockContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_block; }
-	 
-		public BlockContext() { }
-		public void copyFrom(BlockContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class BlockRuleContext extends BlockContext {
 		public TerminalNode L_C_BRACK() { return getToken(CaliburnParser.L_C_BRACK, 0); }
 		public StatementsContext statements() {
 			return getRuleContext(StatementsContext.class,0);
 		}
 		public TerminalNode R_C_BRACK() { return getToken(CaliburnParser.R_C_BRACK, 0); }
-		public BlockRuleContext(BlockContext ctx) { copyFrom(ctx); }
+		public BlockContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_block; }
 	}
 
 	public final BlockContext block() throws RecognitionException {
 		BlockContext _localctx = new BlockContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_block);
 		try {
-			_localctx = new BlockRuleContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(159);

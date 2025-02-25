@@ -102,11 +102,11 @@ func (s *BaseCaliburnParserListener) EnterStructDestrutureParameter(ctx *StructD
 func (s *BaseCaliburnParserListener) ExitStructDestrutureParameter(ctx *StructDestrutureParameterContext) {
 }
 
-// EnterBlockRule is called when production BlockRule is entered.
-func (s *BaseCaliburnParserListener) EnterBlockRule(ctx *BlockRuleContext) {}
+// EnterBlock is called when production block is entered.
+func (s *BaseCaliburnParserListener) EnterBlock(ctx *BlockContext) {}
 
-// ExitBlockRule is called when production BlockRule is exited.
-func (s *BaseCaliburnParserListener) ExitBlockRule(ctx *BlockRuleContext) {}
+// ExitBlock is called when production block is exited.
+func (s *BaseCaliburnParserListener) ExitBlock(ctx *BlockContext) {}
 
 // EnterStatementsAppend is called when production StatementsAppend is entered.
 func (s *BaseCaliburnParserListener) EnterStatementsAppend(ctx *StatementsAppendContext) {}

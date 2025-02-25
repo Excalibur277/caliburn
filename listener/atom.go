@@ -7,12 +7,14 @@ import (
 
 // literal_atom: literal # UntypedLiteral
 func (l *CaliburnListener) ExitUntypedLiteral(c *parsing.UntypedLiteralContext) {
-	Push(l, ast.NewUntypedLiteral(Pop[ast.LiteralToken](l)))
+	l.Pop(1)
+	Push(l, ast.NewUntypedLiteral(Dequeue[ast.LiteralToken](l)))
 }
 
 // literal_atom: identifier literal # TypedLiteral
 func (l *CaliburnListener) ExitTypedLiteral(c *parsing.TypedLiteralContext) {
-	Push(l, ast.NewTypedLiteral(Pop[ast.TypeExpression](l), Pop[ast.LiteralToken](l)))
+	l.Pop(2)
+	Push(l, ast.NewTypedLiteral(Dequeue[ast.TypeExpression](l), Dequeue[ast.LiteralToken](l)))
 }
 
 // literal: LiteralToken

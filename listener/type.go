@@ -12,7 +12,8 @@ func (l *CaliburnListener) ExitFunctionTypeFunc(c *parsing.FunctionTypeFuncConte
 
 // function_type: type_expression # FunctionTypeExpression
 func (l *CaliburnListener) ExitFunctionTypeExpression(c *parsing.FunctionTypeExpressionContext) {
-	Push(l, ast.NewFunctionTypeExpression(Pop[ast.TypeExpression](l)))
+	l.Pop(1)
+	Push(l, ast.NewFunctionTypeExpression(Dequeue[ast.TypeExpression](l)))
 }
 
 // struct_type: STRUCT # StructTypeStruct
@@ -27,15 +28,18 @@ func (l *CaliburnListener) ExitStructTypeTuple(c *parsing.StructTypeTupleContext
 
 // struct_type: type_expression # StructTypeExpression
 func (l *CaliburnListener) ExitStructTypeExpression(c *parsing.StructTypeExpressionContext) {
-	Push(l, ast.NewStructTypeExpression(Pop[ast.TypeExpression](l)))
+	l.Pop(1)
+	Push(l, ast.NewStructTypeExpression(Dequeue[ast.TypeExpression](l)))
 }
 
 // type_expression: identifier # IdentifierTypeExpression
 func (l *CaliburnListener) ExitIdentifierTypeExpression(c *parsing.IdentifierTypeExpressionContext) {
-	Push(l, ast.NewIdentifierTypeExpression(Pop[ast.Identifier](l)))
+	l.Pop(1)
+	Push(l, ast.NewIdentifierTypeExpression(Dequeue[ast.Identifier](l)))
 }
 
 // type_expression: type_expression PERIOD identifier # AccessTypeExpression
 func (l *CaliburnListener) ExitAccessTypeExpression(c *parsing.AccessTypeExpressionContext) {
-	Push(l, ast.NewAccessTypeExpression(Pop[ast.TypeExpression](l), Pop[ast.Identifier](l)))
+	l.Pop(2)
+	Push(l, ast.NewAccessTypeExpression(Dequeue[ast.TypeExpression](l), Dequeue[ast.Identifier](l)))
 }

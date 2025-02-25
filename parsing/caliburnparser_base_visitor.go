@@ -59,7 +59,7 @@ func (v *BaseCaliburnParserVisitor) VisitStructDestrutureParameter(ctx *StructDe
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseCaliburnParserVisitor) VisitBlockRule(ctx *BlockRuleContext) interface{} {
+func (v *BaseCaliburnParserVisitor) VisitBlock(ctx *BlockContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

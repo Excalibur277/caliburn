@@ -12,7 +12,8 @@ func (l *CaliburnListener) ExitStatementsInitial(c *parsing.StatementsInitialCon
 
 // statements: statements statement # StatementsAppend
 func (l *CaliburnListener) ExitStatementsAppend(c *parsing.StatementsAppendContext) {
-	Push(l, append(Pop[[]ast.Statement](l), Pop[ast.Statement](l)))
+	l.Pop(2)
+	Push(l, append(Dequeue[[]ast.Statement](l), Dequeue[ast.Statement](l)))
 }
 
 // inline_statement: # InlineStatementsInitial
@@ -22,12 +23,14 @@ func (l *CaliburnListener) ExitInlineStatementsInitial(c *parsing.InlineStatemen
 
 // inline_statement: inline_statements inline_statement # InlineStatementsAppend
 func (l *CaliburnListener) ExitInlineStatementsAppend(c *parsing.InlineStatementsAppendContext) {
-	Push(l, append(Pop[[]ast.InlineStatement](l), Pop[ast.InlineStatement](l)))
+	l.Pop(2)
+	Push(l, append(Dequeue[[]ast.InlineStatement](l), Dequeue[ast.InlineStatement](l)))
 }
 
 // return_statement: RETURN expression Terminator # ReturnStatement
 func (l *CaliburnListener) ExitReturnStatement(c *parsing.ReturnStatementContext) {
-	Push(l, ast.NewReturnStatement(Pop[ast.Expression](l)))
+	l.Pop(1)
+	Push(l, ast.NewReturnStatement(Dequeue[ast.Expression](l)))
 }
 
 // return_statement: BREAK Terminator # BreakStatement
