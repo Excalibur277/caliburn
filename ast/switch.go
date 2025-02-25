@@ -2,30 +2,26 @@ package ast
 
 type SwitchStatement struct{ StatementBase }
 
-func NewSwitchStatement() {
-
+type CaseBlocks interface {
+	IsCaseBlocks()
 }
 
-type CaseStatements interface {
-	IsCaseStatements()
+type CaseBlocksBase struct{}
+
+func (cs *CaseBlocksBase) IsCaseBlocks() {}
+
+type DefaultCaseBlock interface {
+	IsDefaultCaseBlock()
 }
 
-type CaseStatementsBase struct{}
+type DefaultCaseBlockBase struct{}
 
-func (cs *CaseStatementsBase) IsCaseStatements() {}
+func (dcs *DefaultCaseBlockBase) IsDefaultCaseBlock() {}
 
-type DefaultCaseStatement interface {
-	IsDefaultCaseStatement()
+type OptionCaseBlock interface {
+	IsOptionCaseBlock()
 }
 
-type DefaultCaseStatementBase struct{}
+type OptionCaseBlockBase struct{}
 
-func (dcs *DefaultCaseStatementBase) IsDefaultCaseStatement() {}
-
-type OptionCaseStatement interface {
-	IsOptionCaseStatement()
-}
-
-type OptionCaseStatementBase struct{}
-
-func (dcs *OptionCaseStatementBase) IsOptionCaseStatement() {}
+func (dcs *OptionCaseBlockBase) IsOptionCaseBlock() {}

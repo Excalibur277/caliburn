@@ -32,6 +32,7 @@ func NewListener() *CaliburnListener {
 	return &CaliburnListener{}
 }
 
+// module: definitions EOF # ModuleRule
 func (l *CaliburnListener) ExitModuleRule(c *parsing.ModuleRuleContext) {
 	Push(l, ast.NewModule(Pop[[]ast.Definition](l)))
 }

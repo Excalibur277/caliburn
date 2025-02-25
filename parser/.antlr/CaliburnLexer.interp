@@ -119,8 +119,8 @@ OP_LST
 WhiteSpace
 CommentMultiLine
 CommentSingleLine
-Identifier
-Literal
+IdentifierToken
+LiteralToken
 
 rule names:
 PERIOD
@@ -180,13 +180,13 @@ OP_LST
 WhiteSpace
 CommentMultiLine
 CommentSingleLine
-Identifier
+IdentifierToken
 EOL
 ESCAPE_SEQUENCE
 LITERAL_TEXT
 SQUOTE
 DQUOTE
-Literal
+LiteralToken
 
 channel names:
 DEFAULT_TOKEN_CHANNEL

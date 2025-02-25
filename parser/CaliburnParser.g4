@@ -25,8 +25,8 @@ definition
 
 // Function Definition Statement
 function_definition
-    : type = function_type name = Identifier L_PAREN parameters R_PAREN return_type = type_expression block # FunctionDefinition
-    | type = function_type name = Identifier L_PAREN parameters R_PAREN return_type = type_expression block # FunctionDefinitionNoReturnType
+    : function_type identifier L_PAREN parameters R_PAREN type_expression block # FunctionDefinition
+    | function_type identifier L_PAREN parameters R_PAREN block                 # FunctionDefinitionNoReturnType
     ;
 
 parameters
@@ -43,7 +43,6 @@ parameter
     : typed_assign_declaration       # TypedParameter
     | untyped_assign_declaration     # UntypedParameter
     | L_C_BRACK parameters R_C_BRACK # StructDestrutureParameter
-    | L_S_BRACK parameters R_S_BRACK # TupleDestrutureParameter
     ;
 
 // Blocks
@@ -62,6 +61,17 @@ statement
     | expression_statement
     | control_statement
     | jump_statement
+    ;
+
+// Inlinable Statements
+inline_statements
+    :                                    # InlineStatementsInitial
+    | inline_statements inline_statement # InlineStatementsAppend
+    ;
+
+inline_statement
+    : assign_statement
+    | expression_statement
     ;
 
 // Jump Statements
@@ -113,7 +123,13 @@ switch_statement
     ;
 
 case_blocks
-    : option_case_block* default_case_block? # CaseBlocks
+    : option_case_blocks                    # CaseBlocks
+    | option_case_blocks default_case_block # CaseBlocksDefault
+    ;
+
+option_case_blocks
+    :                                      # OptionCaseBlocksInitial
+    | option_case_blocks option_case_block # OptionCaseBlocksAppend
     ;
 
 option_case_block
@@ -122,17 +138,6 @@ option_case_block
 
 default_case_block
     : DEFAULT block # DefaultCaseBlock
-    ;
-
-// Inlinable Statements
-inline_statements
-    :                                    # InlineStatementsInitial
-    | inline_statements inline_statement # InlineStatementsAppend
-    ;
-
-inline_statement
-    : assign_statement
-    | expression_statement
     ;
 
 // Assign Statement
@@ -155,43 +160,64 @@ assign_statement
     ;
 
 assign_expressions
-    : assign_expression (COMMA assign_expression)* # AssignExpressions
+    : assign_expression                          # AssignExpressionsInitial
+    | assign_expressions COMMA assign_expression # AssignExpressionsAppend
+    ;
+
+aliasable_assign_expressions
+    : aliasable_assign_expression                                    # AliasableAssignExpressionsInitial
+    | aliasable_assign_expressions COMMA aliasable_assign_expression # AliasableAssignExpressionsAppend
+    ;
+
+aliasable_assign_expression
+    : assign_expression COLON identifier # AliasedAssignExpression
+    | assign_expression                  # UnaliasedAssignExpression
     ;
 
 assign_expression
-    : expression                             # ExpressionAssignExpression
-    | L_C_BRACK assign_expressions R_C_BRACK # StructDestrutureAssignExpression
-    | L_S_BRACK assign_expressions R_S_BRACK # TupleDestrutureAssignExpression
+    : expression                                       # ExpressionAssignExpression
+    | L_C_BRACK aliasable_assign_expressions R_C_BRACK # StructDestrutureAssignExpression
     ;
 
 assign_declarations
-    : assign_declaration (COMMA assign_statement)* # AssignDeclarations
+    : assign_declaration                         # AssignDeclarationsInitial
+    | assign_declarations COMMA assign_statement # AssignDeclarationsAppend
+    ;
+
+aliasable_assign_declarations
+    : aliasable_assign_declaration                                     # AliasableAssignDeclarationsInitial
+    | aliasable_assign_declarations COMMA aliasable_assign_declaration # AliasableAssignDeclarationsAppend
+    ;
+
+aliasable_assign_declaration
+    : assign_declaration COLON identifier # AliasedAssignDeclaration
+    | assign_declaration                  # UnaliasedAssignDeclaration
     ;
 
 assign_declaration
-    : expression                              # ExpressionAssignDeclaration
-    | typed_assign_declaration                # TypedAssignDeclarationDeclaration
-    | VAR untyped_assign_declaration          # UntypedAssignDeclarationDeclaration
-    | L_C_BRACK assign_declarations R_C_BRACK # StructDestrutureAssignDeclaration
-    | L_S_BRACK assign_declarations R_S_BRACK # TupleDestrutureAssignDeclaration
-    ;
-
-typed_assign_declarations
-    : typed_assign_declaration (COMMA typed_assign_declaration)* # TypedAssignDeclarations
+    : expression                                        # ExpressionAssignDeclaration
+    | typed_assign_declaration                          # TypedAssignDeclarationDeclaration
+    | VAR untyped_assign_declaration                    # UntypedAssignDeclarationDeclaration
+    | L_C_BRACK aliasable_assign_declarations R_C_BRACK # StructDestrutureAssignDeclaration
     ;
 
 typed_assign_declaration
-    : type = type_expression untyped_assign_declaration # TypedAssignDeclaration
+    : type_expression untyped_assign_declaration # TypedAssignDeclaration
     ;
 
-untyped_assign_declarations
-    : untyped_assign_declaration (COMMA untyped_assign_declaration)* # UntypedAssignDeclarations
+aliasable_untyped_assign_declarations
+    : aliasable_untyped_assign_declaration                                             # AliasableUntypedAssignDeclarationsInitial
+    | aliasable_untyped_assign_declarations COMMA aliasable_untyped_assign_declaration # AliasableUntypedAssignDeclarationsAppend
+    ;
+
+aliasable_untyped_assign_declaration
+    : untyped_assign_declaration COLON identifier # AliasedUntypedAssignDeclaration
+    | untyped_assign_declaration                  # UnaliasedUntypedAssignDeclaration
     ;
 
 untyped_assign_declaration
-    : var = Identifier                                # UntypedIdentifierAssignDeclaration
-    | L_C_BRACK untyped_assign_declarations R_C_BRACK # UntypedStructDestrutureAssignDeclaration
-    | L_S_BRACK untyped_assign_declarations R_S_BRACK # UntypedTupleDestrutureAssignDeclaration
+    : var = identifier                                          # UntypedIdentifierAssignDeclaration
+    | L_C_BRACK aliasable_untyped_assign_declarations R_C_BRACK # UntypedStructDestrutureAssignDeclaration
     ;
 
 // Expression Statement
@@ -201,32 +227,61 @@ expression_statement
 
 // Expression
 expressions
-    : expression (COMMA expression)* # ExpressionsRule
+    : expression                   # ExpressionsInitial
+    | expressions COMMA expression # ExpressionsAppend
+    ;
+
+expressions_optional
+    : expressions # ExpressionsOptional
+    |             # ExpressionsOptionalNone
     ;
 
 expression
-    : L_PAREN type = type_expression R_PAREN exp = expression                                              # CastExpression
-    | L_PAREN exp = expression R_PAREN                                                                     # BracketedExpression
-    | lhs_exp = expression op = (OP_POW | OP_ROOT) rhs_exp = expression                                    # BinaryExpression
-    | op = (OP_NOT | OP_ADD | OP_SUB) exp = expression                                                     # UnaryExpression
-    | lhs_exp = expression op = (OP_MUL | OP_DIV | OP_MOD) rhs_exp = expression                            # BinaryExpression
-    | lhs_exp = expression op = (OP_ADD | OP_SUB) rhs_exp = expression                                     # BinaryExpression
-    | lhs_exp = expression op = (OP_LSHIFT | OP_RSHIFT) rhs_exp = expression                               # BinaryExpression
-    | lhs_exp = expression op = (OP_EQU | OP_NEQ | OP_LTE | OP_GTE | OP_LST | OP_GRT) rhs_exp = expression # BooleanBinaryExpression
-    | lhs_exp = expression OP_AND rhs_exp = expression                                                     # BinaryExpression
-    | lhs_exp = expression OP_XOR rhs_exp = expression                                                     # BinaryExpression
-    | lhs_exp = expression OP_OR rhs_exp = expression                                                      # BinaryExpression
-    | exp = expression L_PAREN args = expressions? R_PAREN                                                 # CallExpression
-    | exp = expression PERIOD identifier = Identifier                                                      # AccessExpression
-    | exp = expression L_S_BRACK index = expression R_S_BRACK                                              # IndexExpression
-    | exp = expression L_S_BRACK start_index = expression? COLON end_index = expression? R_S_BRACK         # SliceExpression
-    | identifier = Identifier                                                                              # IdentifierExpression
-    | literal = literal_atom                                                                               # LiteralExpression
-    | type = function_type L_PAREN assign_declarations? R_PAREN (return_type = type_expression)? block     # FunctionExpression
-    | type = struct_type L_C_BRACK (Identifier) COLON expression (
-        COMMA (Identifier) COLON expression
-    )* COMMA? R_C_BRACK                                        # StructExpression
-    | L_PAREN expression (COMMA | (COMMA expression)+) R_PAREN # TupleExpression
+    : L_PAREN expression R_PAREN                                                       # BracketedExpression
+    | expression op = (OP_POW | OP_ROOT) expression                                    # BinaryExpression
+    | op = (OP_NOT | OP_ADD | OP_SUB) expression                                       # UnaryExpression
+    | expression op = (OP_MUL | OP_DIV | OP_MOD) expression                            # BinaryExpression
+    | expression op = (OP_ADD | OP_SUB) expression                                     # BinaryExpression
+    | expression op = (OP_LSHIFT | OP_RSHIFT) expression                               # BinaryExpression
+    | expression op = (OP_EQU | OP_NEQ | OP_LTE | OP_GTE | OP_LST | OP_GRT) expression # BinaryExpression
+    | expression OP_AND expression                                                     # BinaryExpression
+    | expression OP_XOR expression                                                     # BinaryExpression
+    | expression OP_OR expression                                                      # BinaryExpression
+    | expression L_PAREN expressions_optional R_PAREN                                  # CallExpression
+    | expression PERIOD identifier                                                     # AccessExpression
+    | expression L_S_BRACK expression R_S_BRACK                                        # IndexExpression
+    | expression L_S_BRACK expression COLON R_S_BRACK                                  # SliceStartExpression
+    | expression L_S_BRACK COLON expression R_S_BRACK                                  # SliceEndExpression
+    | expression L_S_BRACK expression COLON expression R_S_BRACK                       # SliceExpression
+    | identifier                                                                       # IdentifierExpression
+    | literal_atom                                                                     # LiteralExpression
+    | function_type L_PAREN parameters R_PAREN type_expression block                   # FunctionExpression
+    | function_type L_PAREN parameters R_PAREN block                                   # FunctionExpressionNoReturnType
+    | struct_type L_C_BRACK struct_values R_C_BRACK                                    # StructExpression
+    | type_expression L_S_BRACK collection_values R_S_BRACK                            # CollectionExpression
+    ;
+
+struct_values
+    : named_struct_values COMMA? # StructValuesNamed
+    | expressions_optional       # StructValuesUnamed
+    ;
+
+named_struct_values
+    : named_struct_value                           # NamedStructValuesInitial
+    | named_struct_values COMMA named_struct_value # NamedStructValuesAppend
+    ;
+
+named_struct_value
+    : identifier COLON expression # NamedStructValue
+    ;
+
+collection_values
+    :                                          # CollectionValuesInitial
+    | collection_values COMMA collection_value # CollectionValuesAppend
+    ;
+
+collection_value
+    : expression COLON expression # CollectionValue
     ;
 
 // Type Expressions
@@ -237,25 +292,25 @@ function_type
 
 struct_type
     : STRUCT          # StructTypeStruct
+    | TUPLE           # StructTypeTuple
     | type_expression # StructTypeExpression
     ;
 
-tuple_type
-    : TUPLE           # TupleTypeTuple
-    | type_expression # TupleTypeExpression
-    ;
-
 type_expression
-    : Identifier                        # IdentifierTypeExpression
-    | type_expression PERIOD Identifier # AccessTypeExpression
+    : identifier                        # IdentifierTypeExpression
+    | type_expression PERIOD identifier # AccessTypeExpression
     ;
 
 // Atoms
-identifiers
-    : Identifier (COMMA Identifier)* # IdentifiersRule
+literal_atom
+    : literal                 # UntypedLiteral
+    | type_expression literal # TypedLiteral
     ;
 
-literal_atom
-    : Literal            # UntypedLiteral
-    | Identifier Literal # TypedLiteral
+literal
+    : val = LiteralToken
+    ;
+
+identifier
+    : val = IdentifierToken
     ;

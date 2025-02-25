@@ -24,7 +24,7 @@ public class CaliburnLexer extends Lexer {
 		OP_ADD=36, OP_SUB=37, OP_NOT=38, OP_MUL=39, OP_DIV=40, OP_MOD=41, OP_POW=42, 
 		OP_ROOT=43, OP_OR=44, OP_XOR=45, OP_AND=46, OP_LSHIFT=47, OP_RSHIFT=48, 
 		OP_EQU=49, OP_NEQ=50, OP_GTE=51, OP_GRT=52, OP_LTE=53, OP_LST=54, WhiteSpace=55, 
-		CommentMultiLine=56, CommentSingleLine=57, Identifier=58, Literal=59;
+		CommentMultiLine=56, CommentSingleLine=57, IdentifierToken=58, LiteralToken=59;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -43,8 +43,8 @@ public class CaliburnLexer extends Lexer {
 			"OP_NOT", "OP_MUL", "OP_DIV", "OP_MOD", "OP_POW", "OP_ROOT", "OP_OR", 
 			"OP_XOR", "OP_AND", "OP_LSHIFT", "OP_RSHIFT", "OP_EQU", "OP_NEQ", "OP_GTE", 
 			"OP_GRT", "OP_LTE", "OP_LST", "WhiteSpace", "CommentMultiLine", "CommentSingleLine", 
-			"Identifier", "EOL", "ESCAPE_SEQUENCE", "LITERAL_TEXT", "SQUOTE", "DQUOTE", 
-			"Literal"
+			"IdentifierToken", "EOL", "ESCAPE_SEQUENCE", "LITERAL_TEXT", "SQUOTE", 
+			"DQUOTE", "LiteralToken"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -71,7 +71,7 @@ public class CaliburnLexer extends Lexer {
 			"OP_NOT", "OP_MUL", "OP_DIV", "OP_MOD", "OP_POW", "OP_ROOT", "OP_OR", 
 			"OP_XOR", "OP_AND", "OP_LSHIFT", "OP_RSHIFT", "OP_EQU", "OP_NEQ", "OP_GTE", 
 			"OP_GRT", "OP_LTE", "OP_LST", "WhiteSpace", "CommentMultiLine", "CommentSingleLine", 
-			"Identifier", "Literal"
+			"IdentifierToken", "LiteralToken"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();

@@ -30,17 +30,6 @@ type StructTypeBase struct {
 
 func (st *StructTypeBase) IsStructType() {}
 
-type TupleType interface {
-	Type
-	IsTupleType()
-}
-
-type TupleTypeBase struct {
-	TypeBase
-}
-
-func (tt *TupleTypeBase) IsTupleType() {}
-
 type TypeExpression interface {
 	Type
 	IsTypeExpression()
@@ -56,7 +45,6 @@ type EmptyType interface {
 	Type
 	FunctionType
 	StructType
-	TupleType
 	TypeExpression
 	IsEmptyType()
 }

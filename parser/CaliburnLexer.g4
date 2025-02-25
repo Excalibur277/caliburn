@@ -104,7 +104,7 @@ CommentMultiLine  : '`' .*? '`'                -> channel(HIDDEN);
 CommentSingleLine : '#' ~['"\r\n\\] '\r'? '\n' -> channel(HIDDEN);
 // Identifier
 
-Identifier: [\p{L}_] [\p{L}\p{N}_]*;
+IdentifierToken: [\p{L}_] [\p{L}\p{N}_]*;
 
 // Literals
 fragment EOL: '\r'? '\n';
@@ -117,4 +117,4 @@ fragment SQUOTE: '\'';
 
 fragment DQUOTE: '"';
 
-Literal: SQUOTE LITERAL_TEXT? SQUOTE | DQUOTE LITERAL_TEXT? DQUOTE;
+LiteralToken: SQUOTE LITERAL_TEXT? SQUOTE | DQUOTE LITERAL_TEXT? DQUOTE;

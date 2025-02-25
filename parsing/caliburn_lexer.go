@@ -60,7 +60,7 @@ func caliburnlexerLexerInit() {
 		"OP_SUB", "OP_NOT", "OP_MUL", "OP_DIV", "OP_MOD", "OP_POW", "OP_ROOT",
 		"OP_OR", "OP_XOR", "OP_AND", "OP_LSHIFT", "OP_RSHIFT", "OP_EQU", "OP_NEQ",
 		"OP_GTE", "OP_GRT", "OP_LTE", "OP_LST", "WhiteSpace", "CommentMultiLine",
-		"CommentSingleLine", "Identifier", "Literal",
+		"CommentSingleLine", "IdentifierToken", "LiteralToken",
 	}
 	staticData.RuleNames = []string{
 		"PERIOD", "COMMA", "COLON", "QUESTION", "Terminator", "ASSIGN", "ARROW",
@@ -71,8 +71,8 @@ func caliburnlexerLexerInit() {
 		"OP_NOT", "OP_MUL", "OP_DIV", "OP_MOD", "OP_POW", "OP_ROOT", "OP_OR",
 		"OP_XOR", "OP_AND", "OP_LSHIFT", "OP_RSHIFT", "OP_EQU", "OP_NEQ", "OP_GTE",
 		"OP_GRT", "OP_LTE", "OP_LST", "WhiteSpace", "CommentMultiLine", "CommentSingleLine",
-		"Identifier", "EOL", "ESCAPE_SEQUENCE", "LITERAL_TEXT", "SQUOTE", "DQUOTE",
-		"Literal",
+		"IdentifierToken", "EOL", "ESCAPE_SEQUENCE", "LITERAL_TEXT", "SQUOTE",
+		"DQUOTE", "LiteralToken",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
@@ -600,6 +600,6 @@ const (
 	CaliburnLexerWhiteSpace        = 55
 	CaliburnLexerCommentMultiLine  = 56
 	CaliburnLexerCommentSingleLine = 57
-	CaliburnLexerIdentifier        = 58
-	CaliburnLexerLiteral           = 59
+	CaliburnLexerIdentifierToken   = 58
+	CaliburnLexerLiteralToken      = 59
 )

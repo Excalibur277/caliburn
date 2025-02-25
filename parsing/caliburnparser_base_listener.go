@@ -102,14 +102,6 @@ func (s *BaseCaliburnParserListener) EnterStructDestrutureParameter(ctx *StructD
 func (s *BaseCaliburnParserListener) ExitStructDestrutureParameter(ctx *StructDestrutureParameterContext) {
 }
 
-// EnterTupleDestrutureParameter is called when production TupleDestrutureParameter is entered.
-func (s *BaseCaliburnParserListener) EnterTupleDestrutureParameter(ctx *TupleDestrutureParameterContext) {
-}
-
-// ExitTupleDestrutureParameter is called when production TupleDestrutureParameter is exited.
-func (s *BaseCaliburnParserListener) ExitTupleDestrutureParameter(ctx *TupleDestrutureParameterContext) {
-}
-
 // EnterBlockRule is called when production BlockRule is entered.
 func (s *BaseCaliburnParserListener) EnterBlockRule(ctx *BlockRuleContext) {}
 
@@ -133,6 +125,27 @@ func (s *BaseCaliburnParserListener) EnterStatement(ctx *StatementContext) {}
 
 // ExitStatement is called when production statement is exited.
 func (s *BaseCaliburnParserListener) ExitStatement(ctx *StatementContext) {}
+
+// EnterInlineStatementsInitial is called when production InlineStatementsInitial is entered.
+func (s *BaseCaliburnParserListener) EnterInlineStatementsInitial(ctx *InlineStatementsInitialContext) {
+}
+
+// ExitInlineStatementsInitial is called when production InlineStatementsInitial is exited.
+func (s *BaseCaliburnParserListener) ExitInlineStatementsInitial(ctx *InlineStatementsInitialContext) {
+}
+
+// EnterInlineStatementsAppend is called when production InlineStatementsAppend is entered.
+func (s *BaseCaliburnParserListener) EnterInlineStatementsAppend(ctx *InlineStatementsAppendContext) {
+}
+
+// ExitInlineStatementsAppend is called when production InlineStatementsAppend is exited.
+func (s *BaseCaliburnParserListener) ExitInlineStatementsAppend(ctx *InlineStatementsAppendContext) {}
+
+// EnterInline_statement is called when production inline_statement is entered.
+func (s *BaseCaliburnParserListener) EnterInline_statement(ctx *Inline_statementContext) {}
+
+// ExitInline_statement is called when production inline_statement is exited.
+func (s *BaseCaliburnParserListener) ExitInline_statement(ctx *Inline_statementContext) {}
 
 // EnterJump_statement is called when production jump_statement is entered.
 func (s *BaseCaliburnParserListener) EnterJump_statement(ctx *Jump_statementContext) {}
@@ -212,6 +225,27 @@ func (s *BaseCaliburnParserListener) EnterCaseBlocks(ctx *CaseBlocksContext) {}
 // ExitCaseBlocks is called when production CaseBlocks is exited.
 func (s *BaseCaliburnParserListener) ExitCaseBlocks(ctx *CaseBlocksContext) {}
 
+// EnterCaseBlocksDefault is called when production CaseBlocksDefault is entered.
+func (s *BaseCaliburnParserListener) EnterCaseBlocksDefault(ctx *CaseBlocksDefaultContext) {}
+
+// ExitCaseBlocksDefault is called when production CaseBlocksDefault is exited.
+func (s *BaseCaliburnParserListener) ExitCaseBlocksDefault(ctx *CaseBlocksDefaultContext) {}
+
+// EnterOptionCaseBlocksAppend is called when production OptionCaseBlocksAppend is entered.
+func (s *BaseCaliburnParserListener) EnterOptionCaseBlocksAppend(ctx *OptionCaseBlocksAppendContext) {
+}
+
+// ExitOptionCaseBlocksAppend is called when production OptionCaseBlocksAppend is exited.
+func (s *BaseCaliburnParserListener) ExitOptionCaseBlocksAppend(ctx *OptionCaseBlocksAppendContext) {}
+
+// EnterOptionCaseBlocksInitial is called when production OptionCaseBlocksInitial is entered.
+func (s *BaseCaliburnParserListener) EnterOptionCaseBlocksInitial(ctx *OptionCaseBlocksInitialContext) {
+}
+
+// ExitOptionCaseBlocksInitial is called when production OptionCaseBlocksInitial is exited.
+func (s *BaseCaliburnParserListener) ExitOptionCaseBlocksInitial(ctx *OptionCaseBlocksInitialContext) {
+}
+
 // EnterOptionCaseBlock is called when production OptionCaseBlock is entered.
 func (s *BaseCaliburnParserListener) EnterOptionCaseBlock(ctx *OptionCaseBlockContext) {}
 
@@ -223,27 +257,6 @@ func (s *BaseCaliburnParserListener) EnterDefaultCaseBlock(ctx *DefaultCaseBlock
 
 // ExitDefaultCaseBlock is called when production DefaultCaseBlock is exited.
 func (s *BaseCaliburnParserListener) ExitDefaultCaseBlock(ctx *DefaultCaseBlockContext) {}
-
-// EnterInlineStatementsInitial is called when production InlineStatementsInitial is entered.
-func (s *BaseCaliburnParserListener) EnterInlineStatementsInitial(ctx *InlineStatementsInitialContext) {
-}
-
-// ExitInlineStatementsInitial is called when production InlineStatementsInitial is exited.
-func (s *BaseCaliburnParserListener) ExitInlineStatementsInitial(ctx *InlineStatementsInitialContext) {
-}
-
-// EnterInlineStatementsAppend is called when production InlineStatementsAppend is entered.
-func (s *BaseCaliburnParserListener) EnterInlineStatementsAppend(ctx *InlineStatementsAppendContext) {
-}
-
-// ExitInlineStatementsAppend is called when production InlineStatementsAppend is exited.
-func (s *BaseCaliburnParserListener) ExitInlineStatementsAppend(ctx *InlineStatementsAppendContext) {}
-
-// EnterInline_statement is called when production inline_statement is entered.
-func (s *BaseCaliburnParserListener) EnterInline_statement(ctx *Inline_statementContext) {}
-
-// ExitInline_statement is called when production inline_statement is exited.
-func (s *BaseCaliburnParserListener) ExitInline_statement(ctx *Inline_statementContext) {}
 
 // EnterAssignStatement is called when production AssignStatement is entered.
 func (s *BaseCaliburnParserListener) EnterAssignStatement(ctx *AssignStatementContext) {}
@@ -259,11 +272,53 @@ func (s *BaseCaliburnParserListener) EnterAssignOperationStatement(ctx *AssignOp
 func (s *BaseCaliburnParserListener) ExitAssignOperationStatement(ctx *AssignOperationStatementContext) {
 }
 
-// EnterAssignExpressions is called when production AssignExpressions is entered.
-func (s *BaseCaliburnParserListener) EnterAssignExpressions(ctx *AssignExpressionsContext) {}
+// EnterAssignExpressionsAppend is called when production AssignExpressionsAppend is entered.
+func (s *BaseCaliburnParserListener) EnterAssignExpressionsAppend(ctx *AssignExpressionsAppendContext) {
+}
 
-// ExitAssignExpressions is called when production AssignExpressions is exited.
-func (s *BaseCaliburnParserListener) ExitAssignExpressions(ctx *AssignExpressionsContext) {}
+// ExitAssignExpressionsAppend is called when production AssignExpressionsAppend is exited.
+func (s *BaseCaliburnParserListener) ExitAssignExpressionsAppend(ctx *AssignExpressionsAppendContext) {
+}
+
+// EnterAssignExpressionsInitial is called when production AssignExpressionsInitial is entered.
+func (s *BaseCaliburnParserListener) EnterAssignExpressionsInitial(ctx *AssignExpressionsInitialContext) {
+}
+
+// ExitAssignExpressionsInitial is called when production AssignExpressionsInitial is exited.
+func (s *BaseCaliburnParserListener) ExitAssignExpressionsInitial(ctx *AssignExpressionsInitialContext) {
+}
+
+// EnterAliasableAssignExpressionsInitial is called when production AliasableAssignExpressionsInitial is entered.
+func (s *BaseCaliburnParserListener) EnterAliasableAssignExpressionsInitial(ctx *AliasableAssignExpressionsInitialContext) {
+}
+
+// ExitAliasableAssignExpressionsInitial is called when production AliasableAssignExpressionsInitial is exited.
+func (s *BaseCaliburnParserListener) ExitAliasableAssignExpressionsInitial(ctx *AliasableAssignExpressionsInitialContext) {
+}
+
+// EnterAliasableAssignExpressionsAppend is called when production AliasableAssignExpressionsAppend is entered.
+func (s *BaseCaliburnParserListener) EnterAliasableAssignExpressionsAppend(ctx *AliasableAssignExpressionsAppendContext) {
+}
+
+// ExitAliasableAssignExpressionsAppend is called when production AliasableAssignExpressionsAppend is exited.
+func (s *BaseCaliburnParserListener) ExitAliasableAssignExpressionsAppend(ctx *AliasableAssignExpressionsAppendContext) {
+}
+
+// EnterAliasedAssignExpression is called when production AliasedAssignExpression is entered.
+func (s *BaseCaliburnParserListener) EnterAliasedAssignExpression(ctx *AliasedAssignExpressionContext) {
+}
+
+// ExitAliasedAssignExpression is called when production AliasedAssignExpression is exited.
+func (s *BaseCaliburnParserListener) ExitAliasedAssignExpression(ctx *AliasedAssignExpressionContext) {
+}
+
+// EnterUnaliasedAssignExpression is called when production UnaliasedAssignExpression is entered.
+func (s *BaseCaliburnParserListener) EnterUnaliasedAssignExpression(ctx *UnaliasedAssignExpressionContext) {
+}
+
+// ExitUnaliasedAssignExpression is called when production UnaliasedAssignExpression is exited.
+func (s *BaseCaliburnParserListener) ExitUnaliasedAssignExpression(ctx *UnaliasedAssignExpressionContext) {
+}
 
 // EnterExpressionAssignExpression is called when production ExpressionAssignExpression is entered.
 func (s *BaseCaliburnParserListener) EnterExpressionAssignExpression(ctx *ExpressionAssignExpressionContext) {
@@ -281,19 +336,53 @@ func (s *BaseCaliburnParserListener) EnterStructDestrutureAssignExpression(ctx *
 func (s *BaseCaliburnParserListener) ExitStructDestrutureAssignExpression(ctx *StructDestrutureAssignExpressionContext) {
 }
 
-// EnterTupleDestrutureAssignExpression is called when production TupleDestrutureAssignExpression is entered.
-func (s *BaseCaliburnParserListener) EnterTupleDestrutureAssignExpression(ctx *TupleDestrutureAssignExpressionContext) {
+// EnterAssignDeclarationsAppend is called when production AssignDeclarationsAppend is entered.
+func (s *BaseCaliburnParserListener) EnterAssignDeclarationsAppend(ctx *AssignDeclarationsAppendContext) {
 }
 
-// ExitTupleDestrutureAssignExpression is called when production TupleDestrutureAssignExpression is exited.
-func (s *BaseCaliburnParserListener) ExitTupleDestrutureAssignExpression(ctx *TupleDestrutureAssignExpressionContext) {
+// ExitAssignDeclarationsAppend is called when production AssignDeclarationsAppend is exited.
+func (s *BaseCaliburnParserListener) ExitAssignDeclarationsAppend(ctx *AssignDeclarationsAppendContext) {
 }
 
-// EnterAssignDeclarations is called when production AssignDeclarations is entered.
-func (s *BaseCaliburnParserListener) EnterAssignDeclarations(ctx *AssignDeclarationsContext) {}
+// EnterAssignDeclarationsInitial is called when production AssignDeclarationsInitial is entered.
+func (s *BaseCaliburnParserListener) EnterAssignDeclarationsInitial(ctx *AssignDeclarationsInitialContext) {
+}
 
-// ExitAssignDeclarations is called when production AssignDeclarations is exited.
-func (s *BaseCaliburnParserListener) ExitAssignDeclarations(ctx *AssignDeclarationsContext) {}
+// ExitAssignDeclarationsInitial is called when production AssignDeclarationsInitial is exited.
+func (s *BaseCaliburnParserListener) ExitAssignDeclarationsInitial(ctx *AssignDeclarationsInitialContext) {
+}
+
+// EnterAliasableAssignDeclarationsAppend is called when production AliasableAssignDeclarationsAppend is entered.
+func (s *BaseCaliburnParserListener) EnterAliasableAssignDeclarationsAppend(ctx *AliasableAssignDeclarationsAppendContext) {
+}
+
+// ExitAliasableAssignDeclarationsAppend is called when production AliasableAssignDeclarationsAppend is exited.
+func (s *BaseCaliburnParserListener) ExitAliasableAssignDeclarationsAppend(ctx *AliasableAssignDeclarationsAppendContext) {
+}
+
+// EnterAliasableAssignDeclarationsInitial is called when production AliasableAssignDeclarationsInitial is entered.
+func (s *BaseCaliburnParserListener) EnterAliasableAssignDeclarationsInitial(ctx *AliasableAssignDeclarationsInitialContext) {
+}
+
+// ExitAliasableAssignDeclarationsInitial is called when production AliasableAssignDeclarationsInitial is exited.
+func (s *BaseCaliburnParserListener) ExitAliasableAssignDeclarationsInitial(ctx *AliasableAssignDeclarationsInitialContext) {
+}
+
+// EnterAliasedAssignDeclaration is called when production AliasedAssignDeclaration is entered.
+func (s *BaseCaliburnParserListener) EnterAliasedAssignDeclaration(ctx *AliasedAssignDeclarationContext) {
+}
+
+// ExitAliasedAssignDeclaration is called when production AliasedAssignDeclaration is exited.
+func (s *BaseCaliburnParserListener) ExitAliasedAssignDeclaration(ctx *AliasedAssignDeclarationContext) {
+}
+
+// EnterUnaliasedAssignDeclaration is called when production UnaliasedAssignDeclaration is entered.
+func (s *BaseCaliburnParserListener) EnterUnaliasedAssignDeclaration(ctx *UnaliasedAssignDeclarationContext) {
+}
+
+// ExitUnaliasedAssignDeclaration is called when production UnaliasedAssignDeclaration is exited.
+func (s *BaseCaliburnParserListener) ExitUnaliasedAssignDeclaration(ctx *UnaliasedAssignDeclarationContext) {
+}
 
 // EnterExpressionAssignDeclaration is called when production ExpressionAssignDeclaration is entered.
 func (s *BaseCaliburnParserListener) EnterExpressionAssignDeclaration(ctx *ExpressionAssignDeclarationContext) {
@@ -327,22 +416,6 @@ func (s *BaseCaliburnParserListener) EnterStructDestrutureAssignDeclaration(ctx 
 func (s *BaseCaliburnParserListener) ExitStructDestrutureAssignDeclaration(ctx *StructDestrutureAssignDeclarationContext) {
 }
 
-// EnterTupleDestrutureAssignDeclaration is called when production TupleDestrutureAssignDeclaration is entered.
-func (s *BaseCaliburnParserListener) EnterTupleDestrutureAssignDeclaration(ctx *TupleDestrutureAssignDeclarationContext) {
-}
-
-// ExitTupleDestrutureAssignDeclaration is called when production TupleDestrutureAssignDeclaration is exited.
-func (s *BaseCaliburnParserListener) ExitTupleDestrutureAssignDeclaration(ctx *TupleDestrutureAssignDeclarationContext) {
-}
-
-// EnterTypedAssignDeclarations is called when production TypedAssignDeclarations is entered.
-func (s *BaseCaliburnParserListener) EnterTypedAssignDeclarations(ctx *TypedAssignDeclarationsContext) {
-}
-
-// ExitTypedAssignDeclarations is called when production TypedAssignDeclarations is exited.
-func (s *BaseCaliburnParserListener) ExitTypedAssignDeclarations(ctx *TypedAssignDeclarationsContext) {
-}
-
 // EnterTypedAssignDeclaration is called when production TypedAssignDeclaration is entered.
 func (s *BaseCaliburnParserListener) EnterTypedAssignDeclaration(ctx *TypedAssignDeclarationContext) {
 }
@@ -350,12 +423,36 @@ func (s *BaseCaliburnParserListener) EnterTypedAssignDeclaration(ctx *TypedAssig
 // ExitTypedAssignDeclaration is called when production TypedAssignDeclaration is exited.
 func (s *BaseCaliburnParserListener) ExitTypedAssignDeclaration(ctx *TypedAssignDeclarationContext) {}
 
-// EnterUntypedAssignDeclarations is called when production UntypedAssignDeclarations is entered.
-func (s *BaseCaliburnParserListener) EnterUntypedAssignDeclarations(ctx *UntypedAssignDeclarationsContext) {
+// EnterAliasableUntypedAssignDeclarationsInitial is called when production AliasableUntypedAssignDeclarationsInitial is entered.
+func (s *BaseCaliburnParserListener) EnterAliasableUntypedAssignDeclarationsInitial(ctx *AliasableUntypedAssignDeclarationsInitialContext) {
 }
 
-// ExitUntypedAssignDeclarations is called when production UntypedAssignDeclarations is exited.
-func (s *BaseCaliburnParserListener) ExitUntypedAssignDeclarations(ctx *UntypedAssignDeclarationsContext) {
+// ExitAliasableUntypedAssignDeclarationsInitial is called when production AliasableUntypedAssignDeclarationsInitial is exited.
+func (s *BaseCaliburnParserListener) ExitAliasableUntypedAssignDeclarationsInitial(ctx *AliasableUntypedAssignDeclarationsInitialContext) {
+}
+
+// EnterAliasableUntypedAssignDeclarationsAppend is called when production AliasableUntypedAssignDeclarationsAppend is entered.
+func (s *BaseCaliburnParserListener) EnterAliasableUntypedAssignDeclarationsAppend(ctx *AliasableUntypedAssignDeclarationsAppendContext) {
+}
+
+// ExitAliasableUntypedAssignDeclarationsAppend is called when production AliasableUntypedAssignDeclarationsAppend is exited.
+func (s *BaseCaliburnParserListener) ExitAliasableUntypedAssignDeclarationsAppend(ctx *AliasableUntypedAssignDeclarationsAppendContext) {
+}
+
+// EnterAliasedUntypedAssignDeclaration is called when production AliasedUntypedAssignDeclaration is entered.
+func (s *BaseCaliburnParserListener) EnterAliasedUntypedAssignDeclaration(ctx *AliasedUntypedAssignDeclarationContext) {
+}
+
+// ExitAliasedUntypedAssignDeclaration is called when production AliasedUntypedAssignDeclaration is exited.
+func (s *BaseCaliburnParserListener) ExitAliasedUntypedAssignDeclaration(ctx *AliasedUntypedAssignDeclarationContext) {
+}
+
+// EnterUnaliasedUntypedAssignDeclaration is called when production UnaliasedUntypedAssignDeclaration is entered.
+func (s *BaseCaliburnParserListener) EnterUnaliasedUntypedAssignDeclaration(ctx *UnaliasedUntypedAssignDeclarationContext) {
+}
+
+// ExitUnaliasedUntypedAssignDeclaration is called when production UnaliasedUntypedAssignDeclaration is exited.
+func (s *BaseCaliburnParserListener) ExitUnaliasedUntypedAssignDeclaration(ctx *UnaliasedUntypedAssignDeclarationContext) {
 }
 
 // EnterUntypedIdentifierAssignDeclaration is called when production UntypedIdentifierAssignDeclaration is entered.
@@ -374,25 +471,37 @@ func (s *BaseCaliburnParserListener) EnterUntypedStructDestrutureAssignDeclarati
 func (s *BaseCaliburnParserListener) ExitUntypedStructDestrutureAssignDeclaration(ctx *UntypedStructDestrutureAssignDeclarationContext) {
 }
 
-// EnterUntypedTupleDestrutureAssignDeclaration is called when production UntypedTupleDestrutureAssignDeclaration is entered.
-func (s *BaseCaliburnParserListener) EnterUntypedTupleDestrutureAssignDeclaration(ctx *UntypedTupleDestrutureAssignDeclarationContext) {
-}
-
-// ExitUntypedTupleDestrutureAssignDeclaration is called when production UntypedTupleDestrutureAssignDeclaration is exited.
-func (s *BaseCaliburnParserListener) ExitUntypedTupleDestrutureAssignDeclaration(ctx *UntypedTupleDestrutureAssignDeclarationContext) {
-}
-
 // EnterExpressionStatement is called when production ExpressionStatement is entered.
 func (s *BaseCaliburnParserListener) EnterExpressionStatement(ctx *ExpressionStatementContext) {}
 
 // ExitExpressionStatement is called when production ExpressionStatement is exited.
 func (s *BaseCaliburnParserListener) ExitExpressionStatement(ctx *ExpressionStatementContext) {}
 
-// EnterExpressionsRule is called when production ExpressionsRule is entered.
-func (s *BaseCaliburnParserListener) EnterExpressionsRule(ctx *ExpressionsRuleContext) {}
+// EnterExpressionsInitial is called when production ExpressionsInitial is entered.
+func (s *BaseCaliburnParserListener) EnterExpressionsInitial(ctx *ExpressionsInitialContext) {}
 
-// ExitExpressionsRule is called when production ExpressionsRule is exited.
-func (s *BaseCaliburnParserListener) ExitExpressionsRule(ctx *ExpressionsRuleContext) {}
+// ExitExpressionsInitial is called when production ExpressionsInitial is exited.
+func (s *BaseCaliburnParserListener) ExitExpressionsInitial(ctx *ExpressionsInitialContext) {}
+
+// EnterExpressionsAppend is called when production ExpressionsAppend is entered.
+func (s *BaseCaliburnParserListener) EnterExpressionsAppend(ctx *ExpressionsAppendContext) {}
+
+// ExitExpressionsAppend is called when production ExpressionsAppend is exited.
+func (s *BaseCaliburnParserListener) ExitExpressionsAppend(ctx *ExpressionsAppendContext) {}
+
+// EnterExpressionsOptional is called when production ExpressionsOptional is entered.
+func (s *BaseCaliburnParserListener) EnterExpressionsOptional(ctx *ExpressionsOptionalContext) {}
+
+// ExitExpressionsOptional is called when production ExpressionsOptional is exited.
+func (s *BaseCaliburnParserListener) ExitExpressionsOptional(ctx *ExpressionsOptionalContext) {}
+
+// EnterExpressionsOptionalNone is called when production ExpressionsOptionalNone is entered.
+func (s *BaseCaliburnParserListener) EnterExpressionsOptionalNone(ctx *ExpressionsOptionalNoneContext) {
+}
+
+// ExitExpressionsOptionalNone is called when production ExpressionsOptionalNone is exited.
+func (s *BaseCaliburnParserListener) ExitExpressionsOptionalNone(ctx *ExpressionsOptionalNoneContext) {
+}
 
 // EnterBracketedExpression is called when production BracketedExpression is entered.
 func (s *BaseCaliburnParserListener) EnterBracketedExpression(ctx *BracketedExpressionContext) {}
@@ -412,20 +521,6 @@ func (s *BaseCaliburnParserListener) EnterSliceExpression(ctx *SliceExpressionCo
 // ExitSliceExpression is called when production SliceExpression is exited.
 func (s *BaseCaliburnParserListener) ExitSliceExpression(ctx *SliceExpressionContext) {}
 
-// EnterTupleExpression is called when production TupleExpression is entered.
-func (s *BaseCaliburnParserListener) EnterTupleExpression(ctx *TupleExpressionContext) {}
-
-// ExitTupleExpression is called when production TupleExpression is exited.
-func (s *BaseCaliburnParserListener) ExitTupleExpression(ctx *TupleExpressionContext) {}
-
-// EnterBooleanBinaryExpression is called when production BooleanBinaryExpression is entered.
-func (s *BaseCaliburnParserListener) EnterBooleanBinaryExpression(ctx *BooleanBinaryExpressionContext) {
-}
-
-// ExitBooleanBinaryExpression is called when production BooleanBinaryExpression is exited.
-func (s *BaseCaliburnParserListener) ExitBooleanBinaryExpression(ctx *BooleanBinaryExpressionContext) {
-}
-
 // EnterIndexExpression is called when production IndexExpression is entered.
 func (s *BaseCaliburnParserListener) EnterIndexExpression(ctx *IndexExpressionContext) {}
 
@@ -443,6 +538,12 @@ func (s *BaseCaliburnParserListener) EnterAccessExpression(ctx *AccessExpression
 
 // ExitAccessExpression is called when production AccessExpression is exited.
 func (s *BaseCaliburnParserListener) ExitAccessExpression(ctx *AccessExpressionContext) {}
+
+// EnterSliceEndExpression is called when production SliceEndExpression is entered.
+func (s *BaseCaliburnParserListener) EnterSliceEndExpression(ctx *SliceEndExpressionContext) {}
+
+// ExitSliceEndExpression is called when production SliceEndExpression is exited.
+func (s *BaseCaliburnParserListener) ExitSliceEndExpression(ctx *SliceEndExpressionContext) {}
 
 // EnterIdentifierExpression is called when production IdentifierExpression is entered.
 func (s *BaseCaliburnParserListener) EnterIdentifierExpression(ctx *IdentifierExpressionContext) {}
@@ -468,17 +569,86 @@ func (s *BaseCaliburnParserListener) EnterBinaryExpression(ctx *BinaryExpression
 // ExitBinaryExpression is called when production BinaryExpression is exited.
 func (s *BaseCaliburnParserListener) ExitBinaryExpression(ctx *BinaryExpressionContext) {}
 
-// EnterCastExpression is called when production CastExpression is entered.
-func (s *BaseCaliburnParserListener) EnterCastExpression(ctx *CastExpressionContext) {}
+// EnterSliceStartExpression is called when production SliceStartExpression is entered.
+func (s *BaseCaliburnParserListener) EnterSliceStartExpression(ctx *SliceStartExpressionContext) {}
 
-// ExitCastExpression is called when production CastExpression is exited.
-func (s *BaseCaliburnParserListener) ExitCastExpression(ctx *CastExpressionContext) {}
+// ExitSliceStartExpression is called when production SliceStartExpression is exited.
+func (s *BaseCaliburnParserListener) ExitSliceStartExpression(ctx *SliceStartExpressionContext) {}
+
+// EnterFunctionExpressionNoReturnType is called when production FunctionExpressionNoReturnType is entered.
+func (s *BaseCaliburnParserListener) EnterFunctionExpressionNoReturnType(ctx *FunctionExpressionNoReturnTypeContext) {
+}
+
+// ExitFunctionExpressionNoReturnType is called when production FunctionExpressionNoReturnType is exited.
+func (s *BaseCaliburnParserListener) ExitFunctionExpressionNoReturnType(ctx *FunctionExpressionNoReturnTypeContext) {
+}
+
+// EnterCollectionExpression is called when production CollectionExpression is entered.
+func (s *BaseCaliburnParserListener) EnterCollectionExpression(ctx *CollectionExpressionContext) {}
+
+// ExitCollectionExpression is called when production CollectionExpression is exited.
+func (s *BaseCaliburnParserListener) ExitCollectionExpression(ctx *CollectionExpressionContext) {}
 
 // EnterCallExpression is called when production CallExpression is entered.
 func (s *BaseCaliburnParserListener) EnterCallExpression(ctx *CallExpressionContext) {}
 
 // ExitCallExpression is called when production CallExpression is exited.
 func (s *BaseCaliburnParserListener) ExitCallExpression(ctx *CallExpressionContext) {}
+
+// EnterStructValuesNamed is called when production StructValuesNamed is entered.
+func (s *BaseCaliburnParserListener) EnterStructValuesNamed(ctx *StructValuesNamedContext) {}
+
+// ExitStructValuesNamed is called when production StructValuesNamed is exited.
+func (s *BaseCaliburnParserListener) ExitStructValuesNamed(ctx *StructValuesNamedContext) {}
+
+// EnterStructValuesUnamed is called when production StructValuesUnamed is entered.
+func (s *BaseCaliburnParserListener) EnterStructValuesUnamed(ctx *StructValuesUnamedContext) {}
+
+// ExitStructValuesUnamed is called when production StructValuesUnamed is exited.
+func (s *BaseCaliburnParserListener) ExitStructValuesUnamed(ctx *StructValuesUnamedContext) {}
+
+// EnterNamedStructValuesAppend is called when production NamedStructValuesAppend is entered.
+func (s *BaseCaliburnParserListener) EnterNamedStructValuesAppend(ctx *NamedStructValuesAppendContext) {
+}
+
+// ExitNamedStructValuesAppend is called when production NamedStructValuesAppend is exited.
+func (s *BaseCaliburnParserListener) ExitNamedStructValuesAppend(ctx *NamedStructValuesAppendContext) {
+}
+
+// EnterNamedStructValuesInitial is called when production NamedStructValuesInitial is entered.
+func (s *BaseCaliburnParserListener) EnterNamedStructValuesInitial(ctx *NamedStructValuesInitialContext) {
+}
+
+// ExitNamedStructValuesInitial is called when production NamedStructValuesInitial is exited.
+func (s *BaseCaliburnParserListener) ExitNamedStructValuesInitial(ctx *NamedStructValuesInitialContext) {
+}
+
+// EnterNamedStructValue is called when production NamedStructValue is entered.
+func (s *BaseCaliburnParserListener) EnterNamedStructValue(ctx *NamedStructValueContext) {}
+
+// ExitNamedStructValue is called when production NamedStructValue is exited.
+func (s *BaseCaliburnParserListener) ExitNamedStructValue(ctx *NamedStructValueContext) {}
+
+// EnterCollectionValuesInitial is called when production CollectionValuesInitial is entered.
+func (s *BaseCaliburnParserListener) EnterCollectionValuesInitial(ctx *CollectionValuesInitialContext) {
+}
+
+// ExitCollectionValuesInitial is called when production CollectionValuesInitial is exited.
+func (s *BaseCaliburnParserListener) ExitCollectionValuesInitial(ctx *CollectionValuesInitialContext) {
+}
+
+// EnterCollectionValuesAppend is called when production CollectionValuesAppend is entered.
+func (s *BaseCaliburnParserListener) EnterCollectionValuesAppend(ctx *CollectionValuesAppendContext) {
+}
+
+// ExitCollectionValuesAppend is called when production CollectionValuesAppend is exited.
+func (s *BaseCaliburnParserListener) ExitCollectionValuesAppend(ctx *CollectionValuesAppendContext) {}
+
+// EnterCollectionValue is called when production CollectionValue is entered.
+func (s *BaseCaliburnParserListener) EnterCollectionValue(ctx *CollectionValueContext) {}
+
+// ExitCollectionValue is called when production CollectionValue is exited.
+func (s *BaseCaliburnParserListener) ExitCollectionValue(ctx *CollectionValueContext) {}
 
 // EnterFunctionTypeFunc is called when production FunctionTypeFunc is entered.
 func (s *BaseCaliburnParserListener) EnterFunctionTypeFunc(ctx *FunctionTypeFuncContext) {}
@@ -499,23 +669,17 @@ func (s *BaseCaliburnParserListener) EnterStructTypeStruct(ctx *StructTypeStruct
 // ExitStructTypeStruct is called when production StructTypeStruct is exited.
 func (s *BaseCaliburnParserListener) ExitStructTypeStruct(ctx *StructTypeStructContext) {}
 
+// EnterStructTypeTuple is called when production StructTypeTuple is entered.
+func (s *BaseCaliburnParserListener) EnterStructTypeTuple(ctx *StructTypeTupleContext) {}
+
+// ExitStructTypeTuple is called when production StructTypeTuple is exited.
+func (s *BaseCaliburnParserListener) ExitStructTypeTuple(ctx *StructTypeTupleContext) {}
+
 // EnterStructTypeExpression is called when production StructTypeExpression is entered.
 func (s *BaseCaliburnParserListener) EnterStructTypeExpression(ctx *StructTypeExpressionContext) {}
 
 // ExitStructTypeExpression is called when production StructTypeExpression is exited.
 func (s *BaseCaliburnParserListener) ExitStructTypeExpression(ctx *StructTypeExpressionContext) {}
-
-// EnterTupleTypeTuple is called when production TupleTypeTuple is entered.
-func (s *BaseCaliburnParserListener) EnterTupleTypeTuple(ctx *TupleTypeTupleContext) {}
-
-// ExitTupleTypeTuple is called when production TupleTypeTuple is exited.
-func (s *BaseCaliburnParserListener) ExitTupleTypeTuple(ctx *TupleTypeTupleContext) {}
-
-// EnterTupleTypeExpression is called when production TupleTypeExpression is entered.
-func (s *BaseCaliburnParserListener) EnterTupleTypeExpression(ctx *TupleTypeExpressionContext) {}
-
-// ExitTupleTypeExpression is called when production TupleTypeExpression is exited.
-func (s *BaseCaliburnParserListener) ExitTupleTypeExpression(ctx *TupleTypeExpressionContext) {}
 
 // EnterAccessTypeExpression is called when production AccessTypeExpression is entered.
 func (s *BaseCaliburnParserListener) EnterAccessTypeExpression(ctx *AccessTypeExpressionContext) {}
@@ -531,12 +695,6 @@ func (s *BaseCaliburnParserListener) EnterIdentifierTypeExpression(ctx *Identifi
 func (s *BaseCaliburnParserListener) ExitIdentifierTypeExpression(ctx *IdentifierTypeExpressionContext) {
 }
 
-// EnterIdentifiersRule is called when production IdentifiersRule is entered.
-func (s *BaseCaliburnParserListener) EnterIdentifiersRule(ctx *IdentifiersRuleContext) {}
-
-// ExitIdentifiersRule is called when production IdentifiersRule is exited.
-func (s *BaseCaliburnParserListener) ExitIdentifiersRule(ctx *IdentifiersRuleContext) {}
-
 // EnterUntypedLiteral is called when production UntypedLiteral is entered.
 func (s *BaseCaliburnParserListener) EnterUntypedLiteral(ctx *UntypedLiteralContext) {}
 
@@ -548,3 +706,15 @@ func (s *BaseCaliburnParserListener) EnterTypedLiteral(ctx *TypedLiteralContext)
 
 // ExitTypedLiteral is called when production TypedLiteral is exited.
 func (s *BaseCaliburnParserListener) ExitTypedLiteral(ctx *TypedLiteralContext) {}
+
+// EnterLiteral is called when production literal is entered.
+func (s *BaseCaliburnParserListener) EnterLiteral(ctx *LiteralContext) {}
+
+// ExitLiteral is called when production literal is exited.
+func (s *BaseCaliburnParserListener) ExitLiteral(ctx *LiteralContext) {}
+
+// EnterIdentifier is called when production identifier is entered.
+func (s *BaseCaliburnParserListener) EnterIdentifier(ctx *IdentifierContext) {}
+
+// ExitIdentifier is called when production identifier is exited.
+func (s *BaseCaliburnParserListener) ExitIdentifier(ctx *IdentifierContext) {}
