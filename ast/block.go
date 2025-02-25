@@ -1,6 +1,9 @@
 package ast
 
+import "fmt"
+
 type Block interface {
+	Node
 	IsBlock()
 }
 
@@ -13,3 +16,6 @@ func NewBlock(statements []Statement) *BlockBase {
 }
 
 func (b *BlockBase) IsBlock() {}
+func (b *BlockBase) String() string {
+	return fmt.Sprintf("{\n%s }", SliceToString(b.statements, "\n"))
+}

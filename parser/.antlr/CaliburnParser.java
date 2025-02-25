@@ -3551,7 +3551,7 @@ public class CaliburnParser extends Parser {
 						setState(453);
 						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
 						setState(454);
-						match(OP_AND);
+						((BinaryExpressionContext)_localctx).op = match(OP_AND);
 						setState(455);
 						expression(16);
 						}
@@ -3563,7 +3563,7 @@ public class CaliburnParser extends Parser {
 						setState(456);
 						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
 						setState(457);
-						match(OP_XOR);
+						((BinaryExpressionContext)_localctx).op = match(OP_XOR);
 						setState(458);
 						expression(15);
 						}
@@ -3575,7 +3575,7 @@ public class CaliburnParser extends Parser {
 						setState(459);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
 						setState(460);
-						match(OP_OR);
+						((BinaryExpressionContext)_localctx).op = match(OP_OR);
 						setState(461);
 						expression(14);
 						}

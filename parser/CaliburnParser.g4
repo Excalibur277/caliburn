@@ -244,9 +244,9 @@ expression
     | expression op = (OP_ADD | OP_SUB) expression                                     # BinaryExpression
     | expression op = (OP_LSHIFT | OP_RSHIFT) expression                               # BinaryExpression
     | expression op = (OP_EQU | OP_NEQ | OP_LTE | OP_GTE | OP_LST | OP_GRT) expression # BinaryExpression
-    | expression OP_AND expression                                                     # BinaryExpression
-    | expression OP_XOR expression                                                     # BinaryExpression
-    | expression OP_OR expression                                                      # BinaryExpression
+    | expression op = OP_AND expression                                                # BinaryExpression
+    | expression op = OP_XOR expression                                                # BinaryExpression
+    | expression op = OP_OR expression                                                 # BinaryExpression
     | expression L_PAREN expressions_optional R_PAREN                                  # CallExpression
     | expression PERIOD identifier                                                     # AccessExpression
     | expression L_S_BRACK expression R_S_BRACK                                        # IndexExpression
@@ -258,7 +258,7 @@ expression
     | function_type L_PAREN parameters R_PAREN type_expression block                   # FunctionExpression
     | function_type L_PAREN parameters R_PAREN block                                   # FunctionExpressionNoReturnType
     | struct_type L_C_BRACK struct_values R_C_BRACK                                    # StructExpression
-    | type_expression L_S_BRACK collection_values R_S_BRACK                            # CollectionExpression
+    | type_expression L_S_BRACK collection_values R_S_BRACK                            # CollectionExpression // TODO - change L_S_BRACK as it overlaps with slice
     ;
 
 struct_values

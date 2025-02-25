@@ -1,6 +1,9 @@
 package ast
 
+import "fmt"
+
 type IfStatement interface {
+	Node
 	IsIfStatement()
 }
 
@@ -16,6 +19,9 @@ func NewIfStatement(priorStatements []InlineStatement, expression Expression, bl
 }
 
 func (is *IfStatementFinal) IsIfStatement() {}
+func (is *IfStatementFinal) String() string {
+	return fmt.Sprintf("if %s %s %s", SliceToString(is.priorStatements, " "), is.expression, is.block)
+}
 
 type IfElseStatement struct {
 	IfStatementFinal
@@ -25,8 +31,12 @@ type IfElseStatement struct {
 func NewIfElseStatement(priorStatements []InlineStatement, expression Expression, block Block, elseStatement ElseStatement) *IfElseStatement {
 	return &IfElseStatement{IfStatementFinal: *NewIfStatement(priorStatements, expression, block), elseStatement: elseStatement}
 }
+func (ies *IfElseStatement) String() string {
+	return fmt.Sprintf("if %s %s", ies.IfStatementFinal.String(), ies.elseStatement)
+}
 
 type ElseStatement interface {
+	Node
 	IsElseStatement()
 }
 
@@ -40,6 +50,9 @@ func NewElseStatement(block Block) *ElseStatementFinal {
 }
 
 func (es *ElseStatementFinal) IsElseStatement() {}
+func (es *ElseStatementFinal) String() string {
+	return fmt.Sprintf("else %s", es.block)
+}
 
 type ElseIfStatement struct {
 	StatementBase
@@ -51,3 +64,6 @@ func NewElseIfStatement(ifStatement IfStatement) *ElseIfStatement {
 }
 
 func (es *ElseIfStatement) IsElseStatement() {}
+func (es *ElseIfStatement) String() string {
+	return fmt.Sprintf("else if %s", es.ifStatement)
+}

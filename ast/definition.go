@@ -1,5 +1,7 @@
 package ast
 
+import "fmt"
+
 type Definition interface {
 	Statement
 	IsDefinition()
@@ -24,14 +26,6 @@ func NewFunctionDefinition(functionType FunctionType, identifier Identifier, par
 	}
 }
 
-type TypeDefinition struct {
-	DefinitionBase
-}
-
-type ClassDefinition struct {
-	DefinitionBase
-}
-
-type UsingDefinition struct {
-	DefinitionBase
+func (f *FunctionDefinition) String() string {
+	return fmt.Sprintf("%s defined as %s", f.identifier, f.definedFunction)
 }

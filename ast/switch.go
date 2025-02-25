@@ -1,5 +1,9 @@
 package ast
 
+import (
+	"fmt"
+)
+
 type SwitchStatement struct {
 	StatementBase
 	priorStatements []InlineStatement
@@ -11,7 +15,12 @@ func NewSwitchStatement(priorStatements []InlineStatement, expression Expression
 	return &SwitchStatement{priorStatements: priorStatements, expression: expression, caseBlocks: caseBlocks}
 }
 
+func (ss *SwitchStatement) String() string {
+	return fmt.Sprintf("switch %s %s %s", ss.priorStatements, ss.expression, ss.caseBlocks)
+}
+
 type CaseBlocks interface {
+	Node
 	IsCaseBlocks()
 }
 
@@ -23,7 +32,8 @@ func NewCaseBlocks(optionCaseBlocks []OptionCaseBlock) *CaseBlocksBase {
 	return &CaseBlocksBase{optionCaseBlocks: optionCaseBlocks}
 }
 
-func (cs *CaseBlocksBase) IsCaseBlocks() {}
+func (cs *CaseBlocksBase) IsCaseBlocks()  {}
+func (cs *CaseBlocksBase) String() string { return SliceToString(cs.optionCaseBlocks, " ") }
 
 type CaseBlocksDefault struct {
 	CaseBlocksBase
@@ -34,7 +44,12 @@ func NewCaseBlocksDefault(optionCaseBlocks []OptionCaseBlock, defaultCaseBlock D
 	return &CaseBlocksDefault{CaseBlocksBase: *NewCaseBlocks(optionCaseBlocks), defaultCaseBlock: defaultCaseBlock}
 }
 
+func (cs *CaseBlocksDefault) String() string {
+	return fmt.Sprintf("%s %s", cs.CaseBlocksBase, cs.defaultCaseBlock)
+}
+
 type DefaultCaseBlock interface {
+	Node
 	IsDefaultCaseBlock()
 }
 
@@ -47,8 +62,10 @@ func NewDefaultCaseBlock(block Block) *DefaultCaseBlockBase {
 }
 
 func (dcs *DefaultCaseBlockBase) IsDefaultCaseBlock() {}
+func (dcs *DefaultCaseBlockBase) String() string      { return fmt.Sprintf("default %s", dcs.block) }
 
 type OptionCaseBlock interface {
+	Node
 	IsOptionCaseBlock()
 }
 
@@ -62,3 +79,6 @@ func NewOptionCaseBlock(expression Expression, block Block) *OptionCaseBlockBase
 }
 
 func (dcs *OptionCaseBlockBase) IsOptionCaseBlock() {}
+func (dcs *OptionCaseBlockBase) String() string {
+	return fmt.Sprintf("case %s %s", dcs.expression, dcs.block)
+}

@@ -1,6 +1,7 @@
 package ast
 
 type Token interface {
+	Node
 	IsToken()
 }
 

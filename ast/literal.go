@@ -1,6 +1,9 @@
 package ast
 
+import "fmt"
+
 type Literal interface {
+	Node
 	IsLiteral()
 }
 
@@ -15,12 +18,16 @@ type TypedLiteral interface {
 
 type TypedLiteralBase struct {
 	LiteralBase
-	token          LiteralToken
 	typeExpression TypeExpression
+	token          LiteralToken
 }
 
 func NewTypedLiteral(typeExpression TypeExpression, token LiteralToken) *TypedLiteralBase {
 	return &TypedLiteralBase{typeExpression: typeExpression, token: token}
+}
+
+func (l *TypedLiteralBase) String() string {
+	return fmt.Sprintf("%s %s", l.typeExpression, l.token)
 }
 
 func (l *TypedLiteralBase) IsTypedLiteral() {}
@@ -40,8 +47,12 @@ func NewUntypedLiteral(token LiteralToken) *UntypedLiteralBase {
 }
 
 func (l *UntypedLiteralBase) IsUntypedLiteral() {}
+func (l *UntypedLiteralBase) String() string {
+	return l.token.String()
+}
 
 type LiteralToken interface {
+	Node
 	IsLiteralToken()
 }
 
@@ -53,4 +64,7 @@ func NewLiteralToken(text string) *LiteralTokenBase {
 	return &LiteralTokenBase{text: text}
 }
 
-func (l *LiteralTokenBase) IsLiteIsLiteralTokenral() {}
+func (l *LiteralTokenBase) IsLiteralToken() {}
+func (l *LiteralTokenBase) String() string {
+	return l.text
+}

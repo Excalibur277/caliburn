@@ -32,9 +32,9 @@ func (l *CaliburnListener) ExitBracketedExpression(c *parsing.BracketedExpressio
 // expression: expression op = (OP_ADD | OP_SUB) expression # BinaryExpression
 // expression: expression op = (OP_LSHIFT | OP_RSHIFT) expression # BinaryExpression
 // expression: expression op = (OP_EQU | OP_NEQ | OP_LTE | OP_GTE | OP_LST | OP_GRT) expression # BinaryExpression
-// expression: expression OP_AND expression # BinaryExpression
-// expression: expression OP_XOR expression # BinaryExpression
-// expression: expression OP_OR expression # BinaryExpression
+// expression: expression op = OP_AND expression # BinaryExpression
+// expression: expression op = OP_XOR expression # BinaryExpression
+// expression: expression op = OP_OR expression # BinaryExpression
 func (l *CaliburnListener) ExitBinaryExpression(c *parsing.BinaryExpressionContext) {
 	l.Pop(2)
 	Push(l, ast.NewBinaryExpression(Dequeue[ast.Expression](l), ast.NewBinaryOperation(c.GetOp()), Dequeue[ast.Expression](l)))

@@ -1,6 +1,9 @@
 package ast
 
+import "fmt"
+
 type CollectionValue interface {
+	Node
 	IsCollectionValue()
 }
 
@@ -14,3 +17,6 @@ func NewCollectionValue(keyExpression, valueExpression Expression) *CollectionVa
 }
 
 func (cv *CollectionValueBase) IsCollectionValue() {}
+func (cv *CollectionValueBase) String() string {
+	return fmt.Sprintf("%s : %s", cv.keyExpression, cv.valueExpression)
+}

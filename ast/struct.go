@@ -1,6 +1,9 @@
 package ast
 
+import "fmt"
+
 type StructValues interface {
+	Node
 	IsStructValues()
 }
 
@@ -13,6 +16,7 @@ func NewStructValuesNamed(values []NamedStructValue) *StructValuesNamed {
 }
 
 func (svn *StructValuesNamed) IsStructValues() {}
+func (svn *StructValuesNamed) String() string  { return SliceToString(svn.values, " ") }
 
 type StructValuesUnamed struct {
 	values []Expression
@@ -23,8 +27,10 @@ func NewStructValuesUnamed(values []Expression) *StructValuesUnamed {
 }
 
 func (svu *StructValuesUnamed) IsStructValues() {}
+func (svu *StructValuesUnamed) String() string  { return SliceToString(svu.values, " ") }
 
 type NamedStructValue interface {
+	Node
 	IsNamedStructValue()
 }
 
@@ -38,3 +44,4 @@ func NewNamedStructValue(key Identifier, value Expression) *NamedStructValueBase
 }
 
 func (cv *NamedStructValueBase) IsNamedStructValue() {}
+func (cv *NamedStructValueBase) String() string      { return fmt.Sprintf("%s : %s", cv.key, cv.value) }

@@ -11627,7 +11627,10 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 				}
 				{
 					p.SetState(454)
-					p.Match(CaliburnParserOP_AND)
+
+					var _m = p.Match(CaliburnParserOP_AND)
+
+					localctx.(*BinaryExpressionContext).op = _m
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit
@@ -11649,7 +11652,10 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 				}
 				{
 					p.SetState(457)
-					p.Match(CaliburnParserOP_XOR)
+
+					var _m = p.Match(CaliburnParserOP_XOR)
+
+					localctx.(*BinaryExpressionContext).op = _m
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit
@@ -11671,7 +11677,10 @@ func (p *CaliburnParser) expression(_p int) (localctx IExpressionContext) {
 				}
 				{
 					p.SetState(460)
-					p.Match(CaliburnParserOP_OR)
+
+					var _m = p.Match(CaliburnParserOP_OR)
+
+					localctx.(*BinaryExpressionContext).op = _m
 					if p.HasError() {
 						// Recognition error - abort rule
 						goto errorExit

@@ -1,6 +1,9 @@
 package ast
 
+import "fmt"
+
 type Type interface {
+	Node
 	IsType()
 	IsImplicit() bool
 }
@@ -10,6 +13,7 @@ type TypeBase struct{}
 func (t *TypeBase) IsType() {}
 
 type FunctionType interface {
+	Node
 	Type
 	IsFunctionType()
 }
@@ -30,6 +34,8 @@ func NewImplicitFunctionType() *ImplicitFunctionType {
 
 func (ft *ImplicitFunctionType) IsImplicit() bool { return true }
 
+func (ft *ImplicitFunctionType) String() string { return "func" }
+
 type FunctionTypeExpression struct {
 	FunctionTypeBase
 	typeExpression TypeExpression
@@ -40,6 +46,7 @@ func NewFunctionTypeExpression(typeExpression TypeExpression) *FunctionTypeExpre
 }
 
 func (fte *FunctionTypeExpression) IsImplicit() bool { return false }
+func (fte *FunctionTypeExpression) String() string   { return fte.typeExpression.String() }
 
 type StructType interface {
 	Type
@@ -62,6 +69,7 @@ func NewImplicitStructType() *ImplicitStructType {
 
 func (st *ImplicitStructType) IsImplicit() bool      { return true }
 func (st *ImplicitStructType) IsImplicitNamed() bool { return true }
+func (st *ImplicitStructType) String() string        { return "struct" }
 
 type ImplicitTupleType struct {
 	StructTypeBase
@@ -73,6 +81,7 @@ func NewImplicitTupleType() *ImplicitTupleType {
 
 func (tt *ImplicitTupleType) IsImplicit() bool      { return true }
 func (tt *ImplicitTupleType) IsImplicitNamed() bool { return false }
+func (tt *ImplicitTupleType) String() string        { return "tuple" }
 
 type StructTypeExpression struct {
 	StructTypeBase
@@ -85,6 +94,7 @@ func NewStructTypeExpression(typeExpression TypeExpression) *StructTypeExpressio
 
 func (ste *StructTypeExpression) IsImplicit() bool      { return false }
 func (ste *StructTypeExpression) IsImplicitNamed() bool { return false }
+func (ste *StructTypeExpression) String() string        { return ste.typeExpression.String() }
 
 type TypeExpression interface {
 	Type
@@ -107,6 +117,8 @@ func NewIdentifierTypeExpression(identifier Identifier) *IdentifierTypeExpressio
 	return &IdentifierTypeExpression{identifier: identifier}
 }
 
+func (ite *IdentifierTypeExpression) String() string { return ite.identifier.String() }
+
 type AccessTypeExpression struct {
 	TypeExpressionBase
 	typeExpression   TypeExpression
@@ -115,6 +127,10 @@ type AccessTypeExpression struct {
 
 func NewAccessTypeExpression(typeExpression TypeExpression, accessIdentifier Identifier) *AccessTypeExpression {
 	return &AccessTypeExpression{typeExpression: typeExpression, accessIdentifier: accessIdentifier}
+}
+
+func (ate *AccessTypeExpression) String() string {
+	return fmt.Sprintf("%s %s", ate.typeExpression, ate.accessIdentifier)
 }
 
 type EmptyType interface {
@@ -140,3 +156,5 @@ func (et *EmptyTypeBase) IsImplicitNamed() bool { return false }
 func NewEmptyType() EmptyType {
 	return &EmptyTypeBase{}
 }
+
+func (et *EmptyTypeBase) String() string { return "" }

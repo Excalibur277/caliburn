@@ -1,19 +1,27 @@
 package ast
 
-import "github.com/antlr4-go/antlr/v4"
+import (
+	"fmt"
+
+	"github.com/antlr4-go/antlr/v4"
+)
 
 type BinaryOperation interface {
+	Node
 	IsBinaryOperation()
 }
 
 type UnaryOperation interface {
+	Node
 	IsUnaryOperation()
 }
 
 func NewBinaryOperation(token antlr.Token) BinaryOperation {
-	return nil
+	fmt.Println(token.GetText())
+	return nil // TODO
 }
 
 func NewUnaryOperation(token antlr.Token) UnaryOperation {
-	return nil
+	fmt.Println(token.GetText())
+	return nil // TODO
 }

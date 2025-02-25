@@ -1,6 +1,9 @@
 package ast
 
+import "fmt"
+
 type Function interface {
+	Node
 	IsFunction()
 }
 
@@ -11,9 +14,7 @@ type FunctionBase struct {
 	block        Block
 }
 
-func (f *FunctionBase) IsFunction() {}
-
-func NewFunction(functionType FunctionType, parameters []Parameter, returnType Type, block Block) Function {
+func NewFunction(functionType FunctionType, parameters []Parameter, returnType Type, block Block) *FunctionBase {
 	return &FunctionBase{
 		functionType: functionType,
 		parameters:   parameters,
@@ -21,8 +22,13 @@ func NewFunction(functionType FunctionType, parameters []Parameter, returnType T
 		block:        block,
 	}
 }
+func (f *FunctionBase) IsFunction() {}
+func (f *FunctionBase) String() string {
+	return fmt.Sprintf("%s (%s) %s %s", f.functionType, SliceToString(f.parameters, ", "), f.returnType, f.block)
+}
 
 type Parameter interface {
+	Node
 	IsParameter()
 }
 type TypedParameter struct {
@@ -34,6 +40,9 @@ func NewTypedParameter(typedAssignDeclaration TypedAssignDeclaration) *TypedPara
 }
 
 func (p *TypedParameter) IsParameter() {}
+func (p *TypedParameter) String() string {
+	return p.typedAssignDeclaration.String()
+}
 
 type UntypedParameter struct {
 	untypedAssignDeclaration UntypedAssignDeclaration
@@ -44,6 +53,9 @@ func NewUntypedParameter(untypedAssignDeclaration UntypedAssignDeclaration) *Unt
 }
 
 func (p *UntypedParameter) IsParameter() {}
+func (p *UntypedParameter) String() string {
+	return p.untypedAssignDeclaration.String()
+}
 
 type StructDestrutureParameter struct {
 	parameters []Parameter
@@ -54,3 +66,6 @@ func NewStructDestructureParameter(parameters []Parameter) *StructDestruturePara
 }
 
 func (p *StructDestrutureParameter) IsParameter() {}
+func (p *StructDestrutureParameter) String() string {
+	return fmt.Sprintf("{ %s }", SliceToString(p.parameters, ", "))
+}
