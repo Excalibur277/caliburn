@@ -1,6 +1,9 @@
 package ast
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type Block interface {
 	Node
@@ -17,5 +20,5 @@ func NewBlock(statements []Statement) *BlockBase {
 
 func (b *BlockBase) IsBlock() {}
 func (b *BlockBase) String() string {
-	return fmt.Sprintf("{\n%s }", SliceToString(b.statements, "\n"))
+	return fmt.Sprintf("{\n\t%s\n}", strings.ReplaceAll(SliceToString(b.statements, "\n"), "\n", "\n\t"))
 }

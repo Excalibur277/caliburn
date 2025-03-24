@@ -1,12 +1,17 @@
 
 func main() bool {
     var a = bool"true";
+    bool c = "true"; # TODO
 
     a &= bool"false";
 
     bool b = bool"false";
 
     a = a | b;
+
+    if a {
+        a = "false";
+    }
 
     return a;
 }

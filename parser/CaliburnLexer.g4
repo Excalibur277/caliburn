@@ -100,8 +100,8 @@ OP_LST : '<';
 // Parse out
 WhiteSpace: [\p{White_Space}]+ -> channel(HIDDEN);
 
-CommentMultiLine  : '`' .*? '`'                -> channel(HIDDEN);
-CommentSingleLine : '#' ~['"\r\n\\] '\r'? '\n' -> channel(HIDDEN);
+CommentMultiLine  : '`' .*? '`'                   -> channel(HIDDEN);
+CommentSingleLine : '#' (~['"\r\n\\])* '\r'? '\n' -> channel(HIDDEN);
 // Identifier
 
 IdentifierToken: [\p{L}_] [\p{L}\p{N}_]*;
